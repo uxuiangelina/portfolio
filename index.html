@@ -267,7 +267,8 @@
   .case-list{ display:flex; flex-direction:column; gap:32px; }
   .case-card{ position:relative; display:block; border-radius:var(--radius); background:var(--surface); border:1px solid var(--line); overflow:hidden; cursor:none; transition:transform .5s var(--ease), box-shadow .5s var(--ease), border-color .5s var(--ease); }
   .case-card:hover{ transform:translateY(-8px) scale(1.008); box-shadow:0 34px 64px -28px rgba(17,17,17,.22); border-color:transparent; }
-  .case-body{ padding:40px 44px 44px; }
+    .case-body{ padding:40px 44px 44px; display:grid; grid-template-columns:1.2fr 1fr; gap:36px; align-items:center; }
+  .case-text{ min-width:0; }
   .case-top{ display:flex; justify-content:space-between; gap:24px; flex-wrap:wrap; }
   .case-tags{ display:flex; gap:8px; flex-wrap:wrap; }
   .tag{ font-size:12px; font-weight:600; letter-spacing:.03em; padding:6px 12px; border-radius:999px; background:var(--bg-alt); color:var(--text-2); }
@@ -276,13 +277,13 @@
   .case-duration{ font-size:13px; color:var(--text-2); font-weight:500; }
   .case-card h3{ font-size:clamp(24px,3vw,32px); margin-top:24px; max-width:22ch; }
   .case-card p{ margin-top:14px; color:var(--text-2); max-width:56ch; font-size:14px; line-height:1.45; }
-  .case-layers{ display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:28px; }
-  .layer-item{ border-radius:10px; overflow:hidden; background:var(--bg-alt); aspect-ratio:4/3; }
-  .layer-item img{ width:100%; height:100%; object-fit:cover; display:block; transition:transform .5s var(--ease); }
-  .case-card:hover .layer-item img{ transform:scale(1.08); }
+  .case-image{ border-radius:14px; overflow:hidden; background:var(--bg-alt); aspect-ratio:4/3; }
+  .case-image img{ width:100%; height:100%; object-fit:cover; display:block; transition:transform .5s var(--ease); }
+  .case-card:hover .case-image img{ transform:scale(1.06); }
   .case-link{ margin-top:26px; display:inline-flex; align-items:center; gap:8px; font-weight:600; font-size:15px; }
   .case-link svg{ transition:transform .3s var(--ease); }
   .case-card:hover .case-link svg{ transform:translateX(4px); }
+  @media (max-width:900px){ .case-body{ grid-template-columns:1fr; } }
 
   .results-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
   @media (max-width:900px){ .results-grid{ grid-template-columns:1fr 1fr; } }
@@ -606,54 +607,45 @@
     </div>
 
     <div class="case-list">
-      <a class="case-card reveal" data-cursor="view" data-cursor-label="Открыть" data-cursor-label-key="ach.open" href="case-post.html?slug=fintech-legal-app">
+           <a class="case-card reveal" data-cursor="view" data-cursor-label="Открыть" data-cursor-label-key="ach.open" href="case-post.html?slug=fintech-legal-app">
         <div class="case-body">
-          <div class="case-top">
-            <div class="case-tags"><span class="tag t1">Fintech</span><span class="tag t2">iOS</span><span class="tag t1">Android</span></div>
-            <span class="case-duration" data-i18n="work.case1.duration">12 недель</span>
+          <div class="case-text">
+            <div class="case-top">
+              <div class="case-tags"><span class="tag t1">Fintech</span><span class="tag t2">iOS</span><span class="tag t1">Android</span></div>
+              <span class="case-duration" data-i18n="work.case1.duration">12 недель</span>
+            </div>
+            <h3 data-i18n="work.case1.title">Финтех-приложение с&nbsp;юридической логикой</h3>
+            <p data-i18n="work.case1.desc">С&nbsp;нуля спроектировала сервис цифровых P2P-займов: от&nbsp;анализа бизнес-требований и&nbsp;пользовательских сценариев до&nbsp;UX-архитектуры, прототипирования и&nbsp;дизайн-системы</p>
           </div>
-          <h3 data-i18n="work.case1.title">Финтех-приложение с&nbsp;юридической логикой</h3>
-          <p data-i18n="work.case1.desc">С&nbsp;нуля спроектировала сервис цифровых P2P-займов: от&nbsp;анализа бизнес-требований и&nbsp;пользовательских сценариев до&nbsp;UX-архитектуры, прототипирования и&nbsp;дизайн-системы</p>
-          <div class="case-layers">
-            <div class="layer-item"><img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/casefinmain1.jpg"></div>
-            <div class="layer-item"><img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/casefinmain2.jpg"></div>
-            <div class="layer-item"><img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/casefinmain3.jpg"></div>
-            <div class="layer-item"><img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/casefinmain4.jpg"></div>
-          </div>
+          <div class="case-image"><img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/casefinmain1.jpg" alt=""></div>
         </div>
       </a>
 
-      <a class="case-card reveal" data-cursor="view" data-cursor-label="Открыть" data-cursor-label-key="ach.open" href="case-post.html?slug=coal-mining-dashboard">
+            <a class="case-card reveal" data-cursor="view" data-cursor-label="Открыть" data-cursor-label-key="ach.open" href="case-post.html?slug=coal-mining-dashboard">
         <div class="case-body">
-          <div class="case-top">
-            <div class="case-tags"><span class="tag t2" data-i18n="work.case2.tag">Личный кабинет</span><span class="tag t1">B2B</span></div>
-            <span class="case-duration" data-i18n="work.case2.duration">4 недели</span>
+          <div class="case-text">
+            <div class="case-top">
+              <div class="case-tags"><span class="tag t2" data-i18n="work.case2.tag">Личный кабинет</span><span class="tag t1">B2B</span></div>
+              <span class="case-duration" data-i18n="work.case2.duration">4 недели</span>
+            </div>
+            <h3 data-i18n="work.case2.title">Продуктовый подход для&nbsp;личного кабинета угледобывающей компании</h3>
+            <p data-i18n="work.case2.desc">Переработала UX существующей B2B-платформы: провела аудит, выявила проблемы в&nbsp;структуре и&nbsp;навигации, унифицировала сценарии и&nbsp;заложила основу для&nbsp;дальнейшего развития продукта</p>
           </div>
-          <h3 data-i18n="work.case2.title">Продуктовый подход для&nbsp;личного кабинета угледобывающей компании</h3>
-          <p data-i18n="work.case2.desc">Переработала UX существующей B2B-платформы: провела аудит, выявила проблемы в&nbsp;структуре и&nbsp;навигации, унифицировала сценарии и&nbsp;заложила основу для&nbsp;дальнейшего развития продукта</p>
-          <div class="case-layers">
-            <div class="layer-item"><img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/caseb2bmain1.jpg"></div>
-            <div class="layer-item"><img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/caseb2bmain2.jpg"></div>
-            <div class="layer-item"><img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/caseb2bmain3.jpg"></div>
-            <div class="layer-item"><img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/caseb2bmain4.jpg"></div>
-          </div>
+          <div class="case-image"><img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/caseb2bmain1.jpg" alt=""></div>
         </div>
       </a>
 
-      <a class="case-card reveal" data-cursor="view" data-cursor-label="Открыть" data-cursor-label-key="ach.open" href="case-post.html?slug=pawly-pettech-ecosystem">
+            <a class="case-card reveal" data-cursor="view" data-cursor-label="Открыть" data-cursor-label-key="ach.open" href="case-post.html?slug=pawly-pettech-ecosystem">
         <div class="case-body">
-          <div class="case-top">
-            <div class="case-tags"><span class="tag t1">Pettech</span><span class="tag t2">iOS</span><span class="tag t1">Android</span></div>
-            <span class="case-duration" data-i18n="work.case3.duration">10 недель</span>
+          <div class="case-text">
+            <div class="case-top">
+              <div class="case-tags"><span class="tag t1">Pettech</span><span class="tag t2">iOS</span><span class="tag t1">Android</span></div>
+              <span class="case-duration" data-i18n="work.case3.duration">10 недель</span>
+            </div>
+            <h3 data-i18n="work.case3.title">Pettech-экосистема для&nbsp;владельцев питомцев</h3>
+            <p data-i18n="work.case3.desc">Спроектировала архитектуру экосистемы, объединив уход за&nbsp;питомцем, услуги, AI и&nbsp;комьюнити в&nbsp;единый пользовательский опыт с&nbsp;повторными сценариями и&nbsp;точками монетизации</p>
           </div>
-          <h3 data-i18n="work.case3.title">Pettech-экосистема для&nbsp;владельцев питомцев</h3>
-          <p data-i18n="work.case3.desc">Спроектировала архитектуру экосистемы, объединив уход за&nbsp;питомцем, услуги, AI и&nbsp;комьюнити в&nbsp;единый пользовательский опыт с&nbsp;повторными сценариями и&nbsp;точками монетизации</p>
-          <div class="case-layers">
-            <div class="layer-item"><img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/casepet1.jpg"></div>
-            <div class="layer-item"><img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/casepetmain2.jpg"></div>
-            <div class="layer-item"><img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/casepetmain3.jpg"></div>
-            <div class="layer-item"><img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/casepetmain4.jpg"></div>
-          </div>
+          <div class="case-image"><img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/casepet1.jpg" alt=""></div>
         </div>
       </a>
     </div>
