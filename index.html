@@ -448,9 +448,9 @@
   </div>
   <div class="wrap">
     <div class="stats-row reveal in" id="statsRow">
-      <div class="stat"><b data-target="Продукты" data-suffix="">Продукты</b><span data-i18n="hero.stat1">Работаю с&nbsp;задачей от&nbsp;исследования до&nbsp;реализации продукта и&nbsp;дальнейшего развития</span></div>
-      <div class="stat"><b data-target="Сайты" data-suffix="">Сайты</b><span data-i18n="hero.stat2">Работаю с&nbsp;B2B, SaaS сервисами, корпоративными сайтами, лендингами и&nbsp;интернет-магазинами</span></div>
-      <div class="stat"><b data-target="End-to-end" data-suffix="">End-to-end</b><span data-i18n="hero.stat3">Могу подключиться на&nbsp;любом этапе&nbsp;— от&nbsp;идеи до&nbsp;развития готового продукта</span></div>
+      <div class="stat"><b data-i18n="hero.statNum1" data-target="Продукты" data-suffix="">Продукты</b><span data-i18n="hero.stat1">Работаю с&nbsp;задачей от&nbsp;исследования до&nbsp;реализации продукта и&nbsp;дальнейшего развития</span></div>
+      <div class="stat"><b data-i18n="hero.statNum2" data-target="Сайты" data-suffix="">Сайты</b><span data-i18n="hero.stat2">Работаю с&nbsp;B2B, SaaS сервисами, корпоративными сайтами, лендингами и&nbsp;интернет-магазинами</span></div>
+      <div class="stat"><b data-i18n="hero.statNum3" data-target="End-to-end" data-suffix="">End-to-end</b><span data-i18n="hero.stat3">Могу подключиться на&nbsp;любом этапе&nbsp;— от&nbsp;идеи до&nbsp;развития готового продукта</span></div>
     </div>
   </div>
 </header>
@@ -641,7 +641,7 @@
               <div class="case-tags"><span class="tag t1">Pettech</span><span class="tag t2">iOS</span><span class="tag t1">Android</span></div>
             </div>
             <h3 data-i18n="work.case3.title">Проектирование pet-tech экосистемы вокруг жизненного цикла питомца</h3>
-            <p data-i18n="work.case3.desc">Спроектировала продуктовую архитектуру, объединяющую уход, услуги, AI и комьюнити в единую систему регулярного взаимодействия с питомцем</p>
+            <p data-i18n="work.case3.desc">Спроектировала продуктовую архитектуру, объединяющую уход, услуги, AI и комьюнити в единую систему регулярного взаимодействия с питомцем</p>
           </div>
           <div class="case-image"><img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/casepet1.jpg" alt=""></div>
         </div>
@@ -952,10 +952,8 @@ const statObserver = new IntersectionObserver((entries) => {
             if (cur >= target) { cur = target; clearInterval(t); }
             b.textContent = cur + suffix;
           }, 30);
-        } else {
-          // Текстовое значение — просто показываем как есть, без анимации счётчика
-          b.textContent = raw + suffix;
         }
+        // Текстовые значения (не числа) не трогаем — их текст уже задан в HTML/i18n
       });
       statObserver.unobserve(entry.target);
     }
@@ -1004,6 +1002,9 @@ if (processTrack) drawObserver.observe(processTrack);
     'hero.lead': {ru:'UX/UI Designer широкого профиля. Работаю со&nbsp;сложными цифровыми продуктами, корпоративными сайтами и&nbsp;лендингами', en:'UX/UI Designer for&nbsp;B2B and&nbsp;SaaS products. I&nbsp;research user problems, design solutions, and&nbsp;take them all&nbsp;the&nbsp;way to&nbsp;a&nbsp;finished interface and&nbsp;design system'},
     'hero.btnCases': {ru:'Смотреть кейсы', en:'View cases'},
     'hero.btnContact': {ru:'Связаться', en:'Get in touch'},
+    'hero.statNum1': {ru:'Продукты', en:'Products'},
+    'hero.statNum2': {ru:'Сайты', en:'Websites'},
+    'hero.statNum3': {ru:'End-to-end', en:'End-to-end'},
     'hero.stat1': {ru:'Работаю с&nbsp;задачей от&nbsp;исследования до&nbsp;реализации продукта и&nbsp;дальнейшего развития', en:'I&nbsp;work on&nbsp;a&nbsp;task from&nbsp;research through product implementation and&nbsp;ongoing development'},
     'hero.stat2': {ru:'Работаю с&nbsp;B2B, SaaS сервисами, корпоративными сайтами, лендингами и&nbsp;интернет-магазинами', en:'I&nbsp;work with B2B, SaaS, digital services, corporate websites, landing pages, and&nbsp;e-commerce'},
     'hero.stat3': {ru:'Могу подключиться на&nbsp;любом этапе&nbsp;— от&nbsp;идеи до&nbsp;развития готового продукта', en:'I can join at&nbsp;any stage&nbsp;— from&nbsp;an idea to&nbsp;growing an existing product'},
@@ -1053,8 +1054,8 @@ if (processTrack) drawObserver.observe(processTrack);
     'work.case2.title': {ru:'Как&nbsp;упростить сложный B2B-продукт', en:'How&nbsp;to&nbsp;simplify a&nbsp;complex B2B&nbsp;product'},
     'work.case2.desc': {ru:'Переработала UX существующей B2B-платформы: провела аудит, выявила проблемы в&nbsp;структуре и&nbsp;навигации, унифицировала сценарии и&nbsp;заложила основу для&nbsp;дальнейшего развития продукта', en:'Reworked the UX of&nbsp;an existing B2B platform: ran an&nbsp;audit, identified structural and&nbsp;navigation issues, unified key scenarios, and&nbsp;laid the groundwork for&nbsp;the product\u2019s future growth'},
     'work.case3.duration': {ru:'10 недель', en:'10 weeks'},
-    'work.case3.title': {ru:'Проектирование pet-tech экосистемы вокруг жизненного цикла питомца', en:'Designing a pet-tech ecosystem around the pets lifecycle'},
-    'work.case3.desc': {ru:'Спроектировала продуктовую архитектуру, объединяющую уход, услуги, AI и комьюнити в единую систему регулярного взаимодействия с питомцем', en:'Designed a&nbsp;product architecture that&nbsp;integrates care, services, AI,&nbsp;and&nbsp;community into&nbsp;a&nbsp;single system for&nbsp;regular pet&nbsp;interaction'},
+    'work.case3.title': {ru:'Проектирование pet-tech экосистемы вокруг жизненного цикла питомца', en:"Designing a pet-tech ecosystem around the pet's lifecycle"},
+    'work.case3.desc': {ru:'Спроектировала продуктовую архитектуру, объединяющую уход, услуги, AI и комьюнити в единую систему регулярного взаимодействия с питомцем', en:'Designed a&nbsp;product architecture that&nbsp;integrates care, services, AI,&nbsp;and&nbsp;community into&nbsp;a&nbsp;single system for&nbsp;regular pet&nbsp;interaction'},
 
     'exp.num': {ru:'05 / Мой путь', en:'05 / My path'},
     'exp.title': {ru:'Опыт', en:'Experience'},
