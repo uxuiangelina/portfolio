@@ -249,8 +249,8 @@
   .about-photo-wrap{ position:relative; }
   .about-photo-square{ position:relative; width:280px; height:280px; border-radius:var(--radius); overflow:hidden; box-shadow:0 30px 60px -28px rgba(17,17,17,.35); animation:float 5s ease-in-out infinite; }
   .about-photo-square img{ width:100%; height:100%; object-fit:cover; }
-  .about-badge{ bottom:-18px; left:-18px; }
-  @media (max-width:900px){ .about-photo-square{ width:220px; height:220px; } .about-badge{ left:8px; bottom:8px; } }
+  .about-badge{ top:-18px; left:-18px; animation-delay:1.6s; }
+  @media (max-width:900px){ .about-photo{ justify-content:flex-start; } .about-photo-square{ width:220px; height:220px; } .about-badge{ top:8px; left:8px; } }
   .cv-link{ display:inline-flex; align-items:center; gap:8px; font-weight:600; font-size:15px; color:var(--accent); cursor:none; }
 
   .approach-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
@@ -267,7 +267,7 @@
   .case-list{ display:flex; flex-direction:column; gap:32px; }
   .case-card{ position:relative; display:block; border-radius:var(--radius); background:var(--surface); border:1px solid var(--line); overflow:hidden; cursor:none; transition:transform .5s var(--ease), box-shadow .5s var(--ease), border-color .5s var(--ease); }
   .case-card:hover{ transform:translateY(-8px) scale(1.008); box-shadow:0 34px 64px -28px rgba(17,17,17,.22); border-color:transparent; }
-    .case-body{ padding:40px 44px 44px; display:grid; grid-template-columns:1.2fr 1fr; gap:36px; align-items:center; }
+  .case-body{ padding:40px 44px 44px; display:grid; grid-template-columns:1.2fr 1fr; gap:36px; align-items:start; }
   .case-text{ min-width:0; }
   .case-top{ display:flex; justify-content:space-between; gap:24px; flex-wrap:wrap; }
   .case-tags{ display:flex; gap:8px; flex-wrap:wrap; }
@@ -607,12 +607,11 @@
     </div>
 
     <div class="case-list">
-           <a class="case-card reveal" data-cursor="view" data-cursor-label="Открыть" data-cursor-label-key="ach.open" href="case-post.html?slug=fintech-legal-app">
+      <a class="case-card reveal" data-cursor="view" data-cursor-label="Открыть" data-cursor-label-key="ach.open" href="case-post.html?slug=fintech-legal-app">
         <div class="case-body">
           <div class="case-text">
             <div class="case-top">
               <div class="case-tags"><span class="tag t1">Fintech</span><span class="tag t2">iOS</span><span class="tag t1">Android</span></div>
-              <span class="case-duration" data-i18n="work.case1.duration">12 недель</span>
             </div>
             <h3 data-i18n="work.case1.title">Финтех-приложение с&nbsp;юридической логикой</h3>
             <p data-i18n="work.case1.desc">С&nbsp;нуля спроектировала сервис цифровых P2P-займов: от&nbsp;анализа бизнес-требований и&nbsp;пользовательских сценариев до&nbsp;UX-архитектуры, прототипирования и&nbsp;дизайн-системы</p>
@@ -621,12 +620,11 @@
         </div>
       </a>
 
-            <a class="case-card reveal" data-cursor="view" data-cursor-label="Открыть" data-cursor-label-key="ach.open" href="case-post.html?slug=coal-mining-dashboard">
+      <a class="case-card reveal" data-cursor="view" data-cursor-label="Открыть" data-cursor-label-key="ach.open" href="case-post.html?slug=coal-mining-dashboard">
         <div class="case-body">
           <div class="case-text">
             <div class="case-top">
               <div class="case-tags"><span class="tag t2" data-i18n="work.case2.tag">Личный кабинет</span><span class="tag t1">B2B</span></div>
-              <span class="case-duration" data-i18n="work.case2.duration">4 недели</span>
             </div>
             <h3 data-i18n="work.case2.title">Продуктовый подход для&nbsp;личного кабинета угледобывающей компании</h3>
             <p data-i18n="work.case2.desc">Переработала UX существующей B2B-платформы: провела аудит, выявила проблемы в&nbsp;структуре и&nbsp;навигации, унифицировала сценарии и&nbsp;заложила основу для&nbsp;дальнейшего развития продукта</p>
@@ -635,12 +633,11 @@
         </div>
       </a>
 
-            <a class="case-card reveal" data-cursor="view" data-cursor-label="Открыть" data-cursor-label-key="ach.open" href="case-post.html?slug=pawly-pettech-ecosystem">
+      <a class="case-card reveal" data-cursor="view" data-cursor-label="Открыть" data-cursor-label-key="ach.open" href="case-post.html?slug=pawly-pettech-ecosystem">
         <div class="case-body">
           <div class="case-text">
             <div class="case-top">
               <div class="case-tags"><span class="tag t1">Pettech</span><span class="tag t2">iOS</span><span class="tag t1">Android</span></div>
-              <span class="case-duration" data-i18n="work.case3.duration">10 недель</span>
             </div>
             <h3 data-i18n="work.case3.title">Pettech-экосистема для&nbsp;владельцев питомцев</h3>
             <p data-i18n="work.case3.desc">Спроектировала архитектуру экосистемы, объединив уход за&nbsp;питомцем, услуги, AI и&nbsp;комьюнити в&nbsp;единый пользовательский опыт с&nbsp;повторными сценариями и&nbsp;точками монетизации</p>
