@@ -214,19 +214,19 @@
     <p style="font-size:14px;" data-i18n=>Фильтруйте по&nbsp;продукту, виду деятельности, этапу проекта и&nbsp;отрасли</p>
     <div class="filters" id="filters">
       <div class="filter-group" data-group="product">
-        <button class="filter-btn" data-toggle="product">Продукт <span class="chev">▾</span></button>
+        <button class="filter-btn" data-toggle="product">Тип продукта<span class="chev">▾</span></button>
         <div class="filter-panel" data-panel="product"></div>
       </div>
       <div class="filter-group" data-group="activity">
-        <button class="filter-btn" data-toggle="activity">Деятельность <span class="chev">▾</span></button>
+        <button class="filter-btn" data-toggle="activity">Задача<span class="chev">▾</span></button>
         <div class="filter-panel" data-panel="activity"></div>
       </div>
       <div class="filter-group" data-group="stage">
-        <button class="filter-btn" data-toggle="stage">Этап <span class="chev">▾</span></button>
+        <button class="filter-btn" data-toggle="stage">Этап<span class="chev">▾</span></button>
         <div class="filter-panel" data-panel="stage"></div>
       </div>
       <div class="filter-group" data-group="industry">
-        <button class="filter-btn" data-toggle="industry">Отрасль <span class="chev">▾</span></button>
+        <button class="filter-btn" data-toggle="industry">Отрасль<span class="chev">▾</span></button>
         <div class="filter-panel" data-panel="industry"></div>
       </div>
     </div>
@@ -245,9 +245,9 @@
 const IMG_BASE = 'https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/';
 
 /* ---------- canonical (RU) taxonomy — used as data keys ---------- */
-const PRODUCTS = ['Сайт','iOS-приложение','Android-приложение','Кроссплатформенная система'];
-const ACTIVITIES = ['Аналитика','Исследование','Проектирование','UI-дизайн','Дизайн-система'];
-const STAGES = ['С нуля','Готовый продукт','Редизайн'];
+const PRODUCTS = ['Сайт','Web-сервис','Мобильное приложение','B2B-система','SaaS'];
+const ACTIVITIES = ['Исследование','Прототипирование','Проектирование','UI-дизайн','Дизайн-система'];
+const STAGES = ['С нуля','Редизайн','Развитие'];
 const INDUSTRIES = ['Финтех','Медицина','E-commerce','Логистика','Недвижимость','Pettech','EdTech','Travel','B2B / Индустрия','Health & Fitness'];
 
 const CASES = [
@@ -283,8 +283,8 @@ const translations = {
   'page.breadcrumbCurrent': {ru:'Все кейсы', en:'All Cases'},
   'page.title': {ru:'Все кейсы', en:'All Cases'},
   'page.subtitle': {ru:'Фильтруйте по продукту, виду деятельности, этапу проекта и отрасли.', en:'Filter by product, activity, project stage, and industry.'},
-  'filter.product': {ru:'Продукт', en:'Product'},
-  'filter.activity': {ru:'Деятельность', en:'Activity'},
+  'filter.product': {ru:'Тип продукта', en:'Type of product'},
+  'filter.activity': {ru:'Задача', en:'Task'},
   'filter.stage': {ru:'Этап', en:'Stage'},
   'filter.industry': {ru:'Отрасль', en:'Industry'},
   'empty.state': {ru:'Кейсов по этим фильтрам не найдено', en:'No cases match these filters'},
