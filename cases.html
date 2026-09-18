@@ -211,7 +211,7 @@
   <div class="wrap">
     <div class="breadcrumbs"><a href="index.html" data-i18n="page.breadcrumbHome">Главная</a><span>/</span><span class="current" data-i18n="page.breadcrumbCurrent">Все кейсы</span></div>
     <h1 data-i18n="page.title">Все кейсы</h1>
-    <p style="font-size:14px;" data-i18n=>Фильтруйте по&nbsp;продукту, виду деятельности, этапу проекта и&nbsp;отрасли</p>
+    <p style="font-size:14px;" data-i18n=>Фильтруйте по&nbsp;продукту, виду деятельности и&nbsp;отрасли проекта</p>
     <div class="filters" id="filters">
       <div class="filter-group" data-group="product">
         <button class="filter-btn" data-toggle="product">Тип продукта<span class="chev">▾</span></button>
@@ -221,11 +221,7 @@
         <button class="filter-btn" data-toggle="activity">Задача<span class="chev">▾</span></button>
         <div class="filter-panel" data-panel="activity"></div>
       </div>
-      <div class="filter-group" data-group="stage">
-        <button class="filter-btn" data-toggle="stage">Этап<span class="chev">▾</span></button>
-        <div class="filter-panel" data-panel="stage"></div>
-      </div>
-      <div class="filter-group" data-group="industry">
+          <div class="filter-group" data-group="industry">
         <button class="filter-btn" data-toggle="industry">Отрасль<span class="chev">▾</span></button>
         <div class="filter-panel" data-panel="industry"></div>
       </div>
@@ -282,10 +278,9 @@ const translations = {
   'page.breadcrumbHome': {ru:'Главная', en:'Home'},
   'page.breadcrumbCurrent': {ru:'Все кейсы', en:'All Cases'},
   'page.title': {ru:'Все кейсы', en:'All Cases'},
-  'page.subtitle': {ru:'Фильтруйте по продукту, виду деятельности, этапу проекта и отрасли.', en:'Filter by product, activity, project stage, and industry.'},
+  'page.subtitle': {ru:'Фильтруйте по продукту, виду деятельности и отрасли проекта', en:'Filter by product, activity and industry of projects'},
   'filter.product': {ru:'Тип продукта', en:'Type of product'},
   'filter.activity': {ru:'Задача', en:'Task'},
-  'filter.stage': {ru:'Этап', en:'Stage'},
   'filter.industry': {ru:'Отрасль', en:'Industry'},
   'empty.state': {ru:'Кейсов по этим фильтрам не найдено', en:'No cases match these filters'},
   'chip.remove': {ru:'Убрать фильтр', en:'Remove filter'},
