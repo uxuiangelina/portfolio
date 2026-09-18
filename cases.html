@@ -373,7 +373,7 @@ function getFiltered(){
 function cardHtml(c){
   const lang = currentLang();
   const productTags = c.product.map(p => '<span class="tag product">' + tr(PRODUCT_EN, p, lang) + '</span>').join('');
-  const href = c.slug ? 'finteh.html';
+  const href = c.slug ? 'fintech.html';
   return (
     '<a class="case-card" href="' + href + '">' +
       '<div class="case-cover">' +
