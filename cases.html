@@ -247,7 +247,7 @@ const STAGES = ['С нуля','Редизайн','Развитие'];
 const INDUSTRIES = ['Финтех','Медицина','E-commerce','Логистика','Недвижимость','Pettech','EdTech','Travel','B2B / Индустрия','Health & Fitness'];
 
 const CASES = [
-  { title:{ru:'Финтех-приложение с юридической логикой', en:'Fintech app with legal logic'}, cover:'casefinmain1', product:['iOS-приложение','Android-приложение'], activity:'Проектирование', stage:'С нуля', industry:'Финтех', slug:'fintech' },
+  { title:{ru:'Финтех-приложение с юридической логикой', en:'Fintech app with legal logic'}, cover:'casefinmain1', product:['iOS-приложение','Android-приложение'], activity:'Проектирование', stage:'С нуля', industry:'Финтех', slug:'fintech-legal-app' },
   { title:{ru:'Продуктовый подход для личного кабинета угледобывающей компании', en:'Product approach for a coal-mining company dashboard'}, cover:'caseb2bmain1', product:['Сайт'], activity:'Аналитика', stage:'Редизайн', industry:'B2B / Индустрия', slug:'coal-mining-dashboard' },
   { title:{ru:'Pettech-экосистема для владельцев питомцев', en:'Pettech ecosystem for pet owners'}, cover:'casepet1', product:['iOS-приложение','Android-приложение'], activity:'Проектирование', stage:'С нуля', industry:'Pettech', slug:'pawly-pettech-ecosystem' },
   { title:{ru:'Мобильный банкинг для малого бизнеса', en:'Mobile banking for small business'}, cover:'bankcase1', product:['iOS-приложение','Android-приложение'], activity:'UI-дизайн', stage:'Готовый продукт', industry:'Финтех' },
@@ -373,7 +373,7 @@ function getFiltered(){
 function cardHtml(c){
   const lang = currentLang();
   const productTags = c.product.map(p => '<span class="tag product">' + tr(PRODUCT_EN, p, lang) + '</span>').join('');
-  const href = c.slug ? 'fintech.html';
+  const href = c.slug ? 'case-post.html?slug=' + c.slug : 'portfolio.html#work';
   return (
     '<a class="case-card" href="' + href + '">' +
       '<div class="case-cover">' +
