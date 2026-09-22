@@ -48,7 +48,7 @@
   .eyebrow::before{ content:''; width:6px; height:6px; border-radius:50%; background:var(--accent); }
   .contact-dark{ background:var(--dark-bg); color:var(--dark-text); position:relative; overflow:hidden; }
   .contact-dark::before{ content:''; position:absolute; width:520px; height:520px; border-radius:50%; background:var(--accent); filter:blur(150px); opacity:.25; top:-220px; left:50%; transform:translateX(-50%); }
-  .contact-section{ text-align:left; padding-top:96px; padding-bottom:96px; position:relative; z-index:1; max-width:840px; margin:0 auto; padding-left:32px; padding-right:32px; }
+  .contact-section{ text-align:left; padding-top:96px; padding-bottom:96px; position:relative; z-index:1; max-width:1180px; margin:0 auto; padding-left:32px; padding-right:32px; }
   @media (max-width:640px){ .contact-section{ padding-left:20px; padding-right:20px; } }
   .contact-dark h2{ font-size:clamp(28px,4.4vw,52px); max-width:none; white-space:nowrap; margin:0 0 18px; color:var(--dark-text); }
   @media (max-width:640px){ .contact-dark h2{ white-space:normal; } }
@@ -182,8 +182,8 @@ function coverUrl(name, w, h){
 const CASES = [
   {
     slug: 'fintech-legal-app',
-    title: 'P2P-сервис для&nbsp;оформления и&nbsp;сопровождения займов между физлицами',
-    lead: 'Спроектировала UX-архитектуру P2P-сервиса займов между физлицами: от&nbsp;идентификации участников до&nbsp;модели состояний сделки, погашения и&nbsp;просрочки',
+    title: '«Контракт» — P2P-сервис для оформления займов между физлицами',
+    lead: 'Спроектировала UX-архитектуру P2P-сервиса займов между физлицами: от идентификации участников до модели состояний сделки, погашения и просрочки.',
     tags: [['Fintech','t1'], ['P2P','t2'], ['Mobile app','t1']],
     product: ['iOS-приложение','Android-приложение'], activity: 'Проектирование', stage: 'С нуля', industry: 'Финтех',
     meta: [
@@ -414,7 +414,7 @@ window.addEventListener('scroll', () => {
 </section>
 
 <footer class="footer-dark">
-  <div class="wrap">
+  <div class="wrap wrap-wide">
     <span>© 2026 · Angelina Masalova</span>
     <ul class="footer-links">
       <li><a href="mailto:uxuiangelina@yandex.ru">E-mail</a></li>
