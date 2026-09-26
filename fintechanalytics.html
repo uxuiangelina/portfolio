@@ -37,10 +37,6 @@
   .nav-links a{ font-size:14px; font-weight:500; color:var(--text-2); position:relative; padding:4px 0; transition:color .25s ease; }
   .nav-links a:hover{ color:var(--text); }
   @media (max-width:820px){ .nav-links{ display:none; } }
-  .lang-switch{ display:flex; align-items:center; gap:6px; }
-  .lang-btn{ background:none; border:none; margin:0; padding:4px 0; font-family:inherit; font-size:14px; font-weight:500; line-height:1; color:var(--text-2); cursor:pointer; }
-  .lang-btn.is-active{ color:var(--text); }
-  .lang-sep{ font-size:12px; line-height:1; color:var(--line-strong); }
   .nav-cta{ font-size:14px; font-weight:600; padding:9px 18px; border:1px solid var(--line-strong); border-radius:999px; transition:all .3s var(--ease); }
   .nav-cta:hover{ background:var(--text); color:#fff; border-color:var(--text); }
 
@@ -48,7 +44,7 @@
   .eyebrow::before{ content:''; width:6px; height:6px; border-radius:50%; background:var(--accent); }
   .contact-dark{ background:var(--dark-bg); color:var(--dark-text); position:relative; overflow:hidden; }
   .contact-dark::before{ content:''; position:absolute; width:520px; height:520px; border-radius:50%; background:var(--accent); filter:blur(150px); opacity:.25; top:-220px; left:50%; transform:translateX(-50%); }
-  .contact-section{ text-align:left; padding-top:96px; padding-bottom:96px; position:relative; z-index:1; max-width:840px; margin:0 auto; padding-left:32px; padding-right:32px; }
+  .contact-section{ text-align:left; padding-top:96px; padding-bottom:96px; position:relative; z-index:1; max-width:1180px; margin:0 auto; padding-left:32px; padding-right:32px; }
   @media (max-width:640px){ .contact-section{ padding-left:20px; padding-right:20px; } }
   .contact-dark h2{ font-size:clamp(28px,4.4vw,52px); max-width:none; white-space:nowrap; margin:0 0 18px; color:var(--dark-text); }
   @media (max-width:640px){ .contact-dark h2{ white-space:normal; } }
@@ -158,11 +154,6 @@
         <li><a href="about.html" id="navAboutLink">Обо мне</a></li>
         <li><a href="blog.html" id="navBlogLink">Блог</a></li>
       </ul>
-      <div class="lang-switch" role="group" aria-label="Language">
-        <button type="button" class="lang-btn is-active" data-lang="ru">RU</button>
-        <span class="lang-sep">/</span>
-        <button type="button" class="lang-btn" data-lang="en">EN</button>
-      </div>
       <a href="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/files/Angelina_Masalova_CV.pdf" download class="nav-cta" id="navCVLink">Скачать CV</a>
     </div>
   </div>
@@ -171,30 +162,16 @@
 <div id="app"></div>
 
 <script>
-const I18N = {
-  ru: {
-    navCases:'Кейсы', navAbout:'Обо мне', navBlog:'Блог', navCV:'Скачать CV',
-    notFoundTitle:'Кейс не найден', notFoundText:'Возможно, ссылка устарела или кейс был перемещён.', notFoundBtn:'Ко всем кейсам',
-    titleSuffix:' — Кейс', portfolioWord:'Портфолио',
-    seeAlso:'Смотрите также', allCases:'← Все кейсы',
-    contactEyebrow:'Открыта к предложениям', contactH2:'Готовы предложить оффер?',
-    contactP:'Отвечаю в течение пары часов. Открыта к full-time, контракту и разовым проектам.',
-    btnTelegram:'Написать в Telegram', btnEmail:'Написать на почту',
-    footerEmail:'E-mail'
-  },
-  en: {
-    navCases:'Cases', navAbout:'About', navBlog:'Blog', navCV:'Download CV',
-    notFoundTitle:'Case not found', notFoundText:'The link may be outdated, or the case may have been moved.', notFoundBtn:'Back to all cases',
-    titleSuffix:' — Case study', portfolioWord:'Portfolio',
-    seeAlso:'See also', allCases:'← All cases',
-    contactEyebrow:'Open to offers', contactH2:'Got an offer for me?',
-    contactP:'I reply within a couple of hours. Open to full-time, contract and one-off projects.',
-    btnTelegram:'Message on Telegram', btnEmail:'Send an email',
-    footerEmail:'E-mail'
-  }
+const L = {
+  navCases:'Кейсы', navAbout:'Обо мне', navBlog:'Блог', navCV:'Скачать CV',
+  notFoundTitle:'Кейс не найден', notFoundText:'Возможно, ссылка устарела или кейс был перемещён.', notFoundBtn:'Ко всем кейсам',
+  titleSuffix:' — Кейс', portfolioWord:'Портфолио',
+  seeAlso:'Смотрите также', allCases:'← Все кейсы',
+  contactEyebrow:'Открыта к предложениям', contactH2:'Готовы предложить оффер?',
+  contactP:'Отвечаю в течение пары часов. Открыта к full-time, контракту и разовым проектам.',
+  btnTelegram:'Написать в Telegram', btnEmail:'Написать на почту',
+  footerEmail:'E-mail'
 };
-let currentLang = 'ru';
-function t(obj, key){ return (currentLang === 'en' && obj[key + '_en']) ? obj[key + '_en'] : obj[key]; }
 
 const IMG_BASE = 'https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/';
 function img(name){ return name.indexOf('http') === 0 ? name : IMG_BASE + name; }
@@ -208,26 +185,21 @@ const CASES = [
   {
     slug: 'fintechanalytics',
     title: 'Как превратить сложную финансово-юридическую задачу в понятную продуктовую систему',
-    title_en: 'How I turned a complex fintech-legal problem into a clear product system',
+
     lead: 'Спроектировала UX-архитектуру P2P-сервиса займов между физлицами без готового рыночного аналога: от продуктовой гипотезы и декомпозиции участников до модели состояний сделки, CJM и дизайн-системы.',
-    lead_en: 'Designed the UX architecture for a P2P personal-loan service with no direct market analog — from the product hypothesis and participant breakdown to the deal state model, CJM and design system.',
+
     tags: [['Fintech','t1'], ['P2P','t2'], ['Mobile app','t1']],
-    product: ['iOS-приложение','Android-приложение'], product_en: ['iOS app','Android app'],
-    activity: 'Проектирование', activity_en: 'Product design',
-    stage: 'С нуля', stage_en: 'From scratch',
-    industry: 'Финтех', industry_en: 'Fintech',
+    product: ['iOS-приложение','Android-приложение'],
+    activity: 'Проектирование',
+    stage: 'С нуля',
+    industry: 'Финтех',
     meta: [
       { label: 'Формат проекта', value: 'Продукт' },
       { label: 'Моя роль', value: 'UX/UI Designer' },
       { label: 'Команда', value: 'PM, backend, юристы' },
       { label: 'Платформа', value: 'Mobile app' }
     ],
-    meta_en: [
-      { label: 'Project format', value: 'Product' },
-      { label: 'My role', value: 'UX/UI Designer' },
-      { label: 'Team', value: 'PM, backend, lawyers' },
-      { label: 'Platform', value: 'Mobile app' }
-    ],
+
     cover: 'finanalysis1.jpg',
     gallery: ['finanalysis2.jpg','finanalysis3.jpg','finanalysis4.jpg'],
     tools: ['Figma','FigJam','ChatGPT','Figma AI','Miro'],
@@ -236,11 +208,7 @@ const CASES = [
       { value: '8', label: 'состояний жизненного цикла — от идентификации до закрытия обязательства', c: 's2' },
       { value: '5', label: 'сущностей продукта, связанных в единую модель сделки', c: 's1' }
     ],
-    stats_en: [
-      { value: '3', label: 'roles, each with defined goals, risks and actions within one deal', c: 's1' },
-      { value: '8', label: 'lifecycle states — from identification to closing the obligation', c: 's2' },
-      { value: '5', label: 'product entities tied into a single deal model', c: 's1' }
-    ],
+
     body: `
       <h2>Формирование гипотезы к продуктовой задаче</h2>
       <p>На старте у продукта не было готового решения или сформированной пользовательской модели. Была только идея заказчиков, двух сооснователей: создать сервис, который позволит физическим лицам оформлять займы друг с другом в цифровом формате.</p>
@@ -335,125 +303,27 @@ const CASES = [
       <p>Я перевела исходную абстрактную идею в понятную систему связанных ролей и состояний. При этом архитектура не замыкалась на одном сценарии займа: базовые сущности и состояния были заложены так, чтобы в дальнейшем расширять продукт дополнительными финансовыми и сервисными сценариями без пересборки основной логики.</p>
       <div class="inline-img"><img src="${img('finanalysis10.jpg')}" alt=""></div>
     `,
-    body_en: `
-      <h2>Shaping a hypothesis for the product task</h2>
-      <p>At the start there was no ready-made solution or established user model — only an idea from the two co-founders: build a service that lets individuals arrange loans with each other digitally.</p>
-      <p>In the first stage I didn't jump into interfaces. I broke the idea down into several questions:</p>
-      <ul>
-        <li>who are the parties to the deal;</li>
-        <li>what problem the product should solve for each side;</li>
-        <li>why a user needs a separate service if money can be sent directly;</li>
-        <li>what risks arise when arranging a loan between individuals;</li>
-        <li>which parts of the process the product should control;</li>
-        <li>how the service can make money;</li>
-        <li>what constraints already exist at the legal and technical level.</li>
-      </ul>
-      <p>This turned the abstract app idea into a concrete product hypothesis.</p>
-      <div class="inline-img"><img src="${img('finanalysis2.jpg')}" alt=""></div>
 
-      <h2>The business task</h2>
-      <p>For the business, it mattered not just to digitize an IOU, but to build infrastructure for conducting and recording financial interactions between individual users. I identified three main areas of value:</p>
-      <ul>
-        <li>Every deal creates points for future monetization: add-on services, claim scenarios, notifications, premium features and future financial instruments.</li>
-        <li>One completed loan creates a financial context for the user inside the product. If the service keeps helping manage obligations, payments and documents, the relationship doesn't end the moment the money changes hands.</li>
-        <li>The product needs to record the parties' key actions and keep a history of the interaction, so that in a dispute the user has a structured record of the deal.</li>
-      </ul>
-      <p>From this the product task took shape: build digital infrastructure that reduces the risk of late or unpaid loans between users and lets both sides go through the whole deal cycle inside one product — with room to scale and grow later.</p>
-      <div class="inline-img"><img src="${img('finanalysis3.jpg')}" alt=""></div>
-
-      <h2>Breaking down the participants</h2>
-      <p>Next I broke the product down not by screen, but by participants and their interests. The scenario rests on three roles:</p>
-      <ul>
-        <li>The lender wants to send money on pre-agreed terms and know those terms are on record.</li>
-        <li>The borrower wants to receive the money, understand their obligations, and have a clear path to fulfilling them.</li>
-        <li>The co-borrower wants to join the deal on clear terms, understand their share of the obligation, and have access to information about how it's being fulfilled.</li>
-      </ul>
-      <p>For each role I defined three things: what the user wants to get → what they're afraid of → what system action should build trust. This showed that the main UX risk wasn't interface complexity — it was trust in the state of the deal.</p>
-      <div class="inline-img"><img src="${img('finanalysis4.jpg')}" alt=""></div>
-
-      <h2>Researching the domain</h2>
-      <p>Since the product was being built in a niche with no direct existing analog, I didn't limit myself to looking at apps with a similar interface.</p>
-      <p>I studied the P2P loan process itself and split it into separate tasks: identification → agreement → setup → signing → transfer of funds → repayment → default → dispute resolution.</p>
-      <p>For each task I looked at existing patterns from adjacent products:</p>
-      <ul>
-        <li>bank lending services;</li>
-        <li>P2P platforms;</li>
-        <li>e-signature services;</li>
-        <li>secure-deal / escrow services;</li>
-        <li>payment products;</li>
-        <li>KYC flows;</li>
-        <li>debt-collection services.</li>
-      </ul>
-      <p>This let me assemble the product model out of already-proven patterns.</p>
-      <div class="inline-img"><img src="${img('finanalysis5.jpg')}" alt=""></div>
-
-      <h3>What I was mapping out</h3>
-      <p>For every stage I recorded: <b>Participants</b> — who performs the action; <b>State</b> — what's happening with the deal at that moment; <b>Evidence</b> — how the system knows the action actually happened; <b>Risk</b> — what could go wrong; <b>Consequence</b> — what happens if the action isn't taken; <b>UX requirement</b> — what the user needs to see or confirm.</p>
-      <p>This breakdown became the foundation for the CJM and the state model that followed.</p>
-      <div class="inline-img"><img src="${img('finanalysis6.jpg')}" alt=""></div>
-
-      <h2>Legal and technical constraints</h2>
-      <p>Early on, together with lawyers and engineers, I mapped out the product's boundaries.</p>
-      <p>The product would not have: integration with government ID systems, automatic legal validation, or the ability to hold funds inside the system.</p>
-      <p>It would have: manual identity moderation, passport checks, biometric face verification, logging of user actions, and confirmation of a transfer from both sides.</p>
-      <p>For example, the system couldn't just show a "transfer confirmed" screen — it had to get confirmation of the event from the parties to the deal and store it in the history.</p>
-      <div class="inline-img"><img src="${img('finanalysis7.jpg')}" alt=""></div>
-
-      <h2>User research</h2>
-      <p>Every critical action needs a clear status, confirmation and a recorded outcome. Money-related questions always carry more stress and distrust, so transparency at every step matters even more than usual.</p>
-      <p>User research was run separately for the two roles, since a lender's and a borrower's motivations and risks differ. I looked into:</p>
-      <ul>
-        <li>how people currently agree on loans;</li>
-        <li>what terms they discuss before money changes hands;</li>
-        <li>what they put in writing;</li>
-        <li>who they're willing to trust;</li>
-        <li>what makes them walk away from a deal;</li>
-        <li>what risks each side sees;</li>
-        <li>how much legal documentation matters to them;</li>
-        <li>what needs to happen before the money is sent;</li>
-        <li>how they expect to find out about a missed payment;</li>
-        <li>what counts as proof that an obligation was fulfilled.</li>
-      </ul>
-      <p>Importantly, I wasn't looking to validate an interface I'd already designed. The goal was to work out which parts of the process genuinely need the product's involvement, and which ones users can keep handling outside it.</p>
-      <p>This research let me focus the UX on the full obligation cycle: a text file isn't enough for the user — they need to understand who the other party is → what's been signed → whether the money was sent → the current status → when the next payment is due → what happens if the terms are broken.</p>
-      <div class="inline-img"><img src="${img('finanalysis8.jpg')}" alt=""></div>
-
-      <h2>Building the CJM</h2>
-      <p>I built two linked Customer Journey Maps — one for the lender, one for the borrower.</p>
-      <p><b>Borrower:</b> needs money → goes through identification → creates the deal → invites the lender → agrees on terms → signs → receives the money → repays → closes.</p>
-      <p><b>Lender:</b> wants to help the borrower safely → receives the invitation → goes through identification → agrees on terms → signs → sends the money → waits for repayment → receives payments → closes.</p>
-      <div class="inline-img"><img src="${img('finanalysis9.jpg')}" alt=""></div>
-
-      <h2>Result</h2>
-      <p>The result was a product model for the P2P deal that the team can build the MVP on and keep developing further.</p>
-      <p>I turned the original abstract idea into a clear system of connected roles and states. The architecture wasn't locked to a single loan scenario: the core entities and states were built so the product can later be extended with more financial and service scenarios without rebuilding the core logic.</p>
-      <div class="inline-img"><img src="${img('finanalysis10.jpg')}" alt=""></div>
-    `
   },
   {
     slug: 'coal-mining-dashboard',
     title: 'Продуктовый подход для личного кабинета угледобывающей компании',
-    title_en: 'A product approach to the personal dashboard of a coal-mining company',
+
     lead: 'Подключилась к существующей B2B-платформе и переработала UX — от аудита до основы дизайн-системы.',
-    lead_en: 'Joined an existing B2B platform and reworked the UX — from audit to the foundations of a design system.',
+
     tags: [['Личный кабинет','t2'], ['Product','t1']],
-    tags_en: [['Personal dashboard','t2'], ['Product','t1']],
-    product: ['Сайт'], product_en: ['Website'],
-    activity: 'Аналитика', activity_en: 'Analytics',
-    stage: 'Редизайн', stage_en: 'Redesign',
-    industry: 'B2B / Индустрия', industry_en: 'B2B / Industry',
+
+    product: ['Сайт'],
+    activity: 'Аналитика',
+    stage: 'Редизайн',
+    industry: 'B2B / Индустрия',
     meta: [
       { label: 'Компания', value: 'B2B-платформа, угледобывающая отрасль' },
       { label: 'Роль', value: 'UX Designer' },
       { label: 'Команда', value: '1 дизайнер, product owner' },
       { label: 'Срок', value: '4 недели' }
     ],
-    meta_en: [
-      { label: 'Company', value: 'B2B platform, coal-mining industry' },
-      { label: 'Role', value: 'UX Designer' },
-      { label: 'Team', value: '1 designer, product owner' },
-      { label: 'Duration', value: '4 weeks' }
-    ],
+
     cover: 'finanalysis11.jpg',
     gallery: ['finanalysis12.jpg','finanalysis13.jpg','finanalysis14.jpg'],
     tools: ['Figma','FigJam','ChatGPT'],
@@ -462,11 +332,7 @@ const CASES = [
       { value: '3', label: 'разрозненных раздела объединены в один контекст', c: 's1' },
       { value: '1', label: 'библиотека компонентов вместо разрозненных стилей', c: 's2' }
     ],
-    stats_en: [
-      { value: '4 wks', label: 'for the audit, redesign and system foundations', c: 's2' },
-      { value: '3', label: 'scattered sections merged into one context', c: 's1' },
-      { value: '1', label: 'component library replacing inconsistent styles', c: 's2' }
-    ],
+
     body: `
       <h2>Задача</h2>
       <p>Личный кабинет собирался годами силами разных подрядчиков — без единой логики. Одни и те же сущности дублировались в разных разделах под разными названиями, а навигация росла по мере появления новых фич, а не по продуманной структуре.</p>
@@ -488,38 +354,18 @@ const CASES = [
       <p>Продукт получил унифицированные сценарии и базу компонентов, на которую команда может опираться при дальнейшем развитии — без необходимости каждый раз изобретать интерфейс заново.</p>
       <div class="inline-img"><img src="${img('finanalysis19.jpg')}" alt=""></div>
     `,
-    body_en: `
-      <h2>Task</h2>
-      <p>The dashboard had been built up over years by different contractors, with no shared logic. The same entities were duplicated across sections under different names, and navigation grew with each new feature rather than following a deliberate structure.</p>
-      <div class="inline-img"><img src="${img('finanalysis15.jpg')}" alt=""></div>
 
-      <h2>Audit</h2>
-      <p>I started with a full audit of the existing interface: went through every scenario as a user, logged terminology inconsistencies, duplicate screens and dead-end flows, and built a problem map prioritized by how often each section was used.</p>
-      <div class="inline-img"><img src="${img('finanalysis16.jpg')}" alt=""></div>
-
-      <h2>Process</h2>
-      <p>I merged duplicate entities into single contexts and rebuilt the information architecture around user tasks rather than the company's historical departments. Key flows — from requests to reporting — were unified to follow one shared logic.</p>
-      <div class="inline-img"><img src="${img('finanalysis17.jpg')}" alt=""></div>
-
-      <h2>Design system foundations</h2>
-      <p>Given the short timeline, I didn't build a full design system from scratch — instead I identified and documented the base components and patterns the product already used, so further scaling wouldn't keep producing new duplicates.</p>
-      <div class="inline-img"><img src="${img('finanalysis18.jpg')}" alt=""></div>
-
-      <h2>Result</h2>
-      <p>The product ended up with unified flows and a component base the team can build on going forward, without reinventing the interface every time.</p>
-      <div class="inline-img"><img src="${img('finanalysis19.jpg')}" alt=""></div>
-    `
   },
   {
     slug: 'pawly-pettech-ecosystem',
     title: 'Pettech-экосистема для владельцев питомцев',
-    title_en: 'A pettech ecosystem for pet owners',
+
     lead: 'Спроектировала UX-систему и продуктовую архитектуру экосистемы Pawly — от онбординга питомца до регулярного ухода.',
-    lead_en: 'Designed the UX system and product architecture for the Pawly ecosystem — from pet onboarding to everyday care.',
+
     tags: [['Pettech','t1'], ['iOS','t2'], ['Android','t1']],
-    product: ['iOS-приложение','Android-приложение'], product_en: ['iOS app','Android app'],
-    activity: 'Проектирование', activity_en: 'Product design',
-    stage: 'С нуля', stage_en: 'From scratch',
+    product: ['iOS-приложение','Android-приложение'],
+    activity: 'Проектирование',
+    stage: 'С нуля',
     industry: 'Pettech',
     meta: [
       { label: 'Компания', value: 'Pawly' },
@@ -527,12 +373,7 @@ const CASES = [
       { label: 'Команда', value: '1 дизайнер, 3 разработчика' },
       { label: 'Срок', value: '10 недель' }
     ],
-    meta_en: [
-      { label: 'Company', value: 'Pawly' },
-      { label: 'Role', value: 'UX/UI Designer' },
-      { label: 'Team', value: '1 designer, 3 developers' },
-      { label: 'Duration', value: '10 weeks' }
-    ],
+
     cover: 'finanalysis20.jpg',
     gallery: ['finanalysis21.jpg','finanalysis22.jpg','finanalysis23.jpg'],
     tools: ['Figma','FigJam','ChatGPT','Figma AI','Miro'],
@@ -541,11 +382,7 @@ const CASES = [
       { value: '2', label: 'платформы — iOS и Android — на одной системе', c: 's2' },
       { value: '5+', label: 'ключевых сценариев ухода за питомцем', c: 's1' }
     ],
-    stats_en: [
-      { value: '10 wks', label: 'from architecture to a finished UX system', c: 's1' },
-      { value: '2', label: 'platforms — iOS and Android — on one system', c: 's2' },
-      { value: '5+', label: 'core pet-care scenarios', c: 's1' }
-    ],
+
     body: `
       <h2>Задача</h2>
       <p>У владельцев питомцев уже существовало несколько разрозненных сервисов — запись к ветеринару, напоминания о прививках, заказ кормов. Задачей было спроектировать не очередное приложение, а продуктовую архитектуру, которая объединит эти сценарии в единую экосистему Pawly.</p>
@@ -567,51 +404,15 @@ const CASES = [
       <p>Экосистема готова к запуску на обеих платформах с общей дизайн-системой — и с архитектурой, которая позволяет добавлять новые сервисы без риска превратить приложение в набор несвязанных функций.</p>
       <div class="inline-img"><img src="${img('finanalysis28.jpg')}" alt=""></div>
     `,
-    body_en: `
-      <h2>Task</h2>
-      <p>Pet owners already had several disconnected services — vet booking, vaccination reminders, food orders. The task wasn't to design one more app, but a product architecture that would bring these scenarios together into a single Pawly ecosystem.</p>
-      <div class="inline-img"><img src="${img('finanalysis24.jpg')}" alt=""></div>
 
-      <h2>Process</h2>
-      <p>I started by mapping the pet-ownership lifecycle — from getting a pet to day-to-day care — to see where services should meet and where they'd get in each other's way. I designed pet onboarding as its own careful flow: breed, age and health details shape what recommendations the owner gets from then on.</p>
-      <div class="inline-img"><img src="${img('finanalysis25.jpg')}" alt=""></div>
-
-      <h2>UX architecture</h2>
-      <p>Instead of a flat feature menu, I built the structure around the "pet profile" as the central entity — every service (care, health, orders) reads as an extension of that profile rather than a separate, disconnected section.</p>
-      <div class="inline-img"><img src="${img('finanalysis26.jpg')}" alt=""></div>
-
-      <h2>Design system</h2>
-      <p>I built one shared component system for iOS and Android, so the visual language wouldn't drift between platforms and new services could be added without rebuilding the interface from scratch.</p>
-      <div class="inline-img"><img src="${img('finanalysis27.jpg')}" alt=""></div>
-
-      <h2>Result</h2>
-      <p>The ecosystem is ready to launch on both platforms with a shared design system, and an architecture that lets new services be added without turning the app into a pile of disconnected features.</p>
-      <div class="inline-img"><img src="${img('finanalysis28.jpg')}" alt=""></div>
-    `
   }
 ];
-
-function updateNavLang(){
-  const L = I18N[currentLang];
-  document.getElementById('navCasesLink').textContent = L.navCases;
-  document.getElementById('navAboutLink').textContent = L.navAbout;
-  document.getElementById('navBlogLink').textContent = L.navBlog;
-  document.getElementById('navCVLink').textContent = L.navCV;
-  document.getElementById('contactEyebrow').textContent = L.contactEyebrow;
-  document.getElementById('contactH2').textContent = L.contactH2;
-  document.getElementById('contactP').textContent = L.contactP;
-  document.getElementById('btnTelegram').textContent = L.btnTelegram;
-  document.getElementById('btnEmail').textContent = L.btnEmail;
-  document.getElementById('footerEmail').textContent = L.footerEmail;
-  document.documentElement.lang = currentLang;
-}
 
 function render(){
   const params = new URLSearchParams(window.location.search);
   const slug = params.get('slug');
   const caseItem = slug ? CASES.find(c => c.slug === slug) : CASES[0];
   const app = document.getElementById('app');
-  const L = I18N[currentLang];
 
   if (!caseItem) {
     app.innerHTML =
@@ -624,12 +425,12 @@ function render(){
     return;
   }
 
-  const title = t(caseItem, 'title');
-  const lead = t(caseItem, 'lead');
-  const tags = t(caseItem, 'tags');
-  const stats = t(caseItem, 'stats');
-  const meta = t(caseItem, 'meta');
-  const body = t(caseItem, 'body');
+  const title = caseItem.title;
+  const lead = caseItem.lead;
+  const tags = caseItem.tags;
+  const stats = caseItem.stats;
+  const meta = caseItem.meta;
+  const body = caseItem.body;
 
   document.title = title + L.titleSuffix;
 
@@ -664,11 +465,11 @@ function render(){
           '</div>' +
           '<div class="rel-grid">' +
             related.map(c => {
-              const cTitle = t(c, 'title');
-              const cProduct = t(c, 'product');
-              const cActivity = t(c, 'activity');
-              const cStage = t(c, 'stage');
-              const cIndustry = t(c, 'industry');
+              const cTitle = c.title;
+              const cProduct = c.product;
+              const cActivity = c.activity;
+              const cStage = c.stage;
+              const cIndustry = c.industry;
               return '<a class="rel-card" href="case-post.html?slug=' + c.slug + '">' +
                 '<div class="rel-cover"><img src="' + coverUrl(c.cover, 700, 440) + '" alt=""></div>' +
                 '<div class="rel-body">' +
@@ -689,19 +490,7 @@ function render(){
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  updateNavLang();
   render();
-});
-
-document.querySelectorAll('.lang-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const lang = btn.dataset.lang;
-    if (lang === currentLang) return;
-    currentLang = lang;
-    document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('is-active', b.dataset.lang === currentLang));
-    updateNavLang();
-    render();
-  });
 });
 
 const navEl = document.getElementById('nav');
@@ -723,7 +512,7 @@ window.addEventListener('scroll', () => {
 </section>
 
 <footer class="footer-dark">
-  <div class="wrap">
+  <div class="wrap wrap-wide">
     <span>© 2026 · Angelina Masalova</span>
     <ul class="footer-links">
       <li><a href="mailto:uxuiangelina@yandex.ru" id="footerEmail">E-mail</a></li>
