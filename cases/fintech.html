@@ -153,7 +153,7 @@
 
 <nav id="nav">
   <div class="wrap">
-    <a class="logo" href="index.html">
+    <a class="logo" href="../index.html">
       <span class="logo-circle"><img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/files/logo.svg" alt="" class="logo-mark"></span>
       <div class="logo-text">
         <span class="logo-name">Ангелина Масалова</span>
@@ -162,9 +162,9 @@
     </a>
     <div class="nav-right">
       <ul class="nav-links">
-        <li><a href="cases.html">Кейсы</a></li>
-        <li><a href="about.html">Обо мне</a></li>
-        <li><a href="blog.html">Блог</a></li>
+        <li><a href="../cases.html">Кейсы</a></li>
+        <li><a href="../about.html">Обо мне</a></li>
+        <li><a href="../blog.html">Блог</a></li>
       </ul>
       <a href="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/files/Angelina_Masalova_CV.pdf" download class="nav-cta">Скачать CV</a>
     </div>
@@ -174,17 +174,32 @@
 <div id="app"></div>
 
 <script>
-const IMG_BASE = 'https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/';
-function img(name){ return name.indexOf('http') === 0 ? name : IMG_BASE + name; }
-function coverUrl(name, w, h){
+const IMAGES_BASE = '../images/';   // корень папки images относительно cases/fintech.html
+const CASE_SLUG = 'fintech';        // картинки этого кейса лежат в images/fintech/
+function img(name, folder){
+  return name.indexOf('http') === 0 ? name : IMAGES_BASE + (folder || CASE_SLUG) + '/' + name;
+}
+function coverUrl(name, w, h, folder){
   return (name.indexOf('.') > -1 || name.indexOf('http') === 0)
-    ? img(name)
+    ? img(name, folder)
     : 'https://picsum.photos/seed/' + name + '/' + w + '/' + h;
 }
 
+// Другие реальные кейсы (для «Смотрите также» и мини-карточек в тексте).
+// slug = имя файла в cases/ и имя папки в images/
+const LINKS = {
+  fintechmvp:       { slug:'fintechmvp', title:'Как спроектировать MVP финтех-продукта со сложной юридической логикой', cover:'fintechmvp1.jpg',
+                      product:['iOS-приложение','Android-приложение'], activity:'Проектирование', industry:'Финтех' },
+  fintechds:        { slug:'fintechds', title:'Как построить дизайн-систему для state-driven финтех-продукта', cover:'fintechds1.jpg',
+                      product:['iOS-приложение','Android-приложение'], activity:'Дизайн-система', industry:'Финтех' },
+  fintechanalytics: { slug:'fintechanalytics', title:'Как превратить сложную финансово-юридическую задачу в понятную продуктовую систему', cover:'finanalysis1.jpg',
+                      product:['iOS-приложение','Android-приложение'], activity:'Проектирование', industry:'Финтех' }
+};
+const RELATED = [LINKS.fintechds, LINKS.fintechanalytics];
+
 const CASES = [
   {
-    slug: 'fintech-legal-app',
+    slug: 'fintech',
     title: 'Финтех-сервис с юридической логикой для оформления займов между физлицами',
     lead: 'Спроектировала с нуля UX-архитектуру P2P-сервиса для оформления и сопровождения займов между физическими лицами. Вместо разрозненных действий в мессенджерах и банковских приложениях пользователь получает единый сценарий: пройти верификацию, создать сделку, зафиксировать условия, передать деньги, контролировать погашение и решать спорные ситуации.',
     tags: [['Fintech','t1'], ['P2P','t2'], ['Mobile app','t1'], ['Product Design','t2'], ['MVP','t1']],
@@ -202,7 +217,7 @@ const CASES = [
       <p>«Контракт» — мобильный P2P-сервис, который объединяет оформление займа, подтверждение личности, фиксацию условий сделки, передачу денег и дальнейшее исполнение обязательств.</p>
       <p>Продукт создавался с нуля: готового интерфейса или устоявшейся продуктовой структуры не было. Поэтому основной задачей было не улучшить существующий UX, а сформировать его с нуля — от логики продукта и пользовательских сценариев до конкретных экранов и состояний.</p>
       <p>В проекте было важно учесть сразу несколько сторон: заёмщика, кредитора и саму сделку, которая меняется во времени и может переходить из нормального сценария в просрочку или спорную ситуацию.</p>
-      <div class="inline-img"><img src="${img('fintech2.jpg')}" alt=""></div>
+      <div class="inline-img"><img src="${img('fintech2.jpeg')}" alt=""></div>
 
       <h2>Ограничения и критические сценарии</h2>
       <p>Юридическая и финансовая логика продукта определила ряд ограничений ещё до начала проектирования.</p>
@@ -210,18 +225,22 @@ const CASES = [
       <p>Поэтому интерфейс пришлось строить вокруг понятных состояний, подтверждений и истории действий, чтобы пользователь в любой момент понимал, что произошло, что уже подтверждено и какое действие доступно дальше.</p>
       <div class="inline-img"><img src="${img('fintech3.jpeg')}" alt=""></div>
 
-      <h2>CJM и сценарии</h2>
+      <h2>Как я собирала UX-архитектуру</h2>
       <p>До проектирования экранов я декомпозировала продукт на роли, сценарии, состояния сделки и потенциальные точки риска.</p>
-      <p>CJM был только одной из схем, которые использовала в работе. Помимо него были карты пользовательских рисков, сценариев, состояний и переходов между ними. CJM показывает основной путь пользователя — от входа в сервис и верификации до оформления сделки, передачи денег, погашения и возможного возникновения претензии.</p>
+      <p>CJM был только одной из схем, которые использовала в работе. Помимо него были карты пользовательских рисков, сценариев, состояний и переходов между ними.</p>
+      <p>Это позволило сначала определить структуру продукта и взаимосвязи между сценариями, а уже после переходить к интерфейсам.</p>
+
+      <h2>CJM и сценарии</h2>
+      <p>CJM показывает основной путь пользователя — от входа в сервис и верификации до оформления сделки, передачи денег, погашения и возможного возникновения претензии.</p>
       <p>Но для такого продукта одного CJM недостаточно: отдельные сценарии имеют собственные состояния, исключения и ветвления. Поэтому параллельно я собирала дополнительные схемы, которые помогли описать логику продукта перед прототипированием.</p>
       <div class="inline-img"><img src="${img('fintech4.jpeg')}" alt=""></div>
-      {{mini:fintechanalytics}}
+      {{mini:fintechmvp}}
 
       <h2>От прототипа к продукту</h2>
       <p>После формирования UX-архитектуры я перешла к прототипированию основных пользовательских сценариев.</p>
       <p>На этом этапе важно было проверить не отдельные экраны, а полные последовательности действий: какие данные нужны пользователю, что он подтверждает, какие состояния появляются после действия и куда он попадает дальше.</p>
       <p>Прототипы позволили собрать взаимосвязанные сценарии в единую систему до детальной UI-проработки.</p>
-      <div class="inline-img"><img src="${img('fintech5.jpg')}" alt=""></div>
+      <div class="inline-img"><img src="${img('fintech5.jpeg')}" alt=""></div>
 
       <h2>Верификация и создание доверия</h2>
       <p>Перед созданием займа пользователь проходит верификацию личности.</p>
@@ -350,15 +369,15 @@ const CASES = [
 // Мини-карточка другого кейса: в тексте вставляется как {{mini:slug-кейса}}
 function miniCard(c){
   return '<p class="mini-label">Читайте об этом подробнее тут</p>' +
-    '<a class="mini-card" href="case-post.html?slug=' + c.slug + '">' +
-      '<span class="mini-thumb"><img src="' + coverUrl(c.cover, 240, 160) + '" alt=""></span>' +
+    '<a class="mini-card" href="' + c.slug + '.html">' +
+      '<span class="mini-thumb"><img src="' + coverUrl(c.cover, 240, 160, c.slug) + '" alt=""></span>' +
       '<span class="mini-title">' + c.title + '</span>' +
       '<span class="mini-arrow">→</span>' +
     '</a>';
 }
 function renderBody(html){
   return html.replace(/\{\{mini:([\w-]+)\}\}/g, function(m, slug){
-    const c = CASES.find(x => x.slug === slug);
+    const c = LINKS[slug];
     return c ? miniCard(c) : '';
   });
 }
@@ -374,7 +393,7 @@ function render(){
       '<div class="wrap not-found">' +
         '<h1>Кейс не найден</h1>' +
         '<p>Возможно, ссылка устарела или кейс был перемещён.</p>' +
-        '<a href="cases.html" class="btn btn-primary">Ко всем кейсам</a>' +
+        '<a href="../cases.html" class="btn btn-primary">Ко всем кейсам</a>' +
       '</div>';
     document.title = 'Кейс не найден — Портфолио';
     return;
@@ -388,7 +407,7 @@ function render(){
   ).join('');
 
   const others = CASES.filter(c => c.slug !== caseItem.slug);
-  const related = others.slice(0, 2);
+  const related = RELATED.filter(c => c.slug !== caseItem.slug);
 
   const overviewHtml = caseItem.meta
     ? caseItem.meta.map(m => '<div><span>' + m.label + '</span><b>' + m.value + '</b></div>').join('')
@@ -414,12 +433,12 @@ function render(){
         '<div class="see-also">' +
           '<div class="see-also-head">' +
             '<h2>Смотрите также</h2>' +
-            '<a href="cases.html" class="btn btn-ghost">Все кейсы →</a>' +
+            '<a href="../cases.html" class="btn btn-ghost">Все кейсы →</a>' +
           '</div>' +
           '<div class="rel-grid">' +
             related.map(c =>
-              '<a class="rel-card" href="case-post.html?slug=' + c.slug + '">' +
-                '<div class="rel-cover"><img src="' + coverUrl(c.cover, 700, 440) + '" alt=""></div>' +
+              '<a class="rel-card" href="' + c.slug + '.html">' +
+                '<div class="rel-cover"><img src="' + coverUrl(c.cover, 700, 440, c.slug) + '" alt=""></div>' +
                 '<div class="rel-body">' +
                   '<div class="rel-tags">' +
                     c.product.map(p => '<span class="tag product">' + p + '</span>').join('') +
@@ -432,7 +451,7 @@ function render(){
             ).join('') +
           '</div>' +
         '</div>'
-      : '<a href="cases.html" class="btn btn-ghost">Все кейсы →</a>') +
+      : '<a href="../cases.html" class="btn btn-ghost">Все кейсы →</a>') +
     '</div></div>';
 }
 
