@@ -236,10 +236,10 @@
 </main>
 
 <script>
-const IMG_BASE = 'https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/';
+const IMG_BASE = 'images/';   // images/<slug кейса>/<cover>.jpg
 
 const CASES = [
-  { title:'Финтех сервис с юридической логикой для оформления займов между физлицами', cover:'casefinmain1', product:['iOS-приложение','Android-приложение'], activity:'Проектирование', industry:'Финтех', slug:'fintech' },
+  { title:'«Контракт» — P2P-сервис для оформления займов между физлицами', cover:'casefinmain1', product:['iOS-приложение','Android-приложение'], activity:'Проектирование', industry:'Финтех', slug:'fintech' },
   { title:'Как спроектировать MVP финтех-продукта со сложной юридической логикой', cover:'fintechmvp1', product:['iOS-приложение','Android-приложение'], activity:'Проектирование', industry:'Финтех', slug:'fintechmvp' },
   { title:'Как построить дизайн-систему для state-driven финтех-продукта', cover:'fintechds1', product:['iOS-приложение','Android-приложение'], activity:'Дизайн-система', industry:'Финтех', slug:'fintechds' },
   { title:'Как превратить сложную финансово-юридическую задачу в понятную продуктовую систему', cover:'finanalysis1', product:['iOS-приложение','Android-приложение'], activity:'Проектирование', industry:'Финтех', slug:'fintechanalytics' },
@@ -406,11 +406,11 @@ function getFiltered(){
 
 function cardHtml(c){
   const productTags = c.product.map(p => '<span class="tag product">' + p + '</span>').join('');
-  const href = c.slug ? c.slug + '.html' : 'portfolio.html#work';
+  const href = c.slug ? 'cases/' + c.slug + '.html' : 'portfolio.html#work';
   return (
     '<a class="case-card" href="' + href + '">' +
       '<div class="case-cover">' +
-        '<img src="' + IMG_BASE + c.cover + '.jpg" alt="">' +
+        '<img src="' + IMG_BASE + c.slug + '/' + c.cover + '.jpg" alt="">' +
         '<div class="case-tags">' + productTags +
           '<span class="tag activity">' + c.activity + '</span>' +
           '<span class="tag industry">' + c.industry + '</span>' +
