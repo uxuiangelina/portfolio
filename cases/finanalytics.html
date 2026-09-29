@@ -138,7 +138,7 @@
 
 <nav id="nav">
   <div class="wrap">
-    <a class="logo" href="index.html">
+    <a class="logo" href="../index.html">
       <span class="logo-circle"><img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/files/logo.svg" alt="" class="logo-mark"></span>
       <div class="logo-text">
         <span class="logo-name">Ангелина Масалова</span>
@@ -147,9 +147,9 @@
     </a>
     <div class="nav-right">
       <ul class="nav-links">
-        <li><a href="cases.html">Кейсы</a></li>
-        <li><a href="about.html">Обо мне</a></li>
-        <li><a href="blog.html">Блог</a></li>
+        <li><a href="../cases.html">Кейсы</a></li>
+        <li><a href="../about.html">Обо мне</a></li>
+        <li><a href="../blog.html">Блог</a></li>
       </ul>
       <a href="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/files/Angelina_Masalova_CV.pdf" download class="nav-cta">Скачать CV</a>
     </div>
@@ -159,11 +159,14 @@
 <div id="app"></div>
 
 <script>
-const IMG_BASE = 'https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/';
-function img(name){ return name.indexOf('http') === 0 ? name : IMG_BASE + name; }
-function coverUrl(name, w, h){
+const IMAGES_BASE = '../images/';        // корень папки images относительно cases/fintechanalytics.html
+const CASE_SLUG = 'fintechanalytics';    // картинки этого кейса лежат в images/fintechanalytics/
+function img(name, folder){
+  return name.indexOf('http') === 0 ? name : IMAGES_BASE + (folder || CASE_SLUG) + '/' + name;
+}
+function coverUrl(name, w, h, folder){
   return (name.indexOf('.') > -1 || name.indexOf('http') === 0)
-    ? img(name)
+    ? img(name, folder)
     : 'https://picsum.photos/seed/' + name + '/' + w + '/' + h;
 }
 
@@ -248,7 +251,7 @@ const CASES = [
       <p>Например, система не может просто показать экран с подтверждением перевода — она должна была получить подтверждение события от участников сделки и сохранить его в истории.</p>
       <!-- ВСТАВИТЬ КАРТИНКУ fintechanalytics7.jpeg: раздел «Юридические и технические ограничения» -->
       <div class="inline-img"><img src="${img('fintechanalytics7.jpeg')}" alt=""></div>
-      {{mini:fintech-legal-app}}
+      {{mini:fintech}}
       <h2>Исследование пользователей</h2>
       <p>Каждое критическое действие должно иметь понятный статус, подтверждение и зафиксированный результат. Вопросы, связанные с финансами, всегда вызывают больше стресса и недоверия, поэтому прозрачность каждого этапа важна ещё больше, чем обычно.</p>
       <p>Исследование пользователя строилось отдельно для двух ролей, поскольку мотивация и риски займодателя и заёмщика различаются. Я исследовала:</p>
@@ -353,14 +356,22 @@ const CASES = [
 
 // Кейсы, на которые ведут мини-карточки (не участвуют в блоке «Смотрите также»)
 const LINKED = [
-  { slug: 'fintech-legal-app', title: 'Финтех-сервис с юридической логикой для оформления займов между физлицами', cover: 'fintech1.jpeg' }
+  { slug: 'fintech', title: 'Финтех-сервис с юридической логикой для оформления займов между физлицами', cover: 'fintech1.jpeg' }
+];
+
+// Реальные кейсы для блока «Смотрите также» (slug = имя файла в cases/ и папки в images/)
+const RELATED = [
+  { slug:'fintechmvp', title:'Как спроектировать MVP финтех-продукта со сложной юридической логикой', cover:'fintechmvp1.jpg',
+    product:['iOS-приложение','Android-приложение'], activity:'Проектирование', industry:'Финтех' },
+  { slug:'fintechds', title:'Как построить дизайн-систему для state-driven финтех-продукта', cover:'fintechds1.jpg',
+    product:['iOS-приложение','Android-приложение'], activity:'Дизайн-система', industry:'Финтех' }
 ];
 
 // Мини-карточка другого кейса: в тексте вставляется как {{mini:slug-кейса}}
 function miniCard(c){
   return '<p class="mini-label">Читайте об этом подробнее тут</p>' +
-    '<a class="mini-card" href="case-post.html?slug=' + c.slug + '">' +
-      '<span class="mini-thumb"><img src="' + coverUrl(c.cover, 240, 160) + '" alt=""></span>' +
+    '<a class="mini-card" href="' + c.slug + '.html">' +
+      '<span class="mini-thumb"><img src="' + coverUrl(c.cover, 240, 160, c.slug) + '" alt=""></span>' +
       '<span class="mini-title">' + c.title + '</span>' +
       '<span class="mini-arrow">→</span>' +
     '</a>';
@@ -383,7 +394,7 @@ function render(){
       '<div class="wrap not-found">' +
         '<h1>Кейс не найден</h1>' +
         '<p>Возможно, ссылка устарела или кейс был перемещён.</p>' +
-        '<a href="cases.html" class="btn btn-primary">Ко всем кейсам</a>' +
+        '<a href="../cases.html" class="btn btn-primary">Ко всем кейсам</a>' +
       '</div>';
     document.title = 'Кейс не найден — Портфолио';
     return;
@@ -394,7 +405,7 @@ function render(){
   const tagsHtml = caseItem.tags.map(t => '<span class="tag ' + t[1] + '">' + t[0] + '</span>').join('');
 
   const others = CASES.filter(c => c.slug !== caseItem.slug);
-  const related = others.slice(0, 2);
+  const related = RELATED.filter(c => c.slug !== caseItem.slug);
 
   const overviewHtml = caseItem.meta
     ? caseItem.meta.map(m => '<div><span>' + m.label + '</span><b>' + m.value + '</b></div>').join('')
@@ -419,12 +430,12 @@ function render(){
         '<div class="see-also">' +
           '<div class="see-also-head">' +
             '<h2>Смотрите также</h2>' +
-            '<a href="cases.html" class="btn btn-ghost">Все кейсы →</a>' +
+            '<a href="../cases.html" class="btn btn-ghost">Все кейсы →</a>' +
           '</div>' +
           '<div class="rel-grid">' +
             related.map(c =>
-              '<a class="rel-card" href="case-post.html?slug=' + c.slug + '">' +
-                '<div class="rel-cover"><img src="' + coverUrl(c.cover, 700, 440) + '" alt=""></div>' +
+              '<a class="rel-card" href="' + c.slug + '.html">' +
+                '<div class="rel-cover"><img src="' + coverUrl(c.cover, 700, 440, c.slug) + '" alt=""></div>' +
                 '<div class="rel-body">' +
                   '<div class="rel-tags">' +
                     c.product.map(p => '<span class="tag product">' + p + '</span>').join('') +
@@ -437,7 +448,7 @@ function render(){
             ).join('') +
           '</div>' +
         '</div>'
-      : '<a href="cases.html" class="btn btn-ghost">Все кейсы →</a>') +
+      : '<a href="../cases.html" class="btn btn-ghost">Все кейсы →</a>') +
     '</div></div>';
 }
 
