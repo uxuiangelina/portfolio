@@ -396,7 +396,7 @@ function getFiltered(){
 
 function cardHtml(c){
   const productTags = c.product.map(p => '<span class="tag product">' + p + '</span>').join('');
-  const href = c.slug ? c.slug + '.html' : 'portfolio.html#work';
+  const href = c.slug ? 'cases/' + c.slug + '.html' : 'portfolio.html#work';
   return (
     '<a class="case-card" href="' + href + '">' +
       '<div class="case-cover">' +
