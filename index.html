@@ -232,13 +232,10 @@
   .award-item img{ width:30px; height:30px; border-radius:8px; object-fit:cover; flex-shrink:0; background:var(--bg-alt); }
   .award-item .award-text{ font-size:14px; color:var(--text-2); }
   .award-item .award-text b{ color:var(--text); font-weight:700; }
-  .award-arrow{ width:13px; height:13px; flex-shrink:0; color:var(--text-2); opacity:.55; transition:transform .3s var(--ease), opacity .3s ease, color .3s ease; }
-  .award-item:hover .award-arrow{ transform:translate(3px,-3px); opacity:1; color:var(--accent); }
-  .award-item:hover .award-text b{ color:var(--accent); }
   .award-dot{ color:var(--line-strong); font-size:14px; flex-shrink:0; }
   @keyframes marqueeScroll{ from{ transform:translateX(0);} to{ transform:translateX(-50%);} }
   @media (prefers-reduced-motion: reduce){ .marquee-track{ animation:none; } }
-  @media (max-width:640px){ .award-item{ padding:0 20px; gap:10px; } .award-item img{ width:24px; height:24px; } .award-item .award-text{ font-size:13px; } .award-arrow{ width:11px; height:11px; } }
+  @media (max-width:640px){ .award-item{ padding:0 20px; gap:10px; } .award-item img{ width:24px; height:24px; } .award-item .award-text{ font-size:13px; } }
 
   .status-banner{ padding:80px 0; border-top:1px solid var(--line); }
   .status-card{ background:var(--dark-bg); color:var(--dark-text); border-radius:28px; padding:64px 56px; position:relative; overflow:hidden; }
@@ -301,11 +298,12 @@
   .tag.t2{ background:var(--accent-2-soft); color:var(--accent-2); }
   .case-duration{ font-size:13px; color:var(--text-2); font-weight:500; }
   .case-card h3{ font-size:clamp(24px,3vw,32px); margin-top:24px; max-width:22ch; }
-  .case-card p{ margin-top:14px; color:var(--text-2); max-width:56ch; font-size:14px; line-height:1.45; }
+  .case-card p{ margin-top:14px; margin-bottom:26px; color:var(--text-2); max-width:56ch; font-size:14px; line-height:1.45; }
   .case-image{ border-radius:14px; overflow:hidden; background:var(--bg-alt); aspect-ratio:4/3; }
   .case-image img{ width:100%; height:100%; object-fit:cover; display:block; transition:transform .5s var(--ease); }
   .case-card:hover .case-image img{ transform:scale(1.06); }
-  .case-link{ margin-top:auto; padding-top:26px; align-self:flex-start; display:inline-flex; align-items:center; gap:8px; font-weight:400; font-size:14px; line-height:1.45; color:var(--accent); }
+  .case-link{ margin-top:auto; align-self:flex-start; display:inline-flex; align-items:center; gap:8px; padding:15px 26px; border:1px solid var(--line-strong); border-radius:999px; font-weight:600; font-size:15px; line-height:1.45; color:var(--text); transition:border-color .35s var(--ease); }
+  .case-card:hover .case-link{ border-color:var(--text); }
   .case-link svg{ transition:transform .3s var(--ease); }
   .case-card:hover .case-link svg{ transform:translateX(4px); }
   @media (max-width:900px){ .case-body{ grid-template-columns:1fr; } }
@@ -507,67 +505,107 @@
 <section class="marquee-section" aria-label="Награды">
   <div class="marquee-track">
     <div class="marquee-list">
-      <a class="award-item" href="https://workspace.ru/awards/cases2025/seo/seo-services/?stage=winners" target="_blank" rel="noopener" data-cursor="hover">
+      <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/wda.jpg" alt="WDA — Поисковое продвижение / Продвижение услуг, 1 место, 2025">
         <span class="award-text"><b>WDA</b> — Поисковое продвижение / Продвижение услуг, 1 место, 2025 — Редизайн для оптимизации премиум-портфолио</span>
-        <svg class="award-arrow" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
+      </div>
       <span class="award-dot">/</span>
-      <a class="award-item" href="https://workspace.ru/cases/rocket-business/" target="_blank" rel="noopener" data-cursor="hover">
+      <div class="award-item">
+        <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/runet.jpg" alt="Рейтинг Рунета — Рейтинг цифровых проектов, 5 место">
+        <span class="award-text"><b>Рейтинг Рунета</b> — Рейтинг цифровых проектов, 5 место</span>
+      </div>
+      <span class="award-dot">/</span>
+      <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/wda.jpg" alt="WDA — Услуги, 1 место, 2024">
         <span class="award-text"><b>WDA</b> — Услуги, 1 место, 2024 — Корпоративный сайт Rocket Business</span>
-        <svg class="award-arrow" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
+      </div>
       <span class="award-dot">/</span>
-      <a class="award-item" href="https://workspace.ru/awards/cases/razrabotka-sayta-rocket-dev/" target="_blank" rel="noopener" data-cursor="hover">
+      <div class="award-item">
+        <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/runet.jpg" alt="Рейтинг Рунета — Рейтинг цифровых проектов, 10 место">
+        <span class="award-text"><b>Рейтинг Рунета</b> — Рейтинг цифровых проектов, 10 место</span>
+      </div>
+      <span class="award-dot">/</span>
+      <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/wda.jpg" alt="WDA — Сайты / Услуги, 2 место, 2025">
         <span class="award-text"><b>WDA</b> — Сайты / Услуги, 2 место, 2025 — Сайт технического подразделения Rocket Dev</span>
-        <svg class="award-arrow" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
+      </div>
       <span class="award-dot">/</span>
-      <a class="award-item" href="https://workspace.ru/awards/cases/razrabotka-chat-bota-rocket-spasibo/" target="_blank" rel="noopener" data-cursor="hover">
+      <div class="award-item">
+        <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/runet.jpg" alt="Рейтинг Рунета — Рейтинг цифровых проектов, 15 место">
+        <span class="award-text"><b>Рейтинг Рунета</b> — Рейтинг цифровых проектов, 15 место</span>
+      </div>
+      <span class="award-dot">/</span>
+      <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/wda.jpg" alt="WDA — Цифровизация и трансформация / Корпоративные порталы, 1 место, 2025">
         <span class="award-text"><b>WDA</b> — Цифровизация и трансформация / Корпоративные порталы, 1 место, 2025 — Чат-бот «Rocket Спасибо»</span>
-        <svg class="award-arrow" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
+      </div>
       <span class="award-dot">/</span>
-      <a class="award-item" href="https://workspace.ru/awards/cases/nash-monitor/" target="_blank" rel="noopener" data-cursor="hover">
+      <div class="award-item">
+        <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/runet.jpg" alt="Рейтинг Рунета — Рейтинг цифровых проектов, 20 место">
+        <span class="award-text"><b>Рейтинг Рунета</b> — Рейтинг цифровых проектов, 20 место</span>
+      </div>
+      <span class="award-dot">/</span>
+      <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/wda.jpg" alt="WDA — Цифровизация и трансформация / Корпоративные порталы, 2 место, 2024">
         <span class="award-text"><b>WDA</b> — Цифровизация и трансформация / Корпоративные порталы, 2 место, 2024 — «Наш Монитор»</span>
-        <svg class="award-arrow" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
+      </div>
+      <span class="award-dot">/</span>
+      <div class="award-item">
+        <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/runet.jpg" alt="Рейтинг Рунета — Рейтинг цифровых проектов, 25 место">
+        <span class="award-text"><b>Рейтинг Рунета</b> — Рейтинг цифровых проектов, 25 место</span>
+      </div>
       <span class="award-dot">/</span>
     </div>
     <div class="marquee-list" aria-hidden="true">
-      <a class="award-item" href="https://workspace.ru/awards/cases2025/seo/seo-services/?stage=winners" target="_blank" rel="noopener" data-cursor="hover">
+      <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/wda.jpg" alt="WDA — Поисковое продвижение / Продвижение услуг, 1 место, 2025">
         <span class="award-text"><b>WDA</b> — Поисковое продвижение / Продвижение услуг, 1 место, 2025 — Редизайн для оптимизации премиум-портфолио</span>
-        <svg class="award-arrow" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
+      </div>
       <span class="award-dot">/</span>
-      <a class="award-item" href="https://workspace.ru/cases/rocket-business/" target="_blank" rel="noopener" data-cursor="hover">
+      <div class="award-item">
+        <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/runet.jpg" alt="Рейтинг Рунета — Рейтинг цифровых проектов, 5 место">
+        <span class="award-text"><b>Рейтинг Рунета</b> — Рейтинг цифровых проектов, 5 место</span>
+      </div>
+      <span class="award-dot">/</span>
+      <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/wda.jpg" alt="WDA — Услуги, 1 место, 2024">
         <span class="award-text"><b>WDA</b> — Услуги, 1 место, 2024 — Корпоративный сайт Rocket Business</span>
-        <svg class="award-arrow" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
+      </div>
       <span class="award-dot">/</span>
-      <a class="award-item" href="https://workspace.ru/awards/cases/razrabotka-sayta-rocket-dev/" target="_blank" rel="noopener" data-cursor="hover">
+      <div class="award-item">
+        <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/runet.jpg" alt="Рейтинг Рунета — Рейтинг цифровых проектов, 10 место">
+        <span class="award-text"><b>Рейтинг Рунета</b> — Рейтинг цифровых проектов, 10 место</span>
+      </div>
+      <span class="award-dot">/</span>
+      <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/wda.jpg" alt="WDA — Сайты / Услуги, 2 место, 2025">
         <span class="award-text"><b>WDA</b> — Сайты / Услуги, 2 место, 2025 — Сайт технического подразделения Rocket Dev</span>
-        <svg class="award-arrow" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
+      </div>
       <span class="award-dot">/</span>
-      <a class="award-item" href="https://workspace.ru/awards/cases/razrabotka-chat-bota-rocket-spasibo/" target="_blank" rel="noopener" data-cursor="hover">
+      <div class="award-item">
+        <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/runet.jpg" alt="Рейтинг Рунета — Рейтинг цифровых проектов, 15 место">
+        <span class="award-text"><b>Рейтинг Рунета</b> — Рейтинг цифровых проектов, 15 место</span>
+      </div>
+      <span class="award-dot">/</span>
+      <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/wda.jpg" alt="WDA — Цифровизация и трансформация / Корпоративные порталы, 1 место, 2025">
         <span class="award-text"><b>WDA</b> — Цифровизация и трансформация / Корпоративные порталы, 1 место, 2025 — Чат-бот «Rocket Спасибо»</span>
-        <svg class="award-arrow" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
+      </div>
       <span class="award-dot">/</span>
-      <a class="award-item" href="https://workspace.ru/awards/cases/nash-monitor/" target="_blank" rel="noopener" data-cursor="hover">
+      <div class="award-item">
+        <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/runet.jpg" alt="Рейтинг Рунета — Рейтинг цифровых проектов, 20 место">
+        <span class="award-text"><b>Рейтинг Рунета</b> — Рейтинг цифровых проектов, 20 место</span>
+      </div>
+      <span class="award-dot">/</span>
+      <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/wda.jpg" alt="WDA — Цифровизация и трансформация / Корпоративные порталы, 2 место, 2024">
         <span class="award-text"><b>WDA</b> — Цифровизация и трансформация / Корпоративные порталы, 2 место, 2024 — «Наш Монитор»</span>
-        <svg class="award-arrow" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
+      </div>
+      <span class="award-dot">/</span>
+      <div class="award-item">
+        <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/runet.jpg" alt="Рейтинг Рунета — Рейтинг цифровых проектов, 25 место">
+        <span class="award-text"><b>Рейтинг Рунета</b> — Рейтинг цифровых проектов, 25 место</span>
+      </div>
       <span class="award-dot">/</span>
     </div>
   </div>
@@ -625,7 +663,7 @@
 <section id="skills">
   <div class="wrap">
     <div class="orbit-wrap reveal" style="margin-top:0;">
-      <div class="orbit-center">Компетенции</div>
+      <div class="orbit-center">Мои&nbsp;компетенции</div>
 
       <div class="orbit-item" style="top:14.4%; left:50.0%; transform:translate(-50%,-50%); animation-delay:0s;" data-cursor="hover" data-tip="Изучаю пользователей, контекст и&nbsp;задачу перед&nbsp;проектированием">Исследования</div>
       <div class="orbit-item o2" style="top:17.9%; left:66.4%; transform:translate(-50%,-50%); animation-delay:.43s;" data-cursor="hover" data-tip="Нахожу проблемы в&nbsp;существующем продукте и&nbsp;пользовательских сценариях">UX Аудит</div>
@@ -745,67 +783,107 @@
 <section class="marquee-section" aria-label="Награды">
   <div class="marquee-track">
     <div class="marquee-list">
-      <a class="award-item" href="https://workspace.ru/awards/cases2025/seo/seo-services/?stage=winners" target="_blank" rel="noopener" data-cursor="hover">
+      <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/wda.jpg" alt="WDA — Поисковое продвижение / Продвижение услуг, 1 место, 2025">
         <span class="award-text"><b>WDA</b> — Поисковое продвижение / Продвижение услуг, 1 место, 2025 — Редизайн для оптимизации премиум-портфолио</span>
-        <svg class="award-arrow" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
+      </div>
       <span class="award-dot">/</span>
-      <a class="award-item" href="https://workspace.ru/cases/rocket-business/" target="_blank" rel="noopener" data-cursor="hover">
+      <div class="award-item">
+        <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/runet.jpg" alt="Рейтинг Рунета — Рейтинг цифровых проектов, 5 место">
+        <span class="award-text"><b>Рейтинг Рунета</b> — Рейтинг цифровых проектов, 5 место</span>
+      </div>
+      <span class="award-dot">/</span>
+      <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/wda.jpg" alt="WDA — Услуги, 1 место, 2024">
         <span class="award-text"><b>WDA</b> — Услуги, 1 место, 2024 — Корпоративный сайт Rocket Business</span>
-        <svg class="award-arrow" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
+      </div>
       <span class="award-dot">/</span>
-      <a class="award-item" href="https://workspace.ru/awards/cases/razrabotka-sayta-rocket-dev/" target="_blank" rel="noopener" data-cursor="hover">
+      <div class="award-item">
+        <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/runet.jpg" alt="Рейтинг Рунета — Рейтинг цифровых проектов, 10 место">
+        <span class="award-text"><b>Рейтинг Рунета</b> — Рейтинг цифровых проектов, 10 место</span>
+      </div>
+      <span class="award-dot">/</span>
+      <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/wda.jpg" alt="WDA — Сайты / Услуги, 2 место, 2025">
         <span class="award-text"><b>WDA</b> — Сайты / Услуги, 2 место, 2025 — Сайт технического подразделения Rocket Dev</span>
-        <svg class="award-arrow" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
+      </div>
       <span class="award-dot">/</span>
-      <a class="award-item" href="https://workspace.ru/awards/cases/razrabotka-chat-bota-rocket-spasibo/" target="_blank" rel="noopener" data-cursor="hover">
+      <div class="award-item">
+        <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/runet.jpg" alt="Рейтинг Рунета — Рейтинг цифровых проектов, 15 место">
+        <span class="award-text"><b>Рейтинг Рунета</b> — Рейтинг цифровых проектов, 15 место</span>
+      </div>
+      <span class="award-dot">/</span>
+      <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/wda.jpg" alt="WDA — Цифровизация и трансформация / Корпоративные порталы, 1 место, 2025">
         <span class="award-text"><b>WDA</b> — Цифровизация и трансформация / Корпоративные порталы, 1 место, 2025 — Чат-бот «Rocket Спасибо»</span>
-        <svg class="award-arrow" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
+      </div>
       <span class="award-dot">/</span>
-      <a class="award-item" href="https://workspace.ru/awards/cases/nash-monitor/" target="_blank" rel="noopener" data-cursor="hover">
+      <div class="award-item">
+        <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/runet.jpg" alt="Рейтинг Рунета — Рейтинг цифровых проектов, 20 место">
+        <span class="award-text"><b>Рейтинг Рунета</b> — Рейтинг цифровых проектов, 20 место</span>
+      </div>
+      <span class="award-dot">/</span>
+      <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/wda.jpg" alt="WDA — Цифровизация и трансформация / Корпоративные порталы, 2 место, 2024">
         <span class="award-text"><b>WDA</b> — Цифровизация и трансформация / Корпоративные порталы, 2 место, 2024 — «Наш Монитор»</span>
-        <svg class="award-arrow" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
+      </div>
+      <span class="award-dot">/</span>
+      <div class="award-item">
+        <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/runet.jpg" alt="Рейтинг Рунета — Рейтинг цифровых проектов, 25 место">
+        <span class="award-text"><b>Рейтинг Рунета</b> — Рейтинг цифровых проектов, 25 место</span>
+      </div>
       <span class="award-dot">/</span>
     </div>
     <div class="marquee-list" aria-hidden="true">
-      <a class="award-item" href="https://workspace.ru/awards/cases2025/seo/seo-services/?stage=winners" target="_blank" rel="noopener" data-cursor="hover">
+      <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/wda.jpg" alt="WDA — Поисковое продвижение / Продвижение услуг, 1 место, 2025">
         <span class="award-text"><b>WDA</b> — Поисковое продвижение / Продвижение услуг, 1 место, 2025 — Редизайн для оптимизации премиум-портфолио</span>
-        <svg class="award-arrow" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
+      </div>
       <span class="award-dot">/</span>
-      <a class="award-item" href="https://workspace.ru/cases/rocket-business/" target="_blank" rel="noopener" data-cursor="hover">
+      <div class="award-item">
+        <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/runet.jpg" alt="Рейтинг Рунета — Рейтинг цифровых проектов, 5 место">
+        <span class="award-text"><b>Рейтинг Рунета</b> — Рейтинг цифровых проектов, 5 место</span>
+      </div>
+      <span class="award-dot">/</span>
+      <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/wda.jpg" alt="WDA — Услуги, 1 место, 2024">
         <span class="award-text"><b>WDA</b> — Услуги, 1 место, 2024 — Корпоративный сайт Rocket Business</span>
-        <svg class="award-arrow" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
+      </div>
       <span class="award-dot">/</span>
-      <a class="award-item" href="https://workspace.ru/awards/cases/razrabotka-sayta-rocket-dev/" target="_blank" rel="noopener" data-cursor="hover">
+      <div class="award-item">
+        <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/runet.jpg" alt="Рейтинг Рунета — Рейтинг цифровых проектов, 10 место">
+        <span class="award-text"><b>Рейтинг Рунета</b> — Рейтинг цифровых проектов, 10 место</span>
+      </div>
+      <span class="award-dot">/</span>
+      <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/wda.jpg" alt="WDA — Сайты / Услуги, 2 место, 2025">
         <span class="award-text"><b>WDA</b> — Сайты / Услуги, 2 место, 2025 — Сайт технического подразделения Rocket Dev</span>
-        <svg class="award-arrow" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
+      </div>
       <span class="award-dot">/</span>
-      <a class="award-item" href="https://workspace.ru/awards/cases/razrabotka-chat-bota-rocket-spasibo/" target="_blank" rel="noopener" data-cursor="hover">
+      <div class="award-item">
+        <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/runet.jpg" alt="Рейтинг Рунета — Рейтинг цифровых проектов, 15 место">
+        <span class="award-text"><b>Рейтинг Рунета</b> — Рейтинг цифровых проектов, 15 место</span>
+      </div>
+      <span class="award-dot">/</span>
+      <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/wda.jpg" alt="WDA — Цифровизация и трансформация / Корпоративные порталы, 1 место, 2025">
         <span class="award-text"><b>WDA</b> — Цифровизация и трансформация / Корпоративные порталы, 1 место, 2025 — Чат-бот «Rocket Спасибо»</span>
-        <svg class="award-arrow" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
+      </div>
       <span class="award-dot">/</span>
-      <a class="award-item" href="https://workspace.ru/awards/cases/nash-monitor/" target="_blank" rel="noopener" data-cursor="hover">
+      <div class="award-item">
+        <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/runet.jpg" alt="Рейтинг Рунета — Рейтинг цифровых проектов, 20 место">
+        <span class="award-text"><b>Рейтинг Рунета</b> — Рейтинг цифровых проектов, 20 место</span>
+      </div>
+      <span class="award-dot">/</span>
+      <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/wda.jpg" alt="WDA — Цифровизация и трансформация / Корпоративные порталы, 2 место, 2024">
         <span class="award-text"><b>WDA</b> — Цифровизация и трансформация / Корпоративные порталы, 2 место, 2024 — «Наш Монитор»</span>
-        <svg class="award-arrow" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
+      </div>
+      <span class="award-dot">/</span>
+      <div class="award-item">
+        <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/runet.jpg" alt="Рейтинг Рунета — Рейтинг цифровых проектов, 25 место">
+        <span class="award-text"><b>Рейтинг Рунета</b> — Рейтинг цифровых проектов, 25 место</span>
+      </div>
       <span class="award-dot">/</span>
     </div>
   </div>
