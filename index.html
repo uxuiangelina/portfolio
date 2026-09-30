@@ -274,8 +274,8 @@
   .about-photo-wrap{ position:relative; }
   .about-photo-square{ position:relative; width:280px; height:280px; border-radius:var(--radius); overflow:hidden; box-shadow:0 30px 60px -28px rgba(17,17,17,.35); animation:float 5s ease-in-out infinite; }
   .about-photo-square img{ width:100%; height:100%; object-fit:cover; }
-  .about-badge{ top:-18px; left:-18px; animation-delay:1.6s; }
-  @media (max-width:900px){ .about-photo{ justify-content:flex-start; } .about-photo-square{ width:220px; height:220px; } .about-badge{ top:8px; left:8px; } }
+  .about-badge{ top:auto; left:auto; bottom:-18px; right:-18px; animation-delay:1.6s; }
+  @media (max-width:900px){ .about-photo{ justify-content:flex-start; } .about-photo-square{ width:220px; height:220px; } .about-badge{ top:auto; left:auto; bottom:8px; right:8px; } }
   .cv-link{ display:inline-flex; align-items:center; gap:8px; font-weight:600; font-size:15px; color:var(--accent); cursor:none; }
 
   .approach-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
@@ -605,7 +605,7 @@
           <div class="about-photo-square">
             <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/angelina2.jpg" alt="Ангелина Масалова">
           </div>
-          <div class="float-badge about-badge">UX/UI Designer</div>
+          <div class="float-badge about-badge">Я навайбкодила этот сайт!</div>
         </div>
       </div>
       <div class="about-text reveal">
