@@ -293,7 +293,13 @@
 </main>
 
 <script>
-const IMG_BASE = 'https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/cases/';
+// Обложки лежат в папках по slug проекта: images/<slug>/<cover>
+const IMG_BASE = 'https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/';
+
+function coverUrl(c){
+  const file = /\.\w+$/.test(c.cover) ? c.cover : c.cover + '.jpg';
+  return IMG_BASE + encodeURIComponent(c.slug) + '/' + file;
+}
 
 const CASES = [
   { title:'Как превратить каталог праздничного декора в понятный сценарий выбора', cover:'numiballoons1.jpeg', product:['Сайт'], activity:'UX/UI Design', industry:'E-commerce', slug:'numi-balloons' },
@@ -457,7 +463,7 @@ function cardHtml(c){
   return (
     '<a class="case-card" href="' + href + '">' +
       '<div class="case-cover">' +
-        '<img src="' + IMG_BASE + (/\.\w+$/.test(c.cover) ? c.cover : c.cover + '.jpg') + '" alt="" loading="lazy">' +
+        '<img src="' + coverUrl(c) + '" alt="" loading="lazy">' +
         '<div class="case-tags">' + productTags +
           '<span class="tag activity">' + c.activity + '</span>' +
           '<span class="tag industry">' + c.industry + '</span>' +
