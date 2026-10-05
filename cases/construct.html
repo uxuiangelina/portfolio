@@ -229,67 +229,6 @@
 <div id="app"></div>
 
 <script>
-// Лёгкий список ВСЕХ кейсов: только то, что нужно для «Смотрите также» и мини-карточек.
-// Обложка пишется как «папка/файл» (папка внутри images/). Новый кейс = новый объект здесь + файл cases/<slug>.js
-const CASES = [
-  {
-    slug: 'construct',
-    title: 'Интернет-магазин строительной техники: каталог, конфигуратор и&nbsp;личный кабинет',
-    tags: [['B2B', 't1'], ['E-commerce', 't2'], ['UX/UI', 't1'], ['Конфигуратор', 't2'], ['Личный кабинет', 't1']],
-    product: ['Сайт'],
-    activity: 'UX/UI Design',
-    stage: '0 → 1',
-    industry: 'B2B / Спецтехника',
-    cover: 'construct/construct1.jpg'
-  },
-  {
-    slug: 'numi-balloons',
-    title: 'Как превратить каталог праздничного декора в понятный сценарий выбора',
-    tags: [['E-commerce', 't1'], ['UX/UI Design', 't2'], ['Web', 't1']],
-    product: ['Сайт'],
-    activity: 'UX/UI Design',
-    stage: 'MVP',
-    industry: 'E-commerce',
-    cover: 'numiballoons/numiballoons1.jpg'
-  },
-  {
-    slug: 'petrm',
-    title: 'Как превратить MVP pet-tech продукта в долгосрочную экосистему',
-    tags: [['Pettech', 't1'], ['Growth', 't2'], ['Roadmap', 't1']],
-    product: ['iOS-приложение', 'Android-приложение'],
-    activity: 'Product Strategy',
-    stage: 'Post-MVP',
-    industry: 'Pettech',
-    cover: 'petrm/petrm1.jpg'
-  },
-  {
-    slug: 'coal-mining-dashboard',
-    title: 'Продуктовый подход для личного кабинета угледобывающей компании',
-    tags: [['Личный кабинет', 't2'], ['Product', 't1']],
-    product: ['Сайт'],
-    activity: 'Аналитика',
-    stage: 'Редизайн',
-    industry: 'B2B / Индустрия',
-    cover: 'finanalysis/finanalysis11.jpg'
-  },
-  {
-    slug: 'pawly-pettech-ecosystem',
-    title: 'Pettech-экосистема для владельцев питомцев',
-    tags: [['Pettech', 't1'], ['iOS', 't2'], ['Android', 't1']],
-    product: ['iOS-приложение', 'Android-приложение'],
-    activity: 'Проектирование',
-    stage: 'С нуля',
-    industry: 'Pettech',
-    cover: 'finanalysis/finanalysis20.jpg'
-  }
-];
-
-// Кейсы, на которые ведут мини-карточки (не участвуют в блоке «Смотрите также»)
-const LINKED = [
-  { slug: 'fintech-legal-app', title: 'Финтех-сервис с юридической логикой для оформления займов между физлицами', cover: 'fintech/fintech1.jpg' },
-  { slug: 'petux', title: 'Как превратить продуктовую модель в единый UX', cover: 'petux/petux1.jpg' }
-];
-
 const IMG_ROOT = 'https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/';
 let IMG_DIR = '';
 function setImgDir(d){ IMG_DIR = d ? d + '/' : ''; }   // вызывается в начале файла кейса
@@ -297,16 +236,6 @@ function setImgDir(d){ IMG_DIR = d ? d + '/' : ''; }   // вызывается �
 function img(name){
   if (name.indexOf('http') === 0) return name;
   return IMG_ROOT + (name.indexOf('/') > -1 ? '' : IMG_DIR) + name;
-}
-
-// Подгрузка текста ровно одного кейса: cases/<slug>.js вызывает registerCase({...})
-let CASE_DATA = null;
-function registerCase(data){ CASE_DATA = data; }
-function loadCase(slug, ok, fail){
-  const s = document.createElement('script');
-  s.src = 'cases/' + slug + '.js';
-  s.onload = ok; s.onerror = fail;
-  document.head.appendChild(s);
 }
 
 // imgs('a.jpg') -> обычная картинка; imgs('a.jpg','b.jpg','c.jpg') -> карусель
@@ -352,9 +281,17 @@ function imgs(){
     car.querySelector('.next').disabled = (i === n - 1);
   }, true);
 })();
-// Кейс «Интернет-магазин строительной техники». Заголовок, теги и обложка — в cases/index.js
-setImgDir('construct'); // картинки ниже берутся из images/construct/
-registerCase({
+// ============ ЭТОТ КЕЙС (всё содержимое страницы) ============
+setImgDir('construct'); // картинки в тексте берутся из images/construct/
+const CASE = {
+  slug: 'construct',
+  title: 'Интернет-магазин строительной техники: каталог, конфигуратор и&nbsp;личный кабинет',
+  tags: [['B2B', 't1'], ['E-commerce', 't2'], ['UX/UI', 't1'], ['Конфигуратор', 't2'], ['Личный кабинет', 't1']],
+  product: ['Сайт'],
+  activity: 'UX/UI Design',
+  stage: '0 → 1',
+  industry: 'B2B / Спецтехника',
+  cover: 'construct/construct1.jpg',
     lead: 'Спроектировала интернет-магазин строительно-дорожной, сельскохозяйственной и специальной техники. Пользователь проходит путь от поиска и сравнения техники до подбора совместимого оборудования и формирования заявки без необходимости уточнять базовые параметры у менеджера.',
     meta: [
       { label: 'Формат', value: 'Интернет-магазин' },
@@ -418,9 +355,37 @@ registerCase({
       <p>За полтора месяца с нуля запустили цифровой B2B-продукт, а также перенесли значительную часть сложного процесса подбора техники из коммуникации с менеджером непосредственно в интерфейс. Теперь пользователь может самостоятельно пройти большую часть пути: от поиска подходящей модели до конкретной комплектации и сформированной заявки.</p>
       <p>Для бизнеса это означает меньше ручной работы на этапе первичного подбора и более качественные обращения: менеджер получает уже сформированный запрос и может сосредоточиться на консультации, уточнении деталей и продаже.</p>
     `
-});
+};
 
-CASES.find(c => c.slug === 'construct').full = Object.assign({}, CASES.find(c => c.slug === 'construct'), CASE_DATA);
+// ============ «СМОТРИТЕ ТАКЖЕ»: 2 карточки других кейсов (обложка в формате папка/файл) ============
+const RELATED = [
+  {
+    slug: 'numi-balloons',
+    title: 'Как превратить каталог праздничного декора в понятный сценарий выбора',
+    tags: [['E-commerce', 't1'], ['UX/UI Design', 't2'], ['Web', 't1']],
+    product: ['Сайт'],
+    activity: 'UX/UI Design',
+    stage: 'MVP',
+    industry: 'E-commerce',
+    cover: 'numiballoons/numiballoons1.jpg'
+  },
+  {
+    slug: 'petrm',
+    title: 'Как превратить MVP pet-tech продукта в долгосрочную экосистему',
+    tags: [['Pettech', 't1'], ['Growth', 't2'], ['Roadmap', 't1']],
+    product: ['iOS-приложение', 'Android-приложение'],
+    activity: 'Product Strategy',
+    stage: 'Post-MVP',
+    industry: 'Pettech',
+    cover: 'petrm/petrm1.jpg'
+  }
+];
+
+// Кейсы для мини-карточек в тексте: {{mini:slug}}
+const LINKED = [
+  { slug: 'fintech-legal-app', title: 'Финтех-сервис с юридической логикой для оформления займов между физлицами', cover: 'fintech/fintech1.jpg' },
+  { slug: 'petux', title: 'Как превратить продуктовую модель в единый UX', cover: 'petux/petux1.jpg' }
+];
 
 function coverUrl(name, w, h){
   return (name.indexOf('.') > -1 || name.indexOf('http') === 0)
@@ -431,7 +396,7 @@ function coverUrl(name, w, h){
 // Мини-карточка другого кейса: в тексте вставляется как {{mini:slug-кейса}}
 function miniCard(c){
   return '<p class="mini-label">Читайте об этом подробнее тут</p>' +
-    '<a class="mini-card" href="case-post.html?slug=' + c.slug + '">' +
+    '<a class="mini-card" href="' + c.slug + '.html">' +
       '<span class="mini-thumb"><img src="' + coverUrl(c.cover, 240, 160) + '" alt=""></span>' +
       '<span class="mini-title">' + c.title + '</span>' +
       '<span class="mini-arrow">→</span>' +
@@ -439,43 +404,20 @@ function miniCard(c){
 }
 function renderBody(html){
   return html.replace(/\{\{mini:([\w-]+)\}\}/g, function(m, slug){
-    const c = CASES.concat(LINKED).find(x => x.slug === slug);
+    const c = RELATED.concat(LINKED).find(x => x.slug === slug);
     return c ? miniCard(c) : '';
   });
 }
 
 function render(){
-  const params = new URLSearchParams(window.location.search);
-  const slug = params.get('slug');
-  const entry = slug ? CASES.find(c => c.slug === slug) : CASES[0];
+  const caseItem = CASE;
   const app = document.getElementById('app');
-
-  // полный текст кейса грузим только для открытой страницы
-  if (entry && !entry.full && !entry.failed) {
-    loadCase(entry.slug,
-      function(){ entry.full = Object.assign({}, entry, CASE_DATA); render(); },
-      function(){ entry.failed = true; render(); });
-    return;
-  }
-  const caseItem = entry && entry.full;
-
-  if (!caseItem) {
-    app.innerHTML =
-      '<div class="wrap not-found">' +
-        '<h1>Кейс не найден</h1>' +
-        '<p>Возможно, ссылка устарела или кейс был перемещён.</p>' +
-        '<a href="https://uxuiangelina.github.io/portfolio/cases.html" class="btn btn-primary">Ко всем кейсам</a>' +
-      '</div>';
-    document.title = 'Кейс не найден — Портфолио';
-    return;
-  }
 
   document.title = caseItem.title.replace(/&nbsp;/g, ' ') + ' — Кейс';
 
   const tagsHtml = caseItem.tags.map(t => '<span class="tag ' + t[1] + '">' + t[0] + '</span>').join('');
 
-  const others = CASES.filter(c => c.slug !== caseItem.slug);
-  const related = others.slice(0, 2);
+  const related = RELATED;
 
   const overviewHtml = caseItem.meta
     ? caseItem.meta.map(m => '<div><span>' + m.label + '</span><b>' + m.value + '</b></div>').join('')
@@ -504,7 +446,7 @@ function render(){
           '</div>' +
           '<div class="rel-grid">' +
             related.map(c =>
-              '<a class="rel-card" href="case-post.html?slug=' + c.slug + '">' +
+              '<a class="rel-card" href="' + c.slug + '.html">' +
                 '<div class="rel-cover"><img src="' + coverUrl(c.cover, 700, 440) + '" alt=""></div>' +
                 '<div class="rel-body">' +
                   '<div class="rel-tags">' +
