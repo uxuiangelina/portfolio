@@ -60,6 +60,7 @@
   }
   nav .wrap{display:flex; align-items:center; justify-content:space-between;}
   .logo{ display:flex; align-items:center; gap:11px; }
+  a.logo{ cursor:none; }
   .logo-circle{ display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%; border:1px solid var(--line-strong); flex:0 0 auto; }
   .logo-mark{ width:19px; height:auto; }
   .logo-text{ display:flex; flex-direction:column; line-height:1.25; }
@@ -85,7 +86,7 @@
   .float-badge{ position:absolute; background:rgba(255,255,255,.86); backdrop-filter:blur(10px); border:1px solid var(--line); border-radius:14px; padding:12px 16px; font-size:13px; font-weight:600; box-shadow:0 20px 40px -20px rgba(17,17,17,.28); animation:float 5s ease-in-out infinite; }
 
   .about-grid{ display:grid; grid-template-columns:1fr; gap:44px; align-items:center; }
-  @media (min-width:901px){ .about-grid{ grid-template-columns:.85fr 1.15fr; } }
+  @media (min-width:901px){ .about-grid{ grid-template-columns:1.15fr .85fr; } }
   .about-photo{ display:flex; justify-content:center; position:relative; }
   .about-photo-wrap{ position:relative; }
   .about-photo-square{ position:relative; width:280px; height:280px; border-radius:var(--radius); overflow:hidden; box-shadow:0 30px 60px -28px rgba(17,17,17,.35); }
@@ -278,13 +279,13 @@
 
 <nav id="nav">
   <div class="wrap">
-    <div class="logo">
+    <a class="logo" href="index.html" data-cursor="hover">
       <span class="logo-circle"><img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/files/logo.svg" alt="" class="logo-mark"></span>
       <div class="logo-text">
         <span class="logo-name">Ангелина Масалова</span>
         <span class="logo-role">UX/UI Designer</span>
       </div>
-    </div>
+    </a>
     <div class="nav-right">
       <ul class="nav-links">
         <li><a href="cases.html">Кейсы</a></li>
@@ -299,14 +300,6 @@
 <header class="about-hero">
   <div class="wrap">
     <div class="about-grid">
-      <div class="about-photo">
-        <div class="about-photo-wrap">
-          <div class="about-photo-square">
-            <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/angelina2.jpg" alt="Ангелина Масалова">
-          </div>
-          <div class="float-badge about-badge">UX/UI Designer</div>
-        </div>
-      </div>
       <div class="about-text">
         <h1>Ангелина Масалова</h1>
         <p class="lead">Решаю задачи бизнеса через понятные интерфейсы — и умею объяснить команде, почему решение именно такое.</p>
@@ -316,6 +309,14 @@
           <span class="hero-tag t1">Открыта к переезду</span>
         </div>
         <a href="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/files/Angelina_Masalova_CV.pdf" download class="btn btn-ghost" style="margin-top:24px;" data-cursor="hover">Скачать CV →</a>
+      </div>
+      <div class="about-photo">
+        <div class="about-photo-wrap">
+          <div class="about-photo-square">
+            <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/angelina2.jpg" alt="Ангелина Масалова">
+          </div>
+          <div class="float-badge about-badge">UX/UI Designer</div>
+        </div>
       </div>
     </div>
   </div>
