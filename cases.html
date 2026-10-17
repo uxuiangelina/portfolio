@@ -101,23 +101,34 @@
   h1{font-size:clamp(34px,5vw,52px); max-width:16ch; margin-bottom:8px;}
   header p{color:var(--text-2); font-size:16px;}
 
-  /* ---------- contact / offer (as on about.html) ---------- */
-  .contact-dark{ background:var(--dark-bg); color:var(--dark-text); position:relative; overflow:hidden; }
-  .contact-dark::before{ content:''; position:absolute; width:520px; height:520px; border-radius:50%; background:var(--accent); filter:blur(150px); opacity:.25; top:-220px; left:50%; transform:translateX(-50%); pointer-events:none; }
-  .contact-dark .wrap{ position:relative; z-index:1; }
-  .contact-section{ text-align:left; padding-top:96px; padding-bottom:96px; }
+  /* ---------- contact / offer (as on index.html) ---------- */
+  @keyframes pulse{ 0%,100%{opacity:1;} 50%{opacity:.35;} }
+  .reveal{ opacity:0; transform:translateY(28px); transition:opacity .9s var(--ease), transform .9s var(--ease); }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+  .contact-dark{ background:var(--dark-bg); color:var(--dark-text); border-top:none; position:relative; overflow:hidden; }
+  .contact-dark::before{ content:''; position:absolute; width:520px; height:520px; border-radius:50%; background:var(--accent); filter:blur(150px); opacity:.25; top:-220px; left:50%; transform:translateX(-50%); }
+  .contact-section{ text-align:left; padding-top:96px; padding-bottom:96px; position:relative; z-index:1; }
   .contact-dark h2{ font-size:clamp(28px,4.4vw,52px); max-width:none; white-space:nowrap; margin:0 0 18px; color:var(--dark-text); }
   @media (max-width:640px){ .contact-dark h2{ white-space:normal; } }
   .contact-dark p{ color:var(--dark-text-2); font-size:18px; margin-bottom:36px; }
-  .eyebrow{ display:inline-flex; align-items:center; gap:8px; font-size:13px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; margin-bottom:10px; }
-  .eyebrow::before{ content:''; width:6px; height:6px; border-radius:50%; background:var(--accent-2); }
+  .eyebrow{ display:inline-flex; align-items:center; gap:8px; font-size:13px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--accent); margin-bottom:22px; }
+  .eyebrow::before{ content:''; width:6px; height:6px; border-radius:50%; background:var(--accent); animation:pulse 2.2s ease-in-out infinite; }
   .contact-dark .eyebrow{ color:var(--accent-2); }
-  .hero-actions{ display:flex; gap:14px; margin-top:0; flex-wrap:wrap; }
-  .btn{ display:inline-flex; align-items:center; gap:8px; padding:15px 26px; border-radius:999px; font-size:15px; font-weight:600; transition:all .3s var(--ease); }
-  .btn-primary{ background-image:linear-gradient(100deg,var(--accent) 0%, var(--accent-2) 100%); color:#fff; border:none; }
-  .btn-primary:hover{ transform:translateY(-2px); filter:brightness(1.1); }
+  .contact-dark .eyebrow::before{ background:var(--accent-2); }
+  .hero-actions{ display:flex; gap:14px; margin-top:40px; flex-wrap:wrap; }
+  .btn{ display:inline-flex; align-items:center; gap:8px; padding:15px 26px; border-radius:999px; font-size:15px; font-weight:600; transition:all .35s var(--ease); border:1px solid transparent; }
+  .btn-primary{ border:none; background-image:linear-gradient(100deg,var(--text) 0%, var(--accent) 100%); background-color:var(--text); color:#fff; position:relative; overflow:hidden; }
+  .btn-primary:hover{ filter:brightness(1.1); transform:translateY(-2px); }
   .btn-ghost-dark{ border:1px solid rgba(245,245,243,.3); color:var(--dark-text); }
   .btn-ghost-dark:hover{ border-color:#fff; transform:translateY(-2px); background:rgba(255,255,255,.06); }
+  .btn-primary::after{
+    content:''; position:absolute; top:0; left:-60%; width:40%; height:100%;
+    background:linear-gradient(115deg, transparent 0%, rgba(255,255,255,.55) 45%, rgba(255,255,255,.85) 50%, rgba(255,255,255,.55) 55%, transparent 100%);
+    transform:skewX(-20deg); pointer-events:none; mix-blend-mode:overlay;
+    transition:left .75s var(--ease);
+  }
+  .btn-primary:hover::after{ left:130%; }
+  @media (prefers-reduced-motion: reduce){ .btn-primary::after{ transition:none; } .reveal{ opacity:1; transform:none; transition:none; } }
 
   /* ---------- filters ---------- */
   .filters{ display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin-top:32px; }
@@ -183,7 +194,7 @@
   }
   .case-card:hover{ transform:translateY(-4px); box-shadow:0 24px 50px -28px rgba(17,17,17,.2); }
   .case-cover{ position:relative; aspect-ratio:16/10; overflow:hidden; }
-  .case-cover::before{ content:''; position:absolute; inset:0; background:linear-gradient(180deg, rgba(11,11,12,.5) 0%, rgba(11,11,12,0) 45%); z-index:1; pointer-events:none; }
+  .case-cover::before{ content:''; position:absolute; inset:0; background:linear-gradient(180deg, rgba(11,11,12,.2) 0%, rgba(11,11,12,0) 36%); z-index:1; pointer-events:none; }
   .case-cover img{ width:100%; height:100%; object-fit:cover; transition:transform .5s var(--ease); }
   .case-card:hover .case-cover img{ transform:scale(1.04); }
   .case-body{ padding:24px 26px 28px; }
@@ -199,15 +210,17 @@
   /* ---------- pagination ---------- */
   .pagination{ display:flex; justify-content:center; align-items:center; gap:8px; margin-top:56px; }
   .page-btn{
-    min-width:40px; height:40px; padding:0 10px; border-radius:10px; border:1px solid var(--line-strong);
-    background:#fff; font-size:14px; font-weight:600; cursor:pointer; transition:all .2s ease;
+    width:40px; height:40px; min-width:40px; padding:0; border-radius:50%; border:1px solid var(--line-strong);
+    background:#fff; color:var(--text); font-size:14px; font-weight:600; cursor:pointer; transition:all .2s ease;
+    display:inline-flex; align-items:center; justify-content:center;
   }
+  .page-btn svg{ width:18px; height:18px; display:block; pointer-events:none; }
   .page-btn:hover{ border-color:var(--text); }
   .page-btn.active{ background:var(--text); color:#fff; border-color:var(--text); }
   .page-btn:disabled{ opacity:.35; cursor:default; }
   .page-btn:disabled:hover{ border-color:var(--line-strong); }
 
-  footer.footer-dark{ background:var(--dark-bg); border-top:1px solid var(--dark-line); padding:36px 0; }
+  footer.footer-dark{ background:var(--dark-bg); border-top:1px solid var(--dark-line); padding:22px 0; }
   footer.footer-dark .wrap{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
   footer.footer-dark span{ font-size:13px; color:var(--dark-text-2); }
   .footer-links{ display:flex; gap:24px; list-style:none; font-size:14px; color:var(--dark-text-2); }
@@ -298,54 +311,131 @@ const IMG_BASE = 'https://raw.githubusercontent.com/uxuiangelina/portfolio/main/
 
 function coverUrl(c){
   const file = /\.\w+$/.test(c.cover) ? c.cover : c.cover + '.jpg';
-  return IMG_BASE + encodeURIComponent(c.slug) + '/' + file;
+  return IMG_BASE + (file.indexOf('/') > -1 ? file : encodeURIComponent(c.slug) + '/' + file);
 }
 
-const CASES = [
-  { title:'Интернет-магазин строительной техники: каталог, конфигуратор и&nbsp;личный кабинет', cover:'construct1.jpg', product:['Сайт'], activity:'UX/UI Design', industry:'B2B', industry:'Спецтехника', slug:'construct' },
-  { title:'«Контракт» — P2P-сервис для оформления займов между физлицами', cover:'fintech1.jpg', product:['iOS-приложение','Android-приложение'], activity:'Проектирование', industry:'Финтех', slug:'fintech' },
-  { title:'Сайт многопрофильной клиники семейного здоровья', cover:'care1.jpg', product:['Сайт'], activity:'UX/UI Design', industry:'Медицина', slug:'care' },
-  { title:'От продуктовой стратегии к единой UX/UI-системе pet-tech приложения', cover:'pawds1.jpg', product:['iOS-приложение','Android-приложение'], activity:'UX/UI Design', industry:'Pettech', slug:'pawds' },
-  { title:'Сайт мебельного магазина: каталог, проекты и индивидуальный подбор', cover:'mebel1.jpg', product:['Сайт'], activity:'UX/UI Design', industry:'E-commerce / Мебель', slug:'mebel' },
-  { title:'Мобильное приложение для управления складскими и курьерскими процессами', cover:'zebra1.jpg', product:['Android-приложение'], activity:'UX/UI Design', industry:'Logistics / E-commerce', slug:'zebra' },
-  { title:'ERP и веб-портал для управления недвижимостью, продажами и ипотечными сделками', cover:'souz1.jpg', product:['Сайт'], activity:'UX/UI Design', industry:'Real Estate / ERP', slug:'souz' },
-  { title:'Как построить дизайн-систему для state-driven финтех-продукта', cover:'fintechds1.jpg', product:['iOS-приложение','Android-приложение'], activity:'Дизайн-система', industry:'Финтех', slug:'fintechds' },
-  { title:'Как превратить каталог праздничного декора в понятный сценарий выбора', cover:'numi1.jpg', product:['Сайт'], activity:'UX/UI Design', industry:'E-commerce', slug:'numi' },
-  { title:'Как исследовать pet-tech продукт до начала проектирования интерфейса', cover:'pawanalytic1.jpg', product:['iOS-приложение','Android-приложение'], activity:'Product Research', industry:'Pettech', slug:'pawanalytic' },
-  { title:'Корпоративный сайт IT-агентства с нуля', cover:'corporate1.jpg', product:['Сайт'], activity:'UX/UI Design', industry:'Digital / IT', slug:'corporate' },
-  { title:'Развитие продукта после MVP: от P2P-займа к финансовому помощнику', cover:'fintechretention1.jpg', product:['iOS-приложение','Android-приложение'], activity:'Product Strategy', industry:'Финтех', slug:'fintechretention' },
-  { title:'Лазурный берег', cover:'bereg1.jpg', product:['Сайт'], activity:'UX/UI Design', industry:'Restaurant / Hotel', slug:'bereg' },
-  { title:'Как превратить MVP pet-tech продукта в долгосрочную экосистему', cover:'pawrm1.jpg', product:['iOS-приложение','Android-приложение'], activity:'Product Strategy', industry:'Pettech', slug:'pawrm' },
-  { title:'B2B-маркетплейс для поиска промышленного оборудования', cover:'industrial1.jpg', product:['Сайт'], activity:'UX/UI Design', industry:'B2B / Промышленное оборудование', slug:'industrial' },
-  { title:'Как превратить сложную финансово-юридическую задачу в понятную продуктовую систему', cover:'fintechanalytics1.jpg', product:['iOS-приложение','Android-приложение'], activity:'Проектирование', industry:'Финтех', slug:'fintechanalytics' },
-  { title:'Сайт благотворительного фонда с прозрачной структурой, каталогом проектов и системой пожертвований', cover:'fund1.jpg', product:['Сайт'], activity:'UX/UI Design', industry:'Благотворительность / NGO', slug:'fund' },
-  { title:'Как пересобрать UX-архитектуру сложной B2B-платформы', cover:'miningux1.jpg', product:['Сайт'], activity:'Проектирование', industry:'B2B / Индустрия', slug:'miningux' },
-  { title:'Сайт digital-агентства: новая структура, визуальная система и презентация экспертизы', cover:'rb1.jpg', product:['Сайт'], activity:'UX/UI Design', industry:'Digital / Услуги', slug:'rb' },
-  { title:'Лендинг для компании в сфере детейлинга', cover:'autopro1.jpg', product:['Сайт'], activity:'UX/UI Design', industry:'Детейлинг / Automotive', slug:'autopro' },
-  { title:'Интернет-магазин мебели с каталогом, поиском и гибкой системой фильтрации', cover:'mask1.jpg', product:['Сайт'], activity:'UX/UI Design', industry:'E-commerce / Мебель', slug:'mask' },
-  { title:'Сайт, который превращает сложную продуктовую информацию в понятную презентацию', cover:'nutrition1.jpg', product:['Сайт'], activity:'UX/UI Design', industry:'B2B / Продукция', slug:'nutrition' },
-  { title:'Как подготовить B2B-платформу к дальнейшему масштабированию', cover:'miningds1.jpg', product:['Сайт'], activity:'Дизайн-система', industry:'B2B / Индустрия', slug:'miningds' }
+/* =====================================================================
+   ИСТОЧНИК ДАННЫХ — страница самого кейса (<slug>.html, блок const CASE).
+   Оттуда автоматически берутся: title, cover, product, activity, industry.
+   Каждое из трёх полей может быть строкой или массивом — тегов можно добавлять сколько угодно:
+     product: ['Сайт', 'iOS-приложение'],  activity: ['UX/UI Design', 'Дизайн-система'],  industry: ['B2B', 'Спецтехника']
+   Порядок карточек = порядок slug в списке CASE_SLUGS. Новый кейс = добавить сюда его slug.
+   Если страницу не удалось загрузить (например, открыто как файл, без сервера),
+   используются запасные данные из CASES_FALLBACK.
+   ===================================================================== */
+const CASE_SLUGS = ["construct", "fintech", "care", "pawds", "mebel", "zebra", "souz", "fintechds", "numi", "pawanalytic", "corporate", "fintechretention", "bereg", "pawrm", "industrial", "fintechanalytics", "fund", "miningux", "rb", "autopro", "mask", "nutrition", "miningds"];
+
+const CASES_FALLBACK = [
+  {"slug": "construct", "title": "Интернет-магазин строительной техники: каталог, конфигуратор и&nbsp;личный кабинет", "cover": "construct/construct1.jpg", "product": ["Сайт"], "activity": ["UX/UI Design"], "industry": ["B2B / Спецтехника"]},
+  {"slug": "fintech", "title": "P2P-финтех-продукт с&nbsp;юридической логикой", "cover": "fintech/fintech1.jpg", "product": ["iOS-приложение", "Android-приложение"], "activity": ["Проектирование"], "industry": ["Финтех"]},
+  {"slug": "care", "title": "Сайт многопрофильной клиники семейного здоровья", "cover": "care/care1.jpg", "product": ["Сайт"], "activity": ["UX/UI Design"], "industry": ["Медицина"]},
+  {"slug": "pawds", "title": "Как спроектировать единый UX для pet-tech продукта", "cover": "pawds/pawds1.jpg", "product": ["iOS-приложение", "Android-приложение"], "activity": ["UX/UI Design"], "industry": ["Pettech"]},
+  {"slug": "mebel", "title": "Сайт мебельного магазина: каталог, проекты и&nbsp;индивидуальный подбор", "cover": "mebel1.jpg", "product": ["Сайт"], "activity": ["UX/UI Design"], "industry": ["E-commerce / Мебель"]},
+  {"slug": "zebra", "title": "Мобильное приложение для управления складскими и курьерскими процессами", "cover": "zebra/zebra1.jpg", "product": ["Android-приложение"], "activity": ["UX/UI Design"], "industry": ["Logistics / E-commerce"]},
+  {"slug": "souz", "title": "ERP и веб-портал для управления недвижимостью, продажами и ипотечными сделками", "cover": "souz/souz1.jpg", "product": ["Сайт"], "activity": ["UX/UI Design"], "industry": ["Real Estate / ERP"]},
+  {"slug": "fintechds", "title": "State-driven дизайн-система для финтех-продукта", "cover": "fintechds/fintechds1.jpg", "product": ["iOS-приложение", "Android-приложение"], "activity": ["Дизайн-система"], "industry": ["Финтех"]},
+  {"slug": "numi", "title": "Интернет-магазин праздничного декора: сценарии выбора и покупки", "cover": "numi/numi1.jpg", "product": ["Сайт"], "activity": ["UX/UI Design"], "industry": ["E-commerce"]},
+  {"slug": "pawanalytic", "title": "Как определить продуктовую модель pet-tech сервиса до начала дизайна", "cover": "pawanalytic/pawanalytic1.jpg", "product": ["iOS-приложение", "Android-приложение"], "activity": ["Product Research"], "industry": ["Pettech"]},
+  {"slug": "corporate", "title": "Корпоративный сайт IT-агентства с нуля", "cover": "corporate/corporate1.jpg", "product": ["Сайт"], "activity": ["UX/UI Design"], "industry": ["Digital / IT"]},
+  {"slug": "fintechretention", "title": "State-driven дизайн-система для финтех-продукта", "cover": "fintechds/fintechds1.jpg", "product": ["iOS-приложение", "Android-приложение"], "activity": ["Дизайн-система"], "industry": ["Финтех"]},
+  {"slug": "bereg", "title": "Лазурный берег", "cover": "bereg/bereg1.jpg", "product": ["Сайт"], "activity": ["UX/UI Design"], "industry": ["Restaurant / Hotel"]},
+  {"slug": "pawrm", "title": "Как развивать pet-tech продукт после MVP", "cover": "pawrm/pawrm1.jpg", "product": ["iOS-приложение", "Android-приложение"], "activity": ["Product Strategy"], "industry": ["Pettech"]},
+  {"slug": "industrial", "title": "B2B-маркетплейс для промышленного оборудования", "cover": "industrial/industrial1.jpg", "product": ["Сайт"], "activity": ["UX/UI Design"], "industry": ["B2B / Промышленное оборудование"]},
+  {"slug": "fintechanalytics", "title": "Как превратить сложную финансово-юридическую задачу в понятную продуктовую систему", "cover": "fintechanalytics/fintechanalytics1.jpg", "product": ["iOS-приложение", "Android-приложение"], "activity": ["Проектирование"], "industry": ["Финтех"]},
+  {"slug": "fund", "title": "Сайт благотворительного фонда с прозрачной структурой, каталогом проектов и системой пожертвований", "cover": "fund/fund1.jpg", "product": ["Сайт"], "activity": ["UX/UI Design"], "industry": ["Благотворительность / NGO"]},
+  {"slug": "miningux", "title": "Как пересобрать UX-архитектуру сложной B2B-платформы", "cover": "miningux/miningux1.jpg", "product": ["Сайт"], "activity": ["Проектирование"], "industry": ["B2B / Индустрия"]},
+  {"slug": "rb", "title": "Сайт digital-агентства: новая структура, визуальная система и презентация экспертизы", "cover": "rb/rb1.jpg", "product": ["Сайт"], "activity": ["UX/UI Design"], "industry": ["Digital / Услуги"]},
+  {"slug": "autopro", "title": "Лендинг для премиального детейлинг-сервиса", "cover": "autopro/autopro1.jpg", "product": ["Сайт"], "activity": ["UX/UI Design"], "industry": ["Детейлинг / Automotive"]},
+  {"slug": "mask", "title": "Интернет-магазин мебели с каталогом, поиском и гибкой системой фильтрации", "cover": "mask/mask1.jpg", "product": ["Сайт"], "activity": ["UX/UI Design"], "industry": ["E-commerce / Мебель"]},
+  {"slug": "nutrition", "title": "Корпоративный сайт для презентации сложных B2B-продуктов", "cover": "nutrition/nutrition1.jpg", "product": ["Сайт"], "activity": ["UX/UI Design"], "industry": ["B2B / Продукция"]},
+  {"slug": "miningds", "title": "Как подготовить B2B-платформу к дальнейшему масштабированию", "cover": "miningds/miningds1.jpg", "product": ["Сайт"], "activity": ["Дизайн-система"], "industry": ["B2B / Индустрия"]}
 ];
 
-const CASES_LIVE = CASES.filter(c => !c.hidden);
+function toArr(v){ return (Array.isArray(v) ? v : [v]).filter(x => x !== undefined && x !== null && String(x).trim() !== ''); }
+function normalizeCase(c){
+  return { slug:c.slug, title:c.title || '', cover:c.cover || (c.slug + '1.jpg'),
+           product:toArr(c.product), activity:toArr(c.activity), industry:toArr(c.industry), hidden:!!c.hidden };
+}
+
+/* --- разбор JS-литералов из текста страницы кейса (без исполнения всей страницы) --- */
+function readLiteral(src, i){
+  const open = src[i];
+  if (open === "'" || open === '"' || open === '`') {
+    i++;
+    while (i < src.length) {
+      if (src[i] === '\\') i += 2;
+      else if (src[i] === open) return i + 1;
+      else i++;
+    }
+    return -1;
+  }
+  if (open === '[' || open === '{') {
+    let depth = 0;
+    while (i < src.length) {
+      const ch = src[i];
+      if (ch === "'" || ch === '"' || ch === '`') { i = readLiteral(src, i); if (i < 0) return -1; continue; }
+      if (ch === '[' || ch === '{') depth++;
+      else if (ch === ']' || ch === '}') { depth--; if (depth === 0) return i + 1; }
+      i++;
+    }
+  }
+  return -1;
+}
+function grabField(region, key){
+  const m = new RegExp('(?:^|[\\s,{])' + key + '\\s*:\\s*').exec(region);
+  if (!m) return undefined;
+  const start = m.index + m[0].length;
+  const end = readLiteral(region, start);
+  if (end < 0) return undefined;
+  try { return (new Function('return ' + region.slice(start, end)))(); } catch (e) { return undefined; }
+}
+function parseCasePage(html){
+  const i = html.indexOf('const CASE =');
+  if (i < 0) return null;
+  const j = html.indexOf('{', i);
+  const e = readLiteral(html, j);
+  const region = e > 0 ? html.slice(j, e) : html.slice(j, j + 6000);
+  const out = {};
+  ['title','cover','product','activity','industry'].forEach(k => { const v = grabField(region, k); if (v !== undefined) out[k] = v; });
+  return out;
+}
+
+function fetchCase(slug){
+  const fb = CASES_FALLBACK.find(c => c.slug === slug) || { slug:slug, title:slug, cover:slug + '1.jpg' };
+  const ctrl = ('AbortController' in window) ? new AbortController() : null;
+  const timer = ctrl ? setTimeout(() => ctrl.abort(), 6000) : null;
+  return fetch(slug + '.html', ctrl ? { signal:ctrl.signal } : undefined)
+    .then(r => { if (!r.ok) throw new Error(r.status); return r.text(); })
+    .then(html => {
+      const p = parseCasePage(html) || {};
+      return normalizeCase(Object.assign({}, fb, p, { slug:slug }));
+    })
+    .catch(() => normalizeCase(fb))
+    .finally(() => { if (timer) clearTimeout(timer); });
+}
+function loadCases(){ return Promise.all(CASE_SLUGS.map(fetchCase)); }
+
+let CASES_LIVE = [];
+let PRODUCT_COUNTS, ACTIVITY_COUNTS, INDUSTRY_COUNTS, PRODUCTS, ACTIVITIES, INDUSTRIES, COUNTS_BY_KEY;
 
 /* ---------- taxonomy для фильтров: только те теги, что реально встречаются среди видимых кейсов ---------- */
 function optionCounts(key){
   const counts = new Map();
   CASES_LIVE.forEach(c => {
-    const v = c[key];
-    const values = Array.isArray(v) ? v : [v];
-    values.forEach(val => counts.set(val, (counts.get(val) || 0) + 1));
+    c[key].forEach(val => counts.set(val, (counts.get(val) || 0) + 1));
   });
   return counts;
 }
-const PRODUCT_COUNTS = optionCounts('product');
-const ACTIVITY_COUNTS = optionCounts('activity');
-const INDUSTRY_COUNTS = optionCounts('industry');
-const PRODUCTS = Array.from(PRODUCT_COUNTS.keys());
-const ACTIVITIES = Array.from(ACTIVITY_COUNTS.keys());
-const INDUSTRIES = Array.from(INDUSTRY_COUNTS.keys());
-const COUNTS_BY_KEY = { product:PRODUCT_COUNTS, activity:ACTIVITY_COUNTS, industry:INDUSTRY_COUNTS };
+function prepareData(list){
+  CASES_LIVE = list.filter(c => !c.hidden);
+  PRODUCT_COUNTS = optionCounts('product');
+  ACTIVITY_COUNTS = optionCounts('activity');
+  INDUSTRY_COUNTS = optionCounts('industry');
+  PRODUCTS = Array.from(PRODUCT_COUNTS.keys());
+  ACTIVITIES = Array.from(ACTIVITY_COUNTS.keys());
+  INDUSTRIES = Array.from(INDUSTRY_COUNTS.keys());
+  COUNTS_BY_KEY = { product:PRODUCT_COUNTS, activity:ACTIVITY_COUNTS, industry:INDUSTRY_COUNTS };
+}
 
 /* ---------- ui-строки ---------- */
 const translations = {
@@ -421,8 +511,6 @@ function buildAllPanels(){
     });
   });
 }
-buildAllPanels();
-
 document.querySelectorAll('[data-toggle]').forEach(btn => {
   btn.addEventListener('click', (e) => {
     e.stopPropagation();
@@ -455,23 +543,22 @@ function updateFilterButtons(){
 function getFiltered(){
   return CASES_LIVE.filter(c => {
     const productOk = state.product.size === 0 || c.product.some(p => state.product.has(p));
-    const activityOk = state.activity.size === 0 || state.activity.has(c.activity);
-    const industryOk = state.industry.size === 0 || state.industry.has(c.industry);
+    const activityOk = state.activity.size === 0 || c.activity.some(a => state.activity.has(a));
+    const industryOk = state.industry.size === 0 || c.industry.some(i => state.industry.has(i));
     return productOk && activityOk && industryOk;
   });
 }
 
 function cardHtml(c){
-  const productTags = c.product.map(p => '<span class="tag product">' + p + '</span>').join('');
-  const href = (c.page || c.slug) ? 'cases/' + (c.page || c.slug) + '.html' : 'portfolio.html#work';
+  const tagsHtml =
+    c.product.map(p => '<span class="tag product">' + p + '</span>').join('') +
+    c.activity.map(a => '<span class="tag activity">' + a + '</span>').join('') +
+    c.industry.map(i => '<span class="tag industry">' + i + '</span>').join('');
   return (
-    '<a class="case-card" href="' + href + '">' +
+    '<a class="case-card" href="' + c.slug + '.html">' +
       '<div class="case-cover">' +
         '<img src="' + coverUrl(c) + '" alt="" loading="lazy">' +
-        '<div class="case-tags">' + productTags +
-          '<span class="tag activity">' + c.activity + '</span>' +
-          '<span class="tag industry">' + c.industry + '</span>' +
-        '</div>' +
+        '<div class="case-tags">' + tagsHtml + '</div>' +
       '</div>' +
       '<div class="case-body">' +
         '<h2>' + c.title + '</h2>' +
@@ -546,11 +633,11 @@ function render(){
 
   const pag = document.getElementById('pagination');
   if (totalPages <= 1) { pag.innerHTML = ''; return; }
-  let html = '<button class="page-btn" id="prevBtn" ' + (state.page === 1 ? 'disabled' : '') + '>←</button>';
+  let html = '<button class="page-btn" id="prevBtn" ' + (state.page === 1 ? 'disabled' : '') + ' aria-label="Назад"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15.5 5l-7 7 7 7"/></svg></button>';
   for (let i = 1; i <= totalPages; i++) {
     html += '<button class="page-btn' + (i === state.page ? ' active' : '') + '" data-page="' + i + '">' + i + '</button>';
   }
-  html += '<button class="page-btn" id="nextBtn" ' + (state.page === totalPages ? 'disabled' : '') + '>→</button>';
+  html += '<button class="page-btn" id="nextBtn" ' + (state.page === totalPages ? 'disabled' : '') + ' aria-label="Вперёд"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.5 5l7 7-7 7"/></svg></button>';
   pag.innerHTML = html;
 
   pag.querySelectorAll('[data-page]').forEach(b => b.addEventListener('click', () => { state.page = parseInt(b.dataset.page, 10); render(); window.scrollTo({top:0, behavior:'smooth'}); }));
@@ -576,8 +663,14 @@ function pluralCases(n){
 
 const copyLinkBtn = document.getElementById('copyLinkBtn');
 
-updateFilterButtons();
-render();
+function start(list){
+  prepareData(list);
+  buildAllPanels();
+  updateFilterButtons();
+  render();
+}
+document.getElementById('caseGrid').innerHTML = '<div class="empty-state" style="grid-column:1/-1;">Загружаю кейсы…</div>';
+loadCases().then(start);
 
 function updateCopyLinkLabel(){
   const label = translations['copy.link'];
@@ -627,11 +720,11 @@ window.addEventListener('scroll', () => {
 
 <section id="contact" class="contact-dark">
   <div class="wrap contact-section">
-    <div class="eyebrow">Открыта к предложениям</div>
-    <h2>Готовы предложить оффер?</h2>
-    <p style="font-size:14px;">Отвечаю в течение пары часов. Открыта к full-time, контракту и разовым проектам</p>
-    <div class="hero-actions">
-      <a href="https://t.me/uxuiangelina" class="btn btn-primary">Написать в телеграм</a>
+    <div class="eyebrow reveal">Открыта к предложениям</div>
+    <h2 class="reveal">Готовы предложить оффер?</h2>
+    <p class="reveal" style="font-size:14px;">Отвечаю в течение пары часов. Открыта к full-time, контракту и разовым проектам.</p>
+    <div class="hero-actions reveal">
+      <a href="https://t.me/uxuiangelina" class="btn btn-primary">Написать в Telegram</a>
       <a href="mailto:uxuiangelina@yandex.ru" class="btn btn-ghost-dark">Написать на почту</a>
     </div>
   </div>
@@ -643,11 +736,19 @@ window.addEventListener('scroll', () => {
     <ul class="footer-links">
       <li><a href="mailto:uxuiangelina@yandex.ru">E-mail</a></li>
       <li><a href="https://t.me/uxuiangelina">Telegram</a></li>
-      <li><a href="https://wa.me/79996941608">WhatsApp</a></li>
+      <li><a href="https://wa.me/79996941608">Whatsapp</a></li>
     </ul>
   </div>
 </footer>
 <script>
+(function(){
+  const els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) { els.forEach(el => el.classList.add('in')); return; }
+  const io = new IntersectionObserver(entries => entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { threshold:.15 });
+  els.forEach(el => io.observe(el));
+})();
 const navToggle = document.getElementById('navToggle');
 const mobileMenu = document.getElementById('mobileMenu');
 if (navToggle && mobileMenu) {
