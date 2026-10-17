@@ -320,6 +320,8 @@
   @media (max-width:900px){ .achieve-grid{ grid-template-columns:1fr; } }
   .achieve-card{ display:flex; flex-direction:column; border:1px solid var(--line); border-radius:20px; padding:34px 30px; background:var(--surface); transition:transform .35s var(--ease), box-shadow .35s var(--ease), border-color .35s var(--ease); text-decoration:none; color:inherit; cursor:none; }
   .achieve-card:hover{ transform:translateY(-4px); box-shadow:0 24px 48px -28px rgba(17,17,17,.2); border-color:transparent; }
+  .achieve-card--static{ cursor:default; }
+  .achieve-card--static:hover{ transform:none; box-shadow:none; border-color:var(--line); }
   .achieve-icon{ font-size:28px; margin-bottom:18px; }
   .achieve-card h3{ font-size:16px; margin-bottom:10px; max-width:24ch; line-height:1.3; }
   @media (max-width:900px){ .achieve-card h3{ max-width:none; } }
@@ -878,48 +880,42 @@
       <a href="about.html" class="btn btn-ghost btn-all-cases" data-cursor="hover">Подробнее →</a>
     </div>
     <div class="achieve-grid reveal-stagger" style="margin-top:48px;">
-      <!-- Ссылка: внешний сайт (страница WDA). Замените href на нужный внешний адрес вручную. -->
       <a class="achieve-card" href="https://workspace.ru/awards/" target="_blank" rel="noopener" data-cursor="view" data-cursor-label="Перейти">
         <div class="achieve-icon">🏆</div>
-        <h3>Имею множество призовых кейсов по версии Workspace Digital Awards</h3>
-        <p>Имею призовые кейсы в&nbsp;различных номинациях, например: 1&nbsp;место в&nbsp;категории «Сайты / Услуги» за&nbsp;разработку корпоративного сайта агентства</p>
-        <div class="achieve-meta"><span>2026</span><span class="achieve-link">Перейти на&nbsp;сайт WDA<svg viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+        <h3>Призовое место в&nbsp;Workspace Digital Awards</h3>
+        <p>Корпоративный сайт Rocket Business занял 1-е&nbsp;место в&nbsp;номинации «Сайты&nbsp;/&nbsp;Услуги» Workspace Digital Awards.</p>
+        <div class="achieve-meta"><span>Rocket Business · 2024</span><span class="achieve-link">Перейти на&nbsp;сайт WDA<svg viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
       </a>
-      <!-- Ссылка: статья в блоге (пока не написана) — сейчас ведёт на blog.html. Когда статья выйдет, замените href на прямую ссылку на неё. -->
-      <a class="achieve-card" href="blog.html" data-cursor="view" data-cursor-label="Читать">
+      <div class="achieve-card achieve-card--static">
         <div class="achieve-icon">🧩</div>
         <h3>Запустила UX/UI-воркшопы для&nbsp;junior-дизайнеров</h3>
-        <p>Еженедельно разбирала с&nbsp;дизайнерами реальные продукты и&nbsp;сложные UX-задачи</p>
-        <div class="achieve-meta"><span>Efimov · 2025</span><span class="achieve-link">Читать статью<svg viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-      </a>
-      <!-- Ссылка: конкретный кейс. Замените href на нужный кейс вручную (например cases/fintech.html). -->
+        <p>Организовала регулярные разборы реальных продуктов и&nbsp;UX-задач, чтобы помогать начинающим дизайнерам развивать проектное мышление и&nbsp;аргументировать решения.</p>
+        <div class="achieve-meta"><span>Efimov · 2025</span></div>
+      </div>
       <a class="achieve-card" href="cases/fintech.html" data-cursor="view" data-cursor-label="Открыть">
         <div class="achieve-icon">🎤</div>
-        <h3>Самостоятельно спроектировала экпериментальное финтех приложение</h3>
-        <p>Спроектировала приложение для&nbsp;заключения займов и&nbsp;контроля их&nbsp;исполнения&nbsp;— от&nbsp;аналитики до&nbsp;запуска в&nbsp;работу</p>
-        <div class="achieve-meta"><span>Efimov · 2025</span><span class="achieve-link">Кейс <svg viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+        <h3>Спроектировала финтех-приложение с&nbsp;нуля</h3>
+        <p>Разработала пользовательские сценарии и&nbsp;интерфейсы приложения для P2P-займов&nbsp;— от&nbsp;анализа рисков и&nbsp;логики сделок до&nbsp;подготовки макетов к&nbsp;разработке.</p>
+        <div class="achieve-meta"><span>Efimov · 2025</span><span class="achieve-link">Смотреть кейс <svg viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
       </a>
-      <!-- Ссылка: конкретный кейс. Замените href на нужный кейс вручную. -->
       <a class="achieve-card" href="cases/fintechds.html" data-cursor="view" data-cursor-label="Открыть">
         <div class="achieve-icon">🚀</div>
-        <h3>Дизайн-система переиспользуется более чем&nbsp;в&nbsp;4&nbsp;внутренних продуктов</h3>
-        <p>Разработанные компоненты и&nbsp;токены переиспользуются ещё&nbsp;в&nbsp;4&nbsp;внутренних сервисах и&nbsp;соцсетях</p>
-        <div class="achieve-meta"><span>Efimov · 2025</span><span class="achieve-link">Кейс <svg viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+        <h3>Масштабировала дизайн-систему на&nbsp;несколько продуктов</h3>
+        <p>Создала библиотеку компонентов и&nbsp;токенов, которую переиспользовали в&nbsp;четырёх внутренних продуктах и&nbsp;социальных сетях компании.</p>
+        <div class="achieve-meta"><span>Efimov · 2025</span><span class="achieve-link">Смотреть кейс <svg viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
       </a>
-      <!-- Ссылка: статья в блоге (пока не написана) — сейчас ведёт на blog.html. Когда статья выйдет, замените href на прямую ссылку на неё. -->
-      <a class="achieve-card" href="blog.html" data-cursor="view" data-cursor-label="Читать">
+      <div class="achieve-card achieve-card--static">
         <div class="achieve-icon">🗣️</div>
-        <h3>Вела дизайн-митапы для&nbsp;50+ участников</h3>
-        <p>Выступала ведущей внутренних митапов и&nbsp;профессиональных обсуждений команды</p>
-        <div class="achieve-meta"><span>Rocket Bussines · 2024</span><span class="achieve-link">Читать статью<svg viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-      </a>
-      <!-- Ссылка: статья в блоге (пока не написана) — сейчас ведёт на blog.html. Когда статья выйдет, замените href на прямую ссылку на неё. -->
-      <a class="achieve-card" href="blog.html" data-cursor="view" data-cursor-label="Читать">
+        <h3>Вела профессиональные митапы для&nbsp;команды</h3>
+        <p>Организовывала и&nbsp;модерировала внутренние встречи для&nbsp;обмена опытом, обсуждения рабочих вопросов и&nbsp;профессионального развития команды.</p>
+        <div class="achieve-meta"><span>Rocket Business · 2024</span></div>
+      </div>
+      <div class="achieve-card achieve-card--static">
         <div class="achieve-icon">🤝</div>
-        <h3>Создала базу знаний для&nbsp;команды</h3>
-        <p>Систематизировала проекты, инструкции, Figma-файлы и&nbsp;решения типовых проблем</p>
-        <div class="achieve-meta"><span>Efimov · 2026</span><span class="achieve-link">Читать статью<svg viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-      </a>
+        <h3>Систематизировала знания команды</h3>
+        <p>Создала общую базу проектных материалов, инструкций, Figma-файлов и&nbsp;решений типовых задач, чтобы упростить поиск информации и&nbsp;работу с&nbsp;накопленным опытом.</p>
+        <div class="achieve-meta"><span>Efimov · 2026</span></div>
+      </div>
     </div>
   </div>
 </section>
@@ -933,7 +929,6 @@
     <h2 class="section-title reveal">Рекомендации</h2>
     <div class="testi-grid reveal-stagger" style="margin-top:48px;">
       <a class="testi-card" href="https://t.me/bogdanova_e" data-cursor="view" data-cursor-label="Спросить">
-        <p class="testi-quote">«Умеет разложить самую запутанную задачу на понятные шаги и довести её до рабочего интерфейса без потери качества.»</p>
         <div class="testi-person">
           <div class="testi-avatar">БЕ</div>
           <div>
@@ -943,7 +938,6 @@
         </div>
       </a>
       <a class="testi-card" href="https://t.me/kasyanenko_v" data-cursor="view" data-cursor-label="Спросить">
-        <p class="testi-quote">«Сильное продуктовое мышление и внимание к деталям — редкое сочетание. Всегда приятно смотреть на результат.»</p>
         <div class="testi-person">
           <div class="testi-avatar">КВ</div>
           <div>
@@ -953,7 +947,6 @@
         </div>
       </a>
       <a class="testi-card" href="https://t.me/kim_v" data-cursor="view" data-cursor-label="Спросить">
-        <p class="testi-quote">«Отличная коммуникация с командой разработки и понятная документация — проекты сдаются без лишних вопросов.»</p>
         <div class="testi-person">
           <div class="testi-avatar">КВ</div>
           <div>
