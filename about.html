@@ -188,8 +188,15 @@
   @media (min-width:700px){ .mt-project-grid{ grid-template-columns:1fr 1fr; } }
   .mt-project{ border:1px solid var(--line); border-radius:14px; padding:16px 18px; transition:transform .3s var(--ease), box-shadow .3s var(--ease); }
   .mt-project:hover{ transform:translateY(-3px); box-shadow:0 18px 36px -24px rgba(17,17,17,.24); }
+  .mt-project.static{ display:flex; align-items:flex-start; gap:14px; padding:16px 18px; }
+  .mt-project.static:hover{ transform:none; box-shadow:none; }
+  .mt-project.static .mt-thumb{ flex:0 0 auto; width:56px; height:56px; border-radius:10px; overflow:hidden; background:var(--accent-soft); }
+  .mt-project.static .mt-thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .mt-project.static p{ margin-bottom:0; }
   .mt-project b{ font-size:14px; display:block; margin-bottom:5px; }
   .mt-project p{ font-size:13px; color:var(--text-2); line-height:1.45; margin-bottom:10px; }
+  .mt-project:not(.static){ display:flex; flex-direction:column; align-items:flex-start; }
+  .mt-project:not(.static) a{ margin-top:auto; }
   .mt-project a{ display:inline-flex; align-items:center; gap:5px; font-size:12px; font-weight:700; color:var(--accent); }
   .mt-project a svg{ width:13px; height:13px; transition:transform .3s var(--ease); }
   .mt-project:hover a svg{ transform:translateX(4px); }
@@ -288,7 +295,7 @@
     <div class="nav-right">
       <ul class="nav-links">
         <li><a href="cases.html">Кейсы</a></li>
-        <li><a href="about.html">Обо мне</a></li>
+        <li><a href="about.html">Обо&nbsp;мне</a></li>
         <!-- Блог временно скрыт: <li><a href="blog.html">Блог</a></li> -->
       </ul>
       <a href="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/files/Angelina_Masalova_CV.pdf" download class="nav-cta" data-cursor="hover">Скачать CV</a>
@@ -300,14 +307,14 @@
   <div class="wrap">
     <div class="about-grid">
       <div class="about-text">
-        <h1>Обо мне</h1>
-        <p class="lead">Разбираюсь в проблеме, нахожу логику решения и превращаю её в интерфейс, который учитывает интересы пользователей, бизнеса и команды.</p>
+        <h1>Обо&nbsp;мне</h1>
+        <p class="lead">Разбираюсь в&nbsp;проблеме, нахожу логику решения и&nbsp;превращаю её в&nbsp;интерфейс, который учитывает интересы пользователей, бизнеса и&nbsp;команды.</p>
         <div class="hero-tags">
           <span class="hero-tag t1">Product thinking</span>
           <span class="hero-tag t2">UX/UI Design</span>
           <span class="hero-tag t1">From idea to release</span>
         </div>
-        <a href="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/files/Angelina_Masalova_CV.pdf" download class="btn btn-ghost" style="margin-top:24px;" data-cursor="hover">Скачать CV →</a>
+        <a href="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/files/Angelina_Masalova_CV.pdf" download class="btn btn-ghost" style="margin-top:24px;" data-cursor="hover">Скачать CV&nbsp;→</a>
       </div>
       <div class="about-photo">
         <div class="about-photo-wrap">
@@ -326,11 +333,11 @@
       <div class="status-grid">
         <div class="status-compact">
           <h2>Ищу&nbsp;full-time позицию UX/UI Designer</h2>
-          <div class="status-modes">Готова присоединиться в течение ~1&nbsp;недели после оффера</div>
+          <div class="status-modes">Готова присоединиться в&nbsp;течение ~1&nbsp;недели после оффера</div>
           <p>Работаю с&nbsp;широким спектром задач&nbsp;— от&nbsp;продуктового дизайна и&nbsp;сложных интерфейсов до&nbsp;лендингов и&nbsp;корпоративных сайтов</p>
           <div class="status-actions">
             <a href="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/files/Angelina_Masalova_CV.pdf" download class="btn btn-cv" data-cursor="hover">Скачать CV</a>
-            <a href="https://t.me/uxuiangelina" class="btn btn-ghost-dark" data-cursor="hover">Написать в Telegram</a>
+            <a href="https://t.me/uxuiangelina" class="btn btn-ghost-dark" data-cursor="hover">Написать в&nbsp;Telegram</a>
           </div>
         </div>
       </div>
@@ -340,7 +347,7 @@
 
 <section class="story">
   <div class="wrap">
-    <div class="section-h">Как я к этому пришла</div>
+    <div class="section-h">Как я к&nbsp;этому пришла</div>
     <h2 class="section-title">Мой путь</h2>
     <p>Начинала с&nbsp;графического дизайна: занималась брендингом, иллюстрацией и&nbsp;созданием визуальных материалов. Творческая база сформировала моё&nbsp;чувство композиции, внимание к&nbsp;деталям и&nbsp;понимание визуального языка.</p>
     <p>Сегодня я&nbsp;проектирую цифровые продукты&nbsp;— от&nbsp;исследования пользователей и&nbsp;анализа бизнес-задач до&nbsp;сложных интерфейсов и&nbsp;дизайн-систем. Мне&nbsp;важно не&nbsp;просто создать красивый UI, а&nbsp;разобраться в&nbsp;проблеме, продумать логику продукта и&nbsp;найти решение, которое приносит пользу пользователям и&nbsp;бизнесу.</p>
@@ -360,11 +367,11 @@
       </div>
       <div class="photo-item" data-index="3" data-cursor="view" data-cursor-label="Открыть">
         <div class="photo-item-img"><img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/photo4.jpg" alt=""></div>
-        <span>Efimov, B2B и fintech · 2025</span>
+        <span>Efimov, B2B и&nbsp;fintech · 2025</span>
       </div>
       <div class="photo-item" data-index="4" data-cursor="view" data-cursor-label="Открыть">
         <div class="photo-item-img"><img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/photo5.jpg" alt=""></div>
-        <span>Efimov, воркшопы для дизайнеров · 2026</span>
+        <span>Efimov, воркшопы для&nbsp;дизайнеров · 2026</span>
       </div>
     </div>
   </div>
@@ -375,13 +382,13 @@
     <h2 class="section-title">Опыт</h2>
     <div class="mini-timeline">
       <div class="mt-item">
-        <div class="mt-date">2025 — сейчас</div>
+        <div class="mt-date">2025&nbsp;— сейчас</div>
         <div class="mt-role"><b>Efimov</b><span>— Senior UX/UI Designer</span></div>
         <div class="mt-block duties">
           <div class="mt-label">Обязанности</div>
           <ul>
-            <li>Участвовала в формировании структуры продукта, пользовательских сценариев, UX-архитектуры и дизайн-систем — роль вышла за пределы UI</li>
-            <li>Работала с продуктами, где пользователь должен одновременно понимать данные, принимать решения и проходить сложные последовательности действий: B2B/B2C-сервисы, mobile, финтех и юридические сценарии</li>
+            <li>Участвовала в&nbsp;формировании структуры продукта, пользовательских сценариев, UX-архитектуры и&nbsp;дизайн-систем&nbsp;— роль вышла за&nbsp;пределы UI</li>
+            <li>Работала с&nbsp;продуктами, где пользователь должен одновременно понимать данные, принимать решения и&nbsp;проходить сложные последовательности действий: B2B/B2C-сервисы, mobile, финтех и&nbsp;юридические сценарии</li>
           </ul>
         </div>
         <div class="mt-block ach">
@@ -398,35 +405,35 @@
           <div class="mt-project-grid">
             <div class="mt-project">
               <b>Контракт</b>
-              <p>Fintech-сервис для оформления P2P-займов между физическими лицами. Проектировала продукт с нуля: от анализа задачи и пользовательских сценариев до архитектуры, прототипирования и подготовки интерфейсов к разработке.</p>
+              <p>Fintech-сервис для&nbsp;оформления P2P-займов между физическими лицами. Проектировала продукт с&nbsp;нуля: от&nbsp;анализа задачи и&nbsp;пользовательских сценариев до&nbsp;архитектуры, прототипирования и&nbsp;подготовки интерфейсов к&nbsp;разработке.</p>
               <a href="cases/fintech.html">Смотреть кейс<svg viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
             </div>
             <div class="mt-project">
               <b>Pawly</b>
-              <p>Концепция pet-tech продукта с несколькими связанными сценариями: питомцы, здоровье, услуги, контент и персональные рекомендации. Выстраивала продуктовую структуру и пользовательский опыт.</p>
+              <p>Концепция pet-tech продукта с&nbsp;несколькими связанными сценариями: питомцы, здоровье, услуги, контент и&nbsp;персональные рекомендации. Выстраивала продуктовую структуру и&nbsp;пользовательский опыт.</p>
               <a href="cases/pawds.html">Смотреть кейс<svg viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
             </div>
             <div class="mt-project">
               <b>AVK Group</b>
-              <p>Интерфейс для терминалов Zebra и потоковой обработки посылок. Проектировала сценарии сканирования, переупаковки и печати с фокусом на скорость работы оператора.</p>
+              <p>Интерфейс для&nbsp;терминалов Zebra и&nbsp;потоковой обработки посылок. Проектировала сценарии сканирования, переупаковки и&nbsp;печати с&nbsp;фокусом на&nbsp;скорость работы оператора.</p>
               <a href="cases/zebra.html">Смотреть кейс<svg viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
             </div>
             <div class="mt-project">
               <b>Букваша</b>
-              <p>Продуктовый концепт образовательного сервиса. Прорабатывала структуру обучения, игровые механики и взаимодействие с контентом.</p>
+              <p>Продуктовый концепт образовательного сервиса. Прорабатывала структуру обучения, игровые механики и&nbsp;взаимодействие с&nbsp;контентом.</p>
               <a href="case-post.html?slug=efimov-dashboard">Смотреть кейс<svg viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
             </div>
           </div>
         </div>
       </div>
       <div class="mt-item">
-        <div class="mt-date">2023 — 2025</div>
+        <div class="mt-date">2023&nbsp;— 2025</div>
         <div class="mt-role"><b>Rocket Business</b><span>— UX/UI Designer</span></div>
         <div class="mt-block duties">
           <div class="mt-label">Обязанности</div>
           <ul>
-            <li>Разрабатывала корпоративные сайты и цифровые продукты</li>
-            <li>Перестраивала пользовательские сценарии и информационную архитектуру, помогая бизнесу повышать конверсию</li>
+            <li>Разрабатывала корпоративные сайты и&nbsp;цифровые продукты</li>
+            <li>Перестраивала пользовательские сценарии и&nbsp;информационную архитектуру, помогая бизнесу повышать конверсию</li>
           </ul>
         </div>
         <div class="mt-block ach">
@@ -442,30 +449,30 @@
           <div class="mt-project-grid">
 <div class="mt-project">
               <b>Rocket Business</b>
-              <p>Пересобрала структуру сайта вокруг реальных задач пользователя: упростила навигацию, переработала подачу кейсов и усилила путь к отправке заявки. Проект стал победителем Workspace Digital Awards 2024 в номинации «Услуги».</p>
+              <p>Пересобрала структуру сайта вокруг реальных задач пользователя: упростила навигацию, переработала подачу кейсов и&nbsp;усилила путь к&nbsp;отправке заявки. Проект стал победителем Workspace Digital Awards 2024&nbsp;в&nbsp;номинации «Услуги».</p>
               <a href="cases/rb.html">Смотреть кейс<svg viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
             </div>
             <div class="mt-project">
               <b>Сайт многопрофильной клиники семейного здоровья</b>
-              <p>Спроектировала сайт клиники: структуру услуг, страницы специалистов и путь к записи на приём.</p>
+              <p>Спроектировала сайт клиники: структуру услуг, страницы специалистов и&nbsp;путь к&nbsp;записи на&nbsp;приём.</p>
               <a href="case-post.html?slug=care">Смотреть кейс<svg viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
             </div>
             <div class="mt-project">
-              <b>Сайт мебельного магазина: каталог, проекты и индивидуальный подбор</b>
-              <p>Спроектировала каталог, страницы проектов и сценарий индивидуального подбора мебели.</p>
+              <b>Сайт мебельного магазина: каталог, проекты и&nbsp;индивидуальный подбор</b>
+              <p>Спроектировала каталог, страницы проектов и&nbsp;сценарий индивидуального подбора мебели.</p>
               <a href="case-post.html?slug=mebel">Смотреть кейс<svg viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
             </div>
           </div>
         </div>
       </div>
       <div class="mt-item">
-        <div class="mt-date">2021 — 2023</div>
+        <div class="mt-date">2021&nbsp;— 2023</div>
         <div class="mt-role"><b>UMK</b><span>— Web Designer</span></div>
         <div class="mt-block duties">
           <div class="mt-label">Обязанности</div>
           <ul>
-            <li>Проектировала CRM-системы, сервисы для недвижимости и внутренние продукты</li>
-            <li>Создавала дизайн-системы, сложные пользовательские сценарии и аналитические интерфейсы</li>
+            <li>Проектировала CRM-системы, сервисы для&nbsp;недвижимости и&nbsp;внутренние продукты</li>
+            <li>Создавала дизайн-системы, сложные пользовательские сценарии и&nbsp;аналитические интерфейсы</li>
           </ul>
         </div>
         <div class="mt-block ach">
@@ -480,12 +487,12 @@
           <div class="mt-project-grid">
             <div class="mt-project">
               <b>Koala CRM</b>
-              <p>Спроектировала информационную архитектуру и ключевые сценарии CRM с Kanban-досками, тайм-трекингом и отчётностью. Создала дизайн-систему и унифицировала интерфейсы продукта.</p>
+              <p>Спроектировала информационную архитектуру и&nbsp;ключевые сценарии CRM с&nbsp;Kanban-досками, тайм-трекингом и&nbsp;отчётностью. Создала дизайн-систему и&nbsp;унифицировала интерфейсы продукта.</p>
               <a href="cases/souz.html">Смотреть кейс<svg viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
             </div>
             <div class="mt-project">
               <b>Союз Застройщиков</b>
-              <p>Спроектировала информационную страницу жилого комплекса и интерактивную шахматку квартир: планировка → параметры → расположение → стоимость → дополнительные условия.</p>
+              <p>Спроектировала информационную страницу жилого комплекса и&nbsp;интерактивную шахматку квартир: планировка&nbsp;→ параметры&nbsp;→ расположение&nbsp;→ стоимость&nbsp;→ дополнительные условия.</p>
               <a href="case-post.html?slug=real-estate-catalog">Смотреть кейс<svg viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
             </div>
           </div>
@@ -493,19 +500,43 @@
       </div>
       <div class="mt-item">
         <div class="mt-date">Ранее</div>
-        <div class="mt-role"><b>Freelance</b><span>— Graphic Designer, брендинг и digital-материалы</span></div>
+        <div class="mt-role"><b>Freelance</b><span>— Graphic Designer, брендинг и&nbsp;digital-материалы</span></div>
         <div class="mt-block duties">
           <div class="mt-label">Обязанности</div>
           <ul>
-            <li>Работала с брендингом, рекламой и digital-материалами для разных компаний</li>
-            <li>Этот опыт сформировал сильную визуальную базу перед переходом в веб</li>
+            <li>Работала с&nbsp;брендингом, рекламой и&nbsp;digital-материалами для&nbsp;разных компаний</li>
+            <li>Этот опыт сформировал сильную визуальную базу перед переходом в&nbsp;веб</li>
           </ul>
         </div>
         <div class="mt-block ach">
           <div class="mt-label">Достижения</div>
           <ul>
-            <li>Часть новых клиентов приходила по рекомендациям — без отдельного маркетинга</li>
+            <li>Часть новых клиентов приходила по&nbsp;рекомендациям&nbsp;— без&nbsp;отдельного маркетинга</li>
           </ul>
+        </div>
+        <div class="mt-block projects">
+          <div class="mt-project-grid">
+            <div class="mt-project static">
+              <div class="mt-thumb"><img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/freelance-priority.jpg" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+              <div>
+                <b>Автошкола «Приоритет»</b>
+                <p>Разработала маскота бренда и&nbsp;набор стикеров для&nbsp;Telegram, который всё ещё используется в&nbsp;социальных медиа компании.</p>
+              </div>
+            </div>
+            <div class="mt-project static">
+              <div class="mt-thumb"><img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/freelance-cssminsk.jpg" alt="" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+              <div>
+                <b>CSS-Minsk-JS 2019</b>
+                <p>Создала стикеры для&nbsp;Telegram с&nbsp;портретами спикеров конференции.</p>
+              </div>
+            </div>
+            <div class="mt-project static">
+              <div>
+                <b>Burger Kit</b>
+                <p>Разрабатывала рекламные материалы для&nbsp;ресторана: наружную рекламу и&nbsp;внутренние промоматериалы.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -532,7 +563,7 @@
       <a class="achieve-card" href="cases/fintech.html" data-cursor="view" data-cursor-label="Открыть">
         <div class="achieve-icon">🎤</div>
         <h3>Спроектировала финтех-приложение с&nbsp;нуля</h3>
-        <p>Разработала пользовательские сценарии и&nbsp;интерфейсы приложения для P2P-займов&nbsp;— от&nbsp;анализа рисков и&nbsp;логики сделок до&nbsp;подготовки макетов к&nbsp;разработке.</p>
+        <p>Разработала пользовательские сценарии и&nbsp;интерфейсы приложения для&nbsp;P2P-займов&nbsp;— от&nbsp;анализа рисков и&nbsp;логики сделок до&nbsp;подготовки макетов к&nbsp;разработке.</p>
         <div class="achieve-meta"><span>Efimov · 2025</span><span class="achieve-link">Смотреть кейс<svg viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
       </a>
       <a class="achieve-card" href="cases/fintechds.html" data-cursor="view" data-cursor-label="Открыть">
@@ -560,7 +591,7 @@
 
 <section id="testimonials">
   <div class="wrap">
-    <div class="section-h">Написать коллегам в Телеграм</div>
+    <div class="section-h">Написать коллегам в&nbsp;Телеграм</div>
     <h2 class="section-title">Рекомендации</h2>
     <div class="testi-grid" style="margin-top:8px;">
       <a class="testi-card" href="https://t.me/bogdanova_e" data-cursor="view" data-cursor-label="Написать">
@@ -599,42 +630,42 @@
     <div class="section-head">
       <div>
         <div class="section-h">Почитать ещё</div>
-        <h2 class="section-title" style="margin-bottom:0;">Пишу о процессе и не только</h2>
+        <h2 class="section-title" style="margin-bottom:0;">Пишу о&nbsp;процессе и&nbsp;не&nbsp;только</h2>
       </div>
-      <a href="blog.html" class="btn btn-ghost btn-all-cases" data-cursor="hover">Все посты →</a>
+      <a href="blog.html" class="btn btn-ghost btn-all-cases" data-cursor="hover">Все посты&nbsp;→</a>
     </div>
     <div class="post-list">
       <a class="post-card" href="blog-post.html?slug=vibecoding-portfolio" data-cursor="view" data-cursor-label="Читать">
         <div class="post-body">
           <div class="post-meta">
             <span class="cat-tag" style="background:var(--accent-soft); color:var(--accent);">Инструменты</span>
-            <span class="post-date">12 июля 2026 · 6 мин</span>
+            <span class="post-date">12&nbsp;июля 2026 · 6&nbsp;мин</span>
           </div>
-          <h2>Вайб-кодинг: как я собираю этот сайт с помощью ИИ</h2>
-          <p class="post-excerpt">Честный разбор процесса — что оказалось легко, что неожиданно сложно, и почему «просто попросить ИИ» — это не весь процесс.</p>
-          <span class="post-read">Читать →</span>
+          <h2>Вайб-кодинг: как я собираю этот сайт с&nbsp;помощью ИИ</h2>
+          <p class="post-excerpt">Честный разбор процесса&nbsp;— что оказалось легко, что неожиданно сложно, и&nbsp;почему «просто попросить ИИ»&nbsp;— это не&nbsp;весь процесс.</p>
+          <span class="post-read">Читать&nbsp;→</span>
         </div>
       </a>
       <a class="post-card" href="blog-post.html?slug=first-month-job-search" data-cursor="view" data-cursor-label="Читать">
         <div class="post-body">
           <div class="post-meta">
             <span class="cat-tag" style="background:var(--green-soft); color:var(--green);">Карьера</span>
-            <span class="post-date">5 июня 2026 · 4 мин</span>
+            <span class="post-date">5&nbsp;июня 2026 · 4&nbsp;мин</span>
           </div>
           <h2>Первый месяц активного поиска работы: что я поняла</h2>
-          <p class="post-excerpt">Сколько на самом деле смотрят на резюме, что решает на первом созвоне и почему тишина — это не всегда «нет».</p>
-          <span class="post-read">Читать →</span>
+          <p class="post-excerpt">Сколько на&nbsp;самом деле смотрят на&nbsp;резюме, что решает на&nbsp;первом созвоне и&nbsp;почему тишина&nbsp;— это не&nbsp;всегда «нет».</p>
+          <span class="post-read">Читать&nbsp;→</span>
         </div>
       </a>
       <a class="post-card" href="blog-post.html?slug=design-system-mistakes" data-cursor="view" data-cursor-label="Читать">
         <div class="post-body">
           <div class="post-meta">
             <span class="cat-tag" style="background:var(--teal-soft); color:var(--teal);">Процесс</span>
-            <span class="post-date">19 мая 2026 · 5 мин</span>
+            <span class="post-date">19&nbsp;мая 2026 · 5&nbsp;мин</span>
           </div>
-          <h2>3 ошибки, которые я сделала при первой дизайн-системе</h2>
-          <p class="post-excerpt">Дубли компонентов, токены без документации и разговор с разработкой постфактум — как я это исправила.</p>
-          <span class="post-read">Читать →</span>
+          <h2>3&nbsp;ошибки, которые я сделала при&nbsp;первой дизайн-системе</h2>
+          <p class="post-excerpt">Дубли компонентов, токены без&nbsp;документации и&nbsp;разговор с&nbsp;разработкой постфактум&nbsp;— как я это исправила.</p>
+          <span class="post-read">Читать&nbsp;→</span>
         </div>
       </a>
     </div>
@@ -643,12 +674,12 @@
 
 <section id="contact" class="contact-dark">
   <div class="wrap contact-section">
-    <div class="eyebrow">Открыта к предложениям</div>
+    <div class="eyebrow">Открыта к&nbsp;предложениям</div>
     <h2>Готовы предложить оффер?</h2>
-    <p style="font-size:14px;">Отвечаю в течение пары часов. Открыта к full-time, контракту и разовым проектам.</p>
+    <p style="font-size:14px;">Отвечаю в&nbsp;течение пары часов. Открыта к&nbsp;full-time, контракту и&nbsp;разовым проектам.</p>
     <div class="hero-actions">
-      <a href="https://t.me/uxuiangelina" class="btn btn-primary" data-cursor="hover">Написать в Telegram</a>
-      <a href="mailto:uxuiangelina@yandex.ru" class="btn btn-ghost-dark" data-cursor="hover">Написать на почту</a>
+      <a href="https://t.me/uxuiangelina" class="btn btn-primary" data-cursor="hover">Написать в&nbsp;Telegram</a>
+      <a href="mailto:uxuiangelina@yandex.ru" class="btn btn-ghost-dark" data-cursor="hover">Написать на&nbsp;почту</a>
     </div>
   </div>
 </section>
