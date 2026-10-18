@@ -123,15 +123,16 @@
   .car-track::-webkit-scrollbar{ display:none; }
   .car-slide{ flex:0 0 100%; scroll-snap-align:center; display:flex; align-items:center; justify-content:center; }
   .car-slide img{ width:100%; height:auto; display:block; }
-  .car-btn{ position:absolute; top:calc(50% - 22px); width:44px; height:44px; padding:0; display:flex; align-items:center; justify-content:center; border-radius:50%; border:1px solid var(--line); background:rgba(255,255,255,.94); color:var(--text-2); cursor:pointer; box-shadow:none; transition:background .25s var(--ease), color .25s var(--ease), border-color .25s var(--ease), opacity .2s; }
-  .car-btn svg{ width:20px; height:20px; display:block; pointer-events:none; }
-  .car-btn:hover{ background:var(--text); border-color:var(--text); color:#fff; }
+  .car-btn{ position:absolute; top:calc(50% - 18px); width:36px; height:36px; padding:0; display:grid; place-items:center; border-radius:50%; border:1px solid var(--line-strong); background:rgba(255,255,255,.94); color:var(--text); cursor:pointer; box-shadow:none; transition:background .3s, border-color .3s, color .3s, opacity .2s; }
+  .car-btn svg{ width:16px; height:16px; display:block; pointer-events:none; }
+  .car-btn:hover{ background:var(--accent); border-color:var(--accent); color:#fff; }
+  .car-btn:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
   .car-btn.prev{ left:14px; } .car-btn.next{ right:14px; }
   .car-btn[disabled]{ opacity:0; pointer-events:none; }
   .car-dots{ position:absolute; left:0; right:0; bottom:14px; display:flex; justify-content:center; gap:8px; }
   .car-dot{ width:8px; height:8px; border-radius:50%; border:0; padding:0; background:rgba(255,255,255,.55); box-shadow:0 0 0 1px rgba(0,0,0,.12); cursor:pointer; transition:width .25s var(--ease), background .2s; }
   .car-dot.active{ width:22px; border-radius:4px; background:#fff; }
-  @media (max-width:640px){ .car-btn{ width:36px; height:36px; top:calc(50% - 18px); } .car-btn svg{ width:16px; height:16px; } .car-btn.prev{ left:8px; } .car-btn.next{ right:8px; } }
+  @media (max-width:640px){ .car-btn{ width:32px; height:32px; top:calc(50% - 16px); } .car-btn.prev{ left:8px; } .car-btn.next{ right:8px; } }
 
   .mini-label{ font-size:13px; font-weight:600; color:var(--text-2); margin:4px 0 10px !important; }
   .mini-card{ display:flex; align-items:center; gap:14px; max-width:440px; padding:10px 16px 10px 10px; margin-bottom:32px; border:1px solid var(--line); border-radius:14px; background:var(--surface); transition:transform .35s var(--ease), box-shadow .35s var(--ease); }
@@ -249,8 +250,8 @@ function imgs(){
     '<div class="car-track">' +
       names.map(function(n){ return '<div class="car-slide"><img src="' + img(n) + '" alt="" loading="lazy"></div>'; }).join('') +
     '</div>' +
-    '<button type="button" class="car-btn prev" data-dir="-1" aria-label="Назад" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15.5 5l-7 7 7 7"/></svg></button>' +
-    '<button type="button" class="car-btn next" data-dir="1" aria-label="Вперёд"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.5 5l7 7-7 7"/></svg></button>' +
+    '<button type="button" class="car-btn prev" data-dir="-1" aria-label="Назад" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>' +
+    '<button type="button" class="car-btn next" data-dir="1" aria-label="Вперёд"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>' +
     '<div class="car-dots">' +
       names.map(function(n, i){ return '<button type="button" class="car-dot' + (i === 0 ? ' active' : '') + '" data-i="' + i + '" aria-label="Слайд ' + (i + 1) + '"></button>'; }).join('') +
     '</div>' +
