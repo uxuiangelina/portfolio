@@ -122,8 +122,10 @@
   .section-h{ font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--accent); margin-bottom:22px; }
   .section-title{ font-size:clamp(24px,3.4vw,32px); max-width:20ch; margin-bottom:26px; }
 
+  #experience{ border-top:none; }
   .story p{ font-size:14px; line-height:1.45; color:var(--text-2); max-width:70ch; margin-bottom:18px; }
-  .story p:last-child{ margin-bottom:0; }
+  .story p:last-of-type{ margin-bottom:0; }
+  .story .photo-carousel{ margin-top:32px; }
   .story b{ color:var(--text); }
 
   .photo-carousel{
@@ -179,11 +181,9 @@
   .mt-role b{ font-size:17px; }
   .mt-role span{ font-size:16px; font-weight:700; color:var(--text); max-width:60ch; }
   .mt-block{ margin-top:14px; max-width:640px; }
-  .mt-label{ font-size:11px; text-transform:uppercase; letter-spacing:.05em; color:var(--text-2); font-weight:700; margin-bottom:6px; }
+  .mt-label{ font-size:11px; text-transform:uppercase; letter-spacing:.05em; color:var(--accent); font-weight:700; margin-bottom:6px; }
   .mt-block ul{ margin:0; padding-left:18px; }
-  .mt-block li{ font-size:14px; color:var(--text); margin-bottom:4px; }
-  .mt-block.ach .mt-label{ color:var(--text-2); }
-  .mt-block.projects .mt-label{ color:var(--text-2); }
+  .mt-block li{ font-size:14px; color:var(--text-2); margin-bottom:4px; }
   .mt-project-grid{ display:grid; grid-template-columns:1fr; gap:10px; margin-top:6px; }
   @media (min-width:700px){ .mt-project-grid{ grid-template-columns:1fr 1fr; } }
   .mt-project{ border:1px solid var(--line); border-radius:14px; padding:16px 18px; transition:transform .3s var(--ease), box-shadow .3s var(--ease); }
@@ -245,7 +245,7 @@
   .testi-card{ display:block; border:1px solid var(--line); border-radius:16px; padding:32px; transition:transform .35s var(--ease), border-color .35s ease, box-shadow .35s var(--ease); }
   .testi-card:hover{ transform:translateY(-4px); border-color:transparent; box-shadow:0 24px 48px -28px rgba(17,17,17,.2); }
   .testi-person{ display:flex; align-items:center; gap:12px; }
-  .testi-avatar{ width:44px; height:44px; border-radius:50%; background:var(--text); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:14px; font-family:'Manrope'; flex:0 0 auto; }
+  .testi-avatar{ width:44px; height:44px; border-radius:50%; background:var(--text); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:14px; font-family:'Manrope'; flex:0 0 auto; } .testi-avatar{ overflow:hidden; } .testi-avatar img{ width:100%; height:100%; object-fit:cover; display:block; }
   .testi-person b{ display:block; font-size:14px; }
   .testi-person span{ font-size:13px; color:var(--text-2); display:block; }
   .achieve-link svg{ width:13px; height:13px; transition:transform .3s var(--ease); }
@@ -301,7 +301,7 @@
     <div class="about-grid">
       <div class="about-text">
         <h1>Обо мне</h1>
-        <p class="lead">Разбираюсь в&nbsp;проблеме, нахожу логику решения и&nbsp;превращаю её&nbsp;в&nbsp;интерфейс, который учитывает интересы пользователей, бизнеса и&nbsp;команды.</p>
+        <p class="lead">Разбираюсь в проблеме, нахожу логику решения и превращаю её в интерфейс, который учитывает интересы пользователей, бизнеса и команды.</p>
         <div class="hero-tags">
           <span class="hero-tag t1">Product thinking</span>
           <span class="hero-tag t2">UX/UI Design</span>
@@ -340,16 +340,11 @@
 
 <section class="story">
   <div class="wrap">
-    <div class="section-h">Мой путь</div>
-  <p>Начинала с&nbsp;графического дизайна: занималась брендингом, иллюстрацией и&nbsp;созданием визуальных материалов. Творческое образование и&nbsp;сильная художественная база сформировали моё&nbsp;чувство композиции и&nbsp;визуального языка.</p>
- <p>Сегодня я&nbsp;проектирую цифровые продукты&nbsp;— от&nbsp;исследования и&nbsp;пользовательских сценариев до&nbsp;сложных интерфейсов и&nbsp;дизайн-систем. Для&nbsp;меня важно не&nbsp;просто создать красивый UI, а&nbsp;разобраться в&nbsp;задаче, продумать логику продукта и&nbsp;найти решение, которое работает для&nbsp;пользователей и&nbsp;бизнеса.</p>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <div class="section-h">Годы в кадре</div>
-    <h2 class="section-title">Несколько лет в работе</h2>
+    <div class="section-h">Как я к этому пришла</div>
+    <h2 class="section-title">Мой путь</h2>
+    <p>Начинала с&nbsp;графического дизайна: занималась брендингом, иллюстрацией и&nbsp;созданием визуальных материалов. Творческая база сформировала моё&nbsp;чувство композиции, внимание к&nbsp;деталям и&nbsp;понимание визуального языка.</p>
+    <p>Сегодня я&nbsp;проектирую цифровые продукты&nbsp;— от&nbsp;исследования пользователей и&nbsp;анализа бизнес-задач до&nbsp;сложных интерфейсов и&nbsp;дизайн-систем. Мне&nbsp;важно не&nbsp;просто создать красивый UI, а&nbsp;разобраться в&nbsp;проблеме, продумать логику продукта и&nbsp;найти решение, которое приносит пользу пользователям и&nbsp;бизнесу.</p>
+    <p>Я&nbsp;проявляю инициативу, самостоятельно выявляю точки роста и&nbsp;предлагаю улучшения, даже&nbsp;если они&nbsp;выходят за&nbsp;рамки первоначального запроса. Умею аргументировать дизайн-решения, работать на&nbsp;стыке UX, бизнеса и&nbsp;разработки и&nbsp;доводить идеи до&nbsp;реализации. Для&nbsp;меня хороший дизайн&nbsp;— это&nbsp;не&nbsp;отдельный макет, а&nbsp;продуманная система решений, которая работает на&nbsp;результат и&nbsp;развивается вместе с&nbsp;продуктом.</p>
     <div class="photo-carousel">
       <div class="photo-item" data-index="0" data-cursor="view" data-cursor-label="Открыть">
         <div class="photo-item-img"><img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/photo1.jpg" alt=""></div>
@@ -375,10 +370,9 @@
   </div>
 </section>
 
-<section>
+<section id="experience">
   <div class="wrap">
-    <div class="section-h">Коротко о пути</div>
-    <h2 class="section-title">Опыт в цифрах и местах</h2>
+    <h2 class="section-title">Опыт</h2>
     <div class="mini-timeline">
       <div class="mt-item">
         <div class="mt-date">2025 — сейчас</div>
@@ -393,8 +387,11 @@
         <div class="mt-block ach">
           <div class="mt-label">Достижения</div>
           <ul>
-            <li>Спроектировала мобильный P2P fintech-сервис «Контракт» с нуля — от продуктовой логики и UX-архитектуры до готовых интерфейсов для разработки</li>
-            <li>Создавала дизайн-системы для сложных продуктов и правила, которые можно масштабировать на новые сценарии</li>
+            <li>Кейсы агентства и&nbsp;реализованные проекты получили множество наград и&nbsp;призовых мест в&nbsp;«Рейтинге рунета»</li>
+            <li>Спроектировала fintech-сервис «Контракт» с&nbsp;нуля&nbsp;— от&nbsp;продуктовой логики и&nbsp;UX-архитектуры до&nbsp;готовых интерфейсов для&nbsp;разработки</li>
+            <li>Разрабатывала масштабируемые дизайн-системы и&nbsp;переиспользуемые компоненты для&nbsp;сложных цифровых продуктов</li>
+            <li>Координировала работу проектной команды из&nbsp;пяти специалистов, синхронизируя дизайн, контент и&nbsp;разработку</li>
+            <li>Проводила UX/UI-воркшопы для&nbsp;начинающих дизайнеров</li>
           </ul>
         </div>
         <div class="mt-block projects">
@@ -435,9 +432,10 @@
         <div class="mt-block ach">
           <div class="mt-label">Достижения</div>
           <ul>
-            <li>Корпоративный сайт Rocket Business получил 1 место на Workspace Digital Awards 2024 в номинации «Услуги»</li>
-            <li>Сайт технического подразделения Rocket Dev получил 2 место на Workspace Digital Awards 2025 в номинации «Сайты / Услуги»</li>
-            <li>Чат-бот «Rocket Спасибо» получил 1 место на Workspace Digital Awards 2025 в номинации «Цифровизация и трансформация / Корпоративные порталы»</li>
+            <li>Проекты агентства получили призовые места на&nbsp;Workspace Digital Awards в&nbsp;2024&nbsp;и&nbsp;2025&nbsp;годах: 1-е место за&nbsp;корпоративный сайт Rocket Business, 2-е место за&nbsp;сайт Rocket Dev и&nbsp;1-е место за&nbsp;чат-бот «Rocket Спасибо»</li>
+            <li>Переработала информационную архитектуру корпоративного сайта, улучшив навигацию, структуру кейсов и&nbsp;путь пользователя к&nbsp;отправке заявки</li>
+            <li>Разрабатывала цифровые решения для&nbsp;разных отраслей&nbsp;— от&nbsp;корпоративных сайтов до&nbsp;сервисов в&nbsp;сфере медицины и&nbsp;интерьерного дизайна</li>
+            <li>Проектировала пользовательские сценарии и&nbsp;адаптивные интерфейсы с&nbsp;учётом бизнес-задач, контента и&nbsp;технических ограничений</li>
           </ul>
         </div>
         <div class="mt-block projects">
@@ -468,6 +466,14 @@
           <ul>
             <li>Проектировала CRM-системы, сервисы для недвижимости и внутренние продукты</li>
             <li>Создавала дизайн-системы, сложные пользовательские сценарии и аналитические интерфейсы</li>
+          </ul>
+        </div>
+        <div class="mt-block ach">
+          <div class="mt-label">Достижения</div>
+          <ul>
+            <li>Спроектировала CRM-интерфейсы с&nbsp;Kanban-досками, тайм-трекингом и&nbsp;отчётностью, объединив ключевые рабочие сценарии в&nbsp;единую структуру</li>
+            <li>Разработала дизайн-систему для&nbsp;унификации компонентов и&nbsp;визуальной логики интерфейсов</li>
+            <li>Спроектировала интерактивный каталог недвижимости с&nbsp;шахматкой квартир, фильтрацией по&nbsp;параметрам и&nbsp;отображением стоимости и&nbsp;дополнительных условий</li>
           </ul>
         </div>
         <div class="mt-block projects">
@@ -559,7 +565,7 @@
     <div class="testi-grid" style="margin-top:8px;">
       <a class="testi-card" href="https://t.me/bogdanova_e" data-cursor="view" data-cursor-label="Написать">
         <div class="testi-person">
-          <div class="testi-avatar">БЕ</div>
+          <div class="testi-avatar"><img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/be.jpg" alt="Богданова Елизавета"></div>
           <div>
             <b>Богданова Елизавета</b>
             <span>Технический директор, Rocket Business</span>
@@ -568,7 +574,7 @@
       </a>
       <a class="testi-card" href="https://t.me/kasyanenko_v" data-cursor="view" data-cursor-label="Написать">
         <div class="testi-person">
-          <div class="testi-avatar">КВ</div>
+          <div class="testi-avatar"><img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/kv.jpg" alt="Касьяненко Владислав"></div>
           <div>
             <b>Касьяненко Владислав</b>
             <span>Арт-директор, Efimov</span>
@@ -577,7 +583,7 @@
       </a>
       <a class="testi-card" href="https://t.me/kim_v" data-cursor="view" data-cursor-label="Написать">
         <div class="testi-person">
-          <div class="testi-avatar">КВ</div>
+          <div class="testi-avatar"><img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/vk.jpg" alt="Ким Владислав"></div>
           <div>
             <b>Ким Владислав</b>
             <span>Project Manager, UMK</span>
