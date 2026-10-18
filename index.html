@@ -19,6 +19,8 @@
     --accent-soft-2:rgba(74,93,224,.16);
     --accent-2:#FF6B4A;
     --accent-2-soft:rgba(255,107,74,.10);
+    --green:#2BAF7A; --green-soft:rgba(43,175,122,.12);
+    --teal:#0EA5B7; --teal-soft:rgba(14,165,183,.12);
     --line:rgba(17,17,17,.09);
     --line-strong:rgba(17,17,17,.16);
     --dark-bg:#0B0B0C;
@@ -169,7 +171,7 @@
   @keyframes float{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(-10px);} }
   @keyframes pulse{ 0%,100%{opacity:1;} 50%{opacity:.35;} }
 
-  header.hero{ padding:180px 0 100px; position:relative; overflow:hidden; }
+  header.hero{ padding:112px 0 56px; position:relative; overflow:hidden; }
   .hero-blob{ position:absolute; border-radius:50%; filter:blur(80px); opacity:.32; z-index:0; pointer-events:none; }
   .blob-1{ width:440px; height:440px; background:var(--accent); top:-140px; right:6%; animation:blobFloat 12s ease-in-out infinite; }
   .blob-2{ width:560px; height:560px; background:var(--accent-2); bottom:-80px; left:-140px; animation:blobFloat 14s ease-in-out infinite reverse; }
@@ -178,14 +180,12 @@
   .eyebrow{ display:inline-flex; align-items:center; gap:8px; font-size:13px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--accent); margin-bottom:22px; }
   .eyebrow::before{ content:''; width:6px; height:6px; border-radius:50%; background:var(--accent); animation:pulse 2.2s ease-in-out infinite; }
 
-  .hero-grid{ display:grid; grid-template-columns:1.4fr .8fr; gap:48px; align-items:start; position:relative; z-index:1; }
-  @media (max-width:900px){ .hero-grid{ grid-template-columns:1fr; gap:64px;} header.hero{padding:140px 0 70px;} }
+  @media (max-width:900px){ header.hero{padding:120px 0 70px;} }
 
-  .hero-title{ font-family:'Manrope'; font-weight:800; letter-spacing:-.02em; line-height:1.05; font-size:clamp(40px,6vw,64px); max-width:16ch; overflow:hidden; }
+  .hero-title{ font-family:'Manrope'; font-weight:800; letter-spacing:-.02em; line-height:1.05; font-size:clamp(38px,5.4vw,64px); max-width:none; overflow:hidden; }
   .hero-title .word{ display:inline-block; opacity:0; transform:translateY(110%); animation:wordUp .8s var(--ease) forwards; animation-delay:calc(var(--i) * .07s + .1s); }
   @keyframes wordUp{ to{ opacity:1; transform:translateY(0); } }
 
-  .hero p.lead{ margin-top:26px; font-size:14px; line-height:1.45; color:var(--text-2); max-width:46ch; }
   .hero-actions{ display:flex; gap:14px; margin-top:40px; flex-wrap:wrap; }
   .btn{ display:inline-flex; align-items:center; gap:8px; padding:15px 26px; border-radius:999px; font-size:15px; font-weight:600; transition:all .35s var(--ease); border:1px solid transparent; }
   .btn-primary{ border:none; background-image:linear-gradient(100deg,var(--text) 0%, var(--accent) 100%); background-color:var(--text); color:#fff; position:relative; overflow:hidden; }
@@ -208,21 +208,67 @@
   .btn-all-cases{ border:1px solid var(--line-strong); }
   .btn-all-cases:hover{ border-color:var(--text); transform:translateY(-2px); }
 
-  .portrait-wrap{ position:relative; margin-top:42px; }
-  @media (max-width:900px){ .portrait-wrap{ margin-top:0; } }
-  .portrait{ position:relative; aspect-ratio:1/1; border-radius:var(--radius); overflow:hidden; background:var(--bg-alt); transition:transform .3s var(--ease); }
-  .portrait img{ width:100%; height:100%; object-fit:cover; }
   .float-badge{ position:absolute; background:rgba(255,255,255,.86); backdrop-filter:blur(10px); border:1px solid var(--line); border-radius:14px; padding:12px 16px; font-size:13px; font-weight:600; box-shadow:0 20px 40px -20px rgba(17,17,17,.28); animation:float 5s ease-in-out infinite; }
   .badge-1{ top:22px; left:-22px; }
   .badge-2{ bottom:26px; right:-18px; animation-delay:1.4s; }
   @media (max-width:900px){ .badge-1{left:8px;} .badge-2{right:8px;} }
 
-  .stats-row{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:120px; }
-  .stat{ min-width:0; transition:transform .35s var(--ease); }
-  .stat:hover{ transform:translateY(-4px); }
-  .stat b{ font-family:'Manrope'; font-size:16px; font-weight:800; display:block; line-height:1.15; word-break:break-word; }
-  .stat span{ display:block; margin-top:8px; color:var(--text-2); font-size:13px; line-height:1.4; max-width:none; }
-  @media (max-width:640px){ .stats-row{ grid-template-columns:1fr; gap:20px; margin-top:72px; } }
+  .hero-bento{ display:grid; grid-template-columns:repeat(36,minmax(0,1fr)); gap:16px; position:relative; z-index:1; }
+  .hb-main{ grid-column:span 24; display:flex; flex-direction:column; justify-content:space-between; gap:28px; padding:32px 40px; border-radius:24px; border:1px solid var(--line); background:rgba(255,255,255,.72); backdrop-filter:blur(18px) saturate(160%); -webkit-backdrop-filter:blur(18px) saturate(160%); }
+  .hb-main .eyebrow{ margin-bottom:18px; }
+  .hb-main .hero-title{ font-size:clamp(34px,4.4vw,54px); }
+  .hb-main .hero-actions{ margin-top:0; }
+  .hb-main .btn-primary{ background-image:linear-gradient(100deg,#fff 0%,#fff 64%,var(--accent) 100%); background-color:#fff; color:var(--text); box-shadow:inset 0 0 0 1px var(--line-strong); }
+  .hb-main .btn-primary:hover{ filter:none; box-shadow:inset 0 0 0 1px var(--accent); }
+
+  .hb-person{ grid-column:span 12; display:flex; flex-direction:column; gap:14px; padding:12px; border-radius:24px; border:1px solid var(--line); background:var(--surface); text-align:left; }
+  .hb-photo{ position:relative; flex:1 1 auto; min-height:140px; border-radius:16px; overflow:hidden; background:var(--bg-alt); }
+  .hb-photo img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 20%; }
+  .hb-person-info{ display:flex; flex-direction:column; gap:12px; padding:0 10px 10px; }
+  .hb-person-info b{ display:block; font-family:'Manrope'; font-weight:800; font-size:16px; line-height:1.2; letter-spacing:-.01em; }
+  .hb-person-info span.role{ display:block; margin-top:3px; font-size:13px; color:var(--text-2); }
+  .hb-person .case-tags{ flex-direction:row; flex-wrap:wrap; align-items:flex-start; gap:6px; }
+  .hb-person .tag{ white-space:nowrap; }
+
+  .fact-award{ grid-column:span 12; position:relative; overflow:hidden; display:flex; flex-direction:column; justify-content:space-between; gap:16px; padding:28px; border-radius:24px; background:var(--dark-bg); color:var(--dark-text); }
+  .fact-award::before{ content:''; position:absolute; width:320px; height:320px; border-radius:50%; background:linear-gradient(135deg,var(--accent) 0%,var(--accent-2) 100%); filter:blur(80px); opacity:.55; top:-130px; right:-130px; pointer-events:none; }
+  .fact-award > *{ position:relative; z-index:1; }
+  .fact-kicker{ display:flex; align-items:center; gap:10px; font-size:12px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--text-2); }
+  .fact-award .fact-kicker{ color:var(--dark-text-2); }
+  .fact-award-main{ display:flex; align-items:center; gap:18px; }
+  .fact-big{ font-family:'Manrope'; font-weight:800; font-size:92px; line-height:.85; letter-spacing:-.05em; }
+  .fact-big-label{ font-family:'Manrope'; font-weight:700; font-size:18px; line-height:1.25; letter-spacing:-.01em; }
+  .fact-award-list{ list-style:none; }
+  .fact-award-list li{ display:flex; justify-content:space-between; align-items:baseline; gap:10px; padding:9px 0; border-top:1px solid var(--dark-line); font-size:13px; color:var(--dark-text-2); }
+  .fact-award-list li b{ font-weight:700; color:var(--dark-text); text-align:right; }
+
+  .fact-card{ grid-column:span 8; display:flex; flex-direction:column; border:1px solid var(--line); border-radius:24px; padding:24px; background:var(--surface); transition:transform .35s var(--ease), box-shadow .35s var(--ease), border-color .35s var(--ease); }
+  .fact-card:hover{ transform:translateY(-4px); box-shadow:0 24px 48px -28px rgba(17,17,17,.2); border-color:transparent; }
+  .fact-ico{ width:36px; height:36px; flex:0 0 auto; border-radius:12px; display:grid; place-items:center; background:var(--accent-soft); color:var(--accent); }
+  .fact-ico svg{ width:18px; height:18px; }
+  .fact-card.fc-2 .fact-ico, .fact-card.fc-3 .fact-ico{ background:var(--accent-2-soft); color:var(--accent-2); }
+  .fact-card b{ display:block; margin-top:auto; padding-top:20px; font-family:'Manrope'; font-weight:800; font-size:clamp(19px,1.9vw,23px); line-height:1.1; letter-spacing:-.02em; }
+  .fact-card p{ margin-top:8px; font-size:13px; line-height:1.45; color:var(--text-2); max-width:34ch; }
+
+  @media (max-width:1000px){
+    .hero-bento{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .hb-main, .hb-person, .fact-award{ grid-column:1 / -1; }
+    .hb-person{ order:1; }
+    .fact-award, .fact-card{ order:2; }
+    .hb-main{ padding:32px 28px; gap:32px; }
+    .hb-person{ flex-direction:row; align-items:stretch; gap:16px; }
+    .hb-photo{ flex:0 0 150px; min-height:150px; }
+    .hb-person-info{ flex:1; min-width:0; justify-content:center; padding:8px 12px 8px 0; }
+    .hb-person .case-tags{ flex-direction:row; flex-wrap:wrap; }
+    .fact-card{ grid-column:span 1; }
+    .fact-card:last-child{ grid-column:1 / -1; }
+  }
+  @media (max-width:560px){
+    .fact-card{ grid-column:1 / -1; }
+    .hb-main{ padding:28px 22px; }
+    .hb-photo{ flex-basis:96px; min-height:96px; }
+    .hb-person{ gap:12px; }
+  }
 
   .marquee-section{ padding:28px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); overflow:hidden; background:var(--surface); }
   .marquee-track{ display:flex; width:max-content; animation:marqueeScroll 42s linear infinite; }
@@ -263,16 +309,14 @@
   .section-desc{ color:var(--text-2); max-width:36ch; font-size:16px; }
 
   #about{ border-top:none; padding-top:60px; }
-  #skills{ border-top:none; padding-top:20px; }
-  .about-grid{ display:grid; grid-template-columns:1fr; gap:44px; align-items:center; }
-  @media (min-width:901px){ .about-grid{ grid-template-columns:.85fr 1.15fr; } }
-  .about-text p{ font-size:14px; line-height:1.45; color:var(--text-2); max-width:56ch; }
-  .about-photo{ display:flex; justify-content:center; position:relative; }
-  .about-photo-wrap{ position:relative; }
-  .about-photo-square{ position:relative; width:280px; height:280px; border-radius:var(--radius); overflow:hidden; box-shadow:0 30px 60px -28px rgba(17,17,17,.35); animation:float 5s ease-in-out infinite; }
-  .about-photo-square img{ width:100%; height:100%; object-fit:cover; }
-  .about-badge{ top:auto; left:auto; bottom:-18px; right:-18px; animation-delay:1.6s; }
-  @media (max-width:900px){ .about-photo{ justify-content:flex-start; } .about-photo-square{ width:220px; height:220px; } .about-badge{ top:auto; left:auto; bottom:8px; right:8px; } }
+  .about-grid{ display:grid; grid-template-columns:1fr; gap:40px; align-items:center; }
+  @media (min-width:901px){ .about-grid{ grid-template-columns:1.15fr .85fr; gap:56px; } }
+  .about-text p{ font-size:17px; line-height:1.5; color:var(--text-2); max-width:44ch; }
+  .about-photo, .about-photo-wrap{ position:relative; }
+  .about-photo-square{ position:relative; width:100%; aspect-ratio:6/5; border-radius:28px; overflow:hidden; background:var(--bg-alt); box-shadow:0 30px 60px -28px rgba(17,17,17,.35); }
+  .about-photo-square img{ width:100%; height:100%; object-fit:cover; object-position:center 25%; }
+  .about-badge{ top:auto; left:auto; bottom:20px; right:20px; animation-delay:1.6s; }
+  @media (max-width:900px){ .about-photo-square{ aspect-ratio:4/3; border-radius:22px; } .about-badge{ bottom:14px; right:14px; } }
   .cv-link{ display:inline-flex; align-items:center; gap:8px; font-weight:600; font-size:15px; color:var(--accent); cursor:none; }
 
   .approach-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
@@ -296,13 +340,15 @@
   .tag{ font-size:12px; font-weight:600; letter-spacing:.03em; padding:6px 12px; border-radius:999px; background:var(--bg-alt); color:var(--text-2); }
   .tag.t1{ background:var(--accent-soft); color:var(--accent); }
   .tag.t2{ background:var(--accent-2-soft); color:var(--accent-2); }
+.tag.t3{ background:var(--green-soft); color:var(--green); }
+.tag.t4{ background:var(--teal-soft); color:var(--teal); }
   .case-duration{ font-size:13px; color:var(--text-2); font-weight:500; }
   .case-card h3{ font-size:clamp(24px,3vw,32px); margin-top:24px; max-width:22ch; }
   .case-card p{ margin-top:14px; margin-bottom:26px; color:var(--text-2); max-width:56ch; font-size:14px; line-height:1.45; }
   .case-image{ border-radius:14px; overflow:hidden; background:var(--bg-alt); aspect-ratio:4/3; }
   .case-image img{ width:100%; height:100%; object-fit:cover; display:block; transition:transform .5s var(--ease); }
   .case-card:hover .case-image img{ transform:scale(1.06); }
-  .case-link{ margin-top:auto; align-self:flex-start; display:inline-flex; align-items:center; gap:8px; font-weight:600; font-size:14px; line-height:1.45; color:var(--text); }
+  .case-link{ margin-top:auto; align-self:flex-start; display:inline-flex; align-items:center; gap:8px; font-weight:600; font-size:14px; line-height:1.45; color:var(--accent); }
   .case-link svg{ transition:transform .3s var(--ease); }
   .case-card:hover .case-link svg{ transform:translateX(4px); }
   @media (max-width:900px){ .case-body{ grid-template-columns:1fr; } }
@@ -331,45 +377,56 @@
   .achieve-link svg{ width:13px; height:13px; transition:transform .3s var(--ease); }
   .achieve-card:hover .achieve-link svg{ transform:translateX(4px); }
 
-  .timeline{ position:relative; padding-left:32px; }
-  .timeline-line{ position:absolute; left:0; top:6px; width:1px; height:0; background:linear-gradient(var(--accent), var(--accent-2)); transition:height 1.8s var(--ease); transform:translateX(-50%); }
-  .timeline.in .timeline-line{ height:calc(100% - 12px); }
-  .tl-item{ position:relative; padding-bottom:52px; }
-  .tl-item:last-child{ padding-bottom:0; }
-  .tl-item::before{ content:''; position:absolute; left:-32px; top:4px; width:11px; height:11px; border-radius:50%; background:var(--bg); border:2px solid var(--text-2); transform:translateX(-50%); transition:background .3s ease, border-color .3s ease, transform .3s ease; }
-  .tl-item.in::before{ border-color:var(--accent); background:var(--accent); transform:translateX(-50%) scale(1.15); }
-  .tl-date{ font-size:13px; color:var(--text-2); font-weight:600; margin-bottom:8px; }
-  .tl-item h3{ font-size:22px; margin-bottom:8px; }
-  .tl-item p{ color:var(--text-2); font-size:14px; line-height:1.45; max-width:60ch; }
-  .tl-tags{ display:flex; gap:8px; margin-top:14px; flex-wrap:wrap; }
-
-  @keyframes floatCentered{ 0%,100%{ transform:translate(-50%,-50%) translateY(0);} 50%{ transform:translate(-50%,-50%) translateY(-10px);} }
-  .orbit-wrap{ position:relative; height:520px; display:flex; align-items:center; justify-content:center; }
-  .orbit-center{ width:168px; height:168px; border-radius:50%; background:var(--text); color:#fff; display:flex; align-items:center; justify-content:center; text-align:center; font-family:'Manrope'; font-weight:800; font-size:16px; letter-spacing:-.01em; padding:10px; z-index:2; box-shadow:0 20px 50px -20px rgba(17,17,17,.4); }
-  .orbit-item{ position:absolute; z-index:1; padding:11px 18px; border-radius:999px; background:var(--surface); border:1px solid var(--line-strong); font-size:14px; font-weight:600; white-space:nowrap; animation:floatCentered 6s ease-in-out infinite; transition:background .3s ease, color .3s ease, border-color .3s ease; cursor:none; }
-  .orbit-item.o2{ border-color:var(--accent-2); }
-  .orbit-item:hover{ background:var(--text); color:#fff; border-color:var(--text); z-index:70; animation-play-state:paused; transform:translate(-50%,-50%) scale(1.08); }
-  .orbit-item::after{
-    content:attr(data-tip); position:absolute; bottom:calc(100% + 12px); left:50%; transform:translateX(-50%) translateY(6px);
-    background:var(--text); color:#fff; font-family:'Inter',sans-serif; font-size:12px; font-weight:500; line-height:1.45;
-    white-space:normal; width:220px; text-align:left; padding:12px 14px; border-radius:12px;
-    opacity:0; pointer-events:none; transition:opacity .25s ease, transform .25s ease; z-index:60;
-    box-shadow:0 18px 36px -16px rgba(17,17,17,.4);
+  /* Компетенции: компактные карточки-теги, секция помещается на 1 экран */
+  #skills{ padding:40px 0 32px; }
+  #skills .section-head{ margin-bottom:14px; gap:12px; }
+  #skills .section-title{ font-size:clamp(28px,3.4vw,38px); }
+  .skill-grid{ display:flex; flex-direction:column; gap:12px; }
+  .skill-row{ border:1px solid var(--line); border-radius:22px; background:var(--surface); transition:box-shadow .4s var(--ease), border-color .3s; }
+  .skill-row:hover{ border-color:var(--line-strong); }
+  .skill-row.open{ box-shadow:0 28px 56px -36px rgba(17,17,17,.3); border-color:var(--line-strong); }
+  .skill-head{ all:unset; box-sizing:border-box; width:100%; display:flex; align-items:center; gap:18px; padding:16px 28px; cursor:pointer; border-radius:22px; }
+  .skill-head:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+  .skill-step{ font-size:13px; font-weight:600; color:var(--accent); letter-spacing:.04em; min-width:22px; }
+  .skill-head h3{ font-size:clamp(20px,2.2vw,26px); line-height:1.15; }
+  .skill-preview{ display:flex; flex-wrap:wrap; gap:6px; margin-left:auto; justify-content:flex-end; transition:opacity .25s; }
+  .skill-preview .tag{ font-size:10.5px; padding:3px 9px; }
+  .skill-row.open .skill-preview{ opacity:0; pointer-events:none; }
+  .skill-chev{ flex:none; width:36px; height:36px; border-radius:50%; border:1px solid var(--line-strong); display:grid; place-items:center; color:var(--text); transition:background .3s, border-color .3s, color .3s; }
+  .skill-chev svg{ display:block; transition:transform .45s var(--ease); }
+  .skill-row.open .skill-chev{ background:var(--accent); border-color:var(--accent); color:#fff; }
+  .skill-row.open .skill-chev svg{ transform:rotate(180deg); }
+  .skill-head:hover .skill-chev{ border-color:var(--accent); }
+  .skill-body{ display:grid; grid-template-rows:0fr; transition:grid-template-rows .5s var(--ease); }
+  .skill-row.open .skill-body{ grid-template-rows:1fr; }
+  .skill-inner{ min-height:0; overflow:hidden; margin:0 28px; visibility:hidden; transition:visibility 0s .5s; }
+  .skill-row.open .skill-inner{ visibility:visible; transition-delay:0s; }
+  .skill-cards{ display:grid; grid-template-columns:repeat(4,1fr); }
+  .skill-card{ display:flex; flex-direction:column; align-items:flex-start; gap:8px; padding:6px 22px 18px; border-left:1px solid var(--line); }
+  .skill-card:first-child{ border-left:0; padding-left:0; }
+  .skill-card .tag{ font-size:11px; padding:4px 10px; }
+  .skill-card b{ display:block; font-size:16px; font-weight:700; line-height:1.25; color:var(--text); }
+  .skill-card p{ margin-top:4px; font-size:13.5px; line-height:1.45; color:var(--text-2); min-height:calc(13.5px*1.45*3); }
+  .skill-meta{ margin-top:auto; padding-top:10px; min-height:calc(12px*1.5*2 + 11px); font-size:12px; line-height:1.5; color:var(--text); opacity:.62; border-top:1px dashed var(--line-strong); width:100%; }
+  .skill-toolbar{ display:flex; flex-wrap:wrap; align-items:center; gap:6px; padding:12px 0 20px; border-top:1px solid var(--line); }
+  .skill-toolbar > span:first-child{ font-size:12px; font-weight:600; color:var(--text-2); letter-spacing:.04em; text-transform:uppercase; margin-right:8px; }
+  .skill-toolbar .tag{ background:var(--bg-alt); color:var(--text); }
+  .skill-toolbar .tag.t1{ background:var(--accent-soft); color:var(--accent); }
+  @media (max-width:1099px){
+    .skill-preview{ display:none; }
+    .skill-head{ padding:18px 20px; }
+    .skill-head .skill-chev{ margin-left:auto; }
+    .skill-card p, .skill-meta{ min-height:0; }
+    .skill-inner{ margin:0 20px; }
+    .skill-cards{ grid-template-columns:repeat(2,1fr); }
+    .skill-card:nth-child(odd){ border-left:0; padding-left:0; }
   }
-  .orbit-item::before{
-    content:''; position:absolute; bottom:calc(100% + 6px); left:50%; transform:translateX(-50%);
-    border:6px solid transparent; border-top-color:var(--text); opacity:0; transition:opacity .25s ease; z-index:60;
+  @media (max-width:560px){
+    .skill-cards{ grid-template-columns:1fr; }
+    .skill-card, .skill-card:nth-child(odd){ border-left:0; padding:14px 0; border-top:1px solid var(--line); }
+    .skill-card:first-child{ border-top:0; }
+    #skills{ padding:56px 0; }
   }
-  .orbit-item:hover::after, .orbit-item:hover::before{ opacity:1; transform:translateX(-50%) translateY(0); }
-  @media (max-width:900px){ .orbit-item::after, .orbit-item::before{ display:none; } }
-  @media (max-width:900px){
-    .orbit-wrap{ height:auto; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; padding:12px 0 20px; }
-    .orbit-item{ position:static; animation:none; transform:none !important; width:100%; max-width:100%; min-width:0; white-space:normal; text-align:center; padding:16px 14px; border-radius:14px; line-height:1.3; transition:background .3s ease, color .3s ease, border-color .3s ease; }
-    .orbit-item:hover{ transform:none; }
-    .orbit-item:active{ background:var(--text); color:#fff; border-color:var(--text); }
-    .orbit-center{ grid-column:1 / -1; width:100%; height:auto; border-radius:18px; padding:26px; font-size:16px; }
-  }
-  @media (max-width:480px){ .orbit-wrap{ grid-template-columns:1fr; } }
 
   .process-track{ display:grid; grid-template-columns:repeat(4,1fr); gap:20px; position:relative; padding-top:44px; }
   .process-line{ position:absolute; top:18px; left:0; right:0; height:1px; background:linear-gradient(90deg,var(--accent),var(--accent-2)); transform-origin:left; transform:scaleX(0); transition:transform 1.4s var(--ease); }
@@ -440,7 +497,7 @@
     <div class="nav-right">
       <ul class="nav-links">
         <li><a href="cases.html">Кейсы</a></li>
-        <li><a href="about.html">Обо мне</a></li>
+        <li><a href="about.html">Обо&nbsp;мне</a></li>
         <!-- Блог временно скрыт: <li><a href="blog.html">Блог</a></li> -->
       </ul>
       <a href="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/files/Angelina_Masalova_CV.pdf" download class="nav-cta" data-cursor="hover">Скачать CV</a>
@@ -460,7 +517,7 @@
     </div>
   </div>
   <a href="cases.html">Кейсы</a>
-  <a href="about.html">Обо мне</a>
+  <a href="about.html">Обо&nbsp;мне</a>
   <!-- Блог временно скрыт: <a href="blog.html">Блог</a> -->
   <a href="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/files/Angelina_Masalova_CV.pdf" download class="nav-cta">Скачать CV</a>
   <div class="mm-contacts">
@@ -473,129 +530,156 @@
 <header class="hero" id="heroSection">
   <div class="hero-blob blob-1" id="blob1"></div>
   <div class="hero-blob blob-2" id="blob2"></div>
-  <div class="wrap hero-grid">
-    <div>
-      <div class="eyebrow">Открыта к&nbsp;предложениям</div>
-      <h1 class="hero-title">
-        <span class="word" style="--i:0">Проектирую цифровые продукты</span>
-      </h1>
-      <p class="lead reveal in">UX/UI Designer широкого профиля. 
-Работаю со&nbsp;сложными цифровыми продуктами, корпоративными сайтами и&nbsp;лендингами</p>
-      <div class="hero-actions reveal in">
-        <a href="cases.html" class="btn btn-primary" data-cursor="hover">Смотреть кейсы</a>
-        <a href="https://t.me/uxuiangelina" class="btn btn-ghost" data-cursor="hover">Связаться</a>
-      </div>
-    </div>
-    <div class="portrait-wrap reveal in">
-      <div class="portrait" id="portraitImg">
-         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/angelina.jpg" alt="Портрет дизайнера">
-      </div>
-      <div class="float-badge badge-1">Более 5 лет опыта</div>
-      <div class="float-badge badge-2">🟢 Рассматриваю full-time</div>
-    </div>
-  </div>
   <div class="wrap">
-    <div class="stats-row reveal in" id="statsRow">
-      <div class="stat"><b data-target="Продукты" data-suffix="">Продукты</b><span>Работаю с&nbsp;задачей от&nbsp;исследования до&nbsp;реализации продукта и&nbsp;дальнейшего развития</span></div>
-      <div class="stat"><b data-target="Сайты" data-suffix="">Сайты</b><span>Работаю с&nbsp;B2B, SaaS сервисами, корпоративными сайтами, лендингами и&nbsp;интернет-магазинами</span></div>
-      <div class="stat"><b data-target="End-to-end" data-suffix="">End-to-end</b><span>Могу подключиться на&nbsp;любом этапе&nbsp;— от&nbsp;идеи до&nbsp;развития готового продукта</span></div>
+    <div class="hero-bento reveal-stagger">
+      <div class="hb-main">
+        <div>
+          <div class="eyebrow">Открыта к&nbsp;предложениям</div>
+          <h1 class="hero-title">
+            <span class="word" style="--i:0">Проектирую цифровые продукты</span>
+          </h1>
+        </div>
+        <div class="hero-actions">
+          <a href="cases.html" class="btn btn-primary" data-cursor="hover">Смотреть кейсы</a>
+          <a href="https://t.me/uxuiangelina" class="btn btn-ghost" data-cursor="hover">Связаться</a>
+        </div>
+      </div>
+      <div class="fact-award">
+        <div class="fact-kicker">Признание индустрии</div>
+        <div class="fact-award-main">
+          <div class="fact-big">9</div>
+          <div class="fact-big-label">наград за&nbsp;сайты и&nbsp;сервисы</div>
+        </div>
+        <ul class="fact-award-list">
+          <li><span>WDA</span><b>5&nbsp;призовых, 3&nbsp;первых</b></li>
+          <li><span>Рейтинг Рунета</span><b>4&nbsp;номинации</b></li>
+        </ul>
+      </div>
+      <div class="hb-person">
+        <div class="hb-photo"><img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/angelina.jpg" alt="Ангелина Масалова"></div>
+        <div class="hb-person-info">
+          <div>
+            <b>Ангелина Масалова</b>
+            <span class="role">Senior UX/UI Designer</span>
+          </div>
+          <div class="case-tags">
+            <span class="tag t1">Более 5&nbsp;лет опыта</span>
+            <span class="tag t2">🟢 Ищу full-time</span>
+          </div>
+        </div>
+      </div>
+      <div class="fact-card fc-2">
+          <div class="fact-kicker"><span class="fact-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 3 8l9 5 9-5-9-5Z"/><path d="m3 13 9 5 9-5"/></svg></span>Сложность</div>
+          <b>Fintech и&nbsp;B2B с&nbsp;тяжёлой логикой</b>
+          <p>Юридические сценарии, кабинеты, роли и&nbsp;статусы&nbsp;— без&nbsp;потери понятности</p>
+        </div>
+      <div class="fact-card fc-3">
+          <div class="fact-kicker"><span class="fact-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m12 7 0 5 3 2"/></svg></span>Полный цикл</div>
+          <b>От&nbsp;CJM до&nbsp;handoff</b>
+          <p>Исследование, архитектура, прототипы и&nbsp;спеки для&nbsp;разработки</p>
+        </div>
+      <div class="fact-card fc-4">
+          <div class="fact-kicker"><span class="fact-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c.6-3.4 3-5 6-5s5.4 1.6 6 5"/><path d="M16 5.5a3 3 0 0 1 0 5.5M18 15.2c1.7.6 2.7 2.2 3 4.8"/></svg></span>Команда</div>
+          <b>Растим дизайнеров вместе</b>
+          <p>Воркшопы для&nbsp;junior, митапы и&nbsp;общая база знаний</p>
+        </div>
     </div>
   </div>
-</header>
+  </header>
 
 <section class="marquee-section" aria-label="Награды">
   <div class="marquee-track">
     <div class="marquee-list">
       <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/wda.jpg" alt="WDA — Поисковое продвижение / Продвижение услуг, 1 место, 2025">
-        <span class="award-text"><b>WDA</b> — Поисковое продвижение / Продвижение услуг, 1 место, 2025 — Редизайн для оптимизации премиум-портфолио</span>
+        <span class="award-text"><b>WDA</b>&nbsp;— Поисковое продвижение / Продвижение услуг, 1&nbsp;место, 2025&nbsp;— Редизайн для&nbsp;оптимизации премиум-портфолио</span>
       </div>
       <span class="award-dot">/</span>
       <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/runet.jpg" alt="Рейтинг Рунета — Разработка и развитие сайтов и веб-сервисов, 2026">
-        <span class="award-text"><b>Рейтинг Рунета</b> — Разработка и развитие сайтов и веб-сервисов, 2026</span>
+        <span class="award-text"><b>Рейтинг Рунета</b>&nbsp;— Разработка и&nbsp;развитие сайтов и&nbsp;веб-сервисов, 2026</span>
       </div>
       <span class="award-dot">/</span>
       <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/wda.jpg" alt="WDA — Услуги, 1 место, 2024">
-        <span class="award-text"><b>WDA</b> — Услуги, 1 место, 2024 — Корпоративный сайт Rocket Business</span>
+        <span class="award-text"><b>WDA</b>&nbsp;— Услуги, 1&nbsp;место, 2024&nbsp;— Корпоративный сайт Rocket Business</span>
       </div>
       <span class="award-dot">/</span>
       <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/runet.jpg" alt="Рейтинг Рунета — Дизайн и цифровые продукты, 8 место, 2026">
-        <span class="award-text"><b>Рейтинг Рунета</b> — Дизайн и цифровые продукты, 8 место, 2026</span>
+        <span class="award-text"><b>Рейтинг Рунета</b>&nbsp;— Дизайн и&nbsp;цифровые продукты, 8&nbsp;место, 2026</span>
       </div>
       <span class="award-dot">/</span>
       <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/wda.jpg" alt="WDA — Сайты / Услуги, 2 место, 2025">
-        <span class="award-text"><b>WDA</b> — Сайты / Услуги, 2 место, 2025 — Сайт технического подразделения Rocket Dev</span>
+        <span class="award-text"><b>WDA</b>&nbsp;— Сайты / Услуги, 2&nbsp;место, 2025&nbsp;— Сайт технического подразделения Rocket Dev</span>
       </div>
       <span class="award-dot">/</span>
       <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/runet.jpg" alt="Рейтинг Рунета — Простые интернет магазины, 5 место, 2026">
-        <span class="award-text"><b>Рейтинг Рунета</b> — Простые интернет магазины, 5 место, 2026</span>
+        <span class="award-text"><b>Рейтинг Рунета</b>&nbsp;— Простые интернет магазины, 5&nbsp;место, 2026</span>
       </div>
       <span class="award-dot">/</span>
       <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/wda.jpg" alt="WDA — Цифровизация и трансформация / Корпоративные порталы, 1 место, 2025">
-        <span class="award-text"><b>WDA</b> — Цифровизация и трансформация / Корпоративные порталы, 1 место, 2025 — Чат-бот «Rocket Спасибо»</span>
+        <span class="award-text"><b>WDA</b>&nbsp;— Цифровизация и&nbsp;трансформация / Корпоративные порталы, 1&nbsp;место, 2025&nbsp;— Чат-бот «Rocket Спасибо»</span>
       </div>
       <span class="award-dot">/</span>
       <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/runet.jpg" alt="Рейтинг Рунета — Порталы и веб сервисы, 15 место, 2026">
-        <span class="award-text"><b>Рейтинг Рунета</b> — Порталы и веб сервисы, 15 место, 2026</span>
+        <span class="award-text"><b>Рейтинг Рунета</b>&nbsp;— Порталы и&nbsp;веб сервисы, 15&nbsp;место, 2026</span>
       </div>
       <span class="award-dot">/</span>
       <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/wda.jpg" alt="WDA — Цифровизация и трансформация / Корпоративные порталы, 2 место, 2024">
-        <span class="award-text"><b>WDA</b> — Цифровизация и трансформация / Корпоративные порталы, 2 место, 2024 — «Наш Монитор»</span>
+        <span class="award-text"><b>WDA</b>&nbsp;— Цифровизация и&nbsp;трансформация / Корпоративные порталы, 2&nbsp;место, 2024&nbsp;— «Наш Монитор»</span>
       </div>
       <span class="award-dot">/</span>
     </div>
     <div class="marquee-list" aria-hidden="true">
       <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/wda.jpg" alt="WDA — Поисковое продвижение / Продвижение услуг, 1 место, 2025">
-        <span class="award-text"><b>WDA</b> — Поисковое продвижение / Продвижение услуг, 1 место, 2025 — Редизайн для оптимизации премиум-портфолио</span>
+        <span class="award-text"><b>WDA</b>&nbsp;— Поисковое продвижение / Продвижение услуг, 1&nbsp;место, 2025&nbsp;— Редизайн для&nbsp;оптимизации премиум-портфолио</span>
       </div>
       <span class="award-dot">/</span>
       <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/runet.jpg" alt="Рейтинг Рунета — Разработка и развитие сайтов и веб-сервисов, 2026">
-        <span class="award-text"><b>Рейтинг Рунета</b> — Разработка и развитие сайтов и веб-сервисов, 2026</span>
+        <span class="award-text"><b>Рейтинг Рунета</b>&nbsp;— Разработка и&nbsp;развитие сайтов и&nbsp;веб-сервисов, 2026</span>
       </div>
       <span class="award-dot">/</span>
       <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/wda.jpg" alt="WDA — Услуги, 1 место, 2024">
-        <span class="award-text"><b>WDA</b> — Услуги, 1 место, 2024 — Корпоративный сайт Rocket Business</span>
+        <span class="award-text"><b>WDA</b>&nbsp;— Услуги, 1&nbsp;место, 2024&nbsp;— Корпоративный сайт Rocket Business</span>
       </div>
       <span class="award-dot">/</span>
       <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/runet.jpg" alt="Рейтинг Рунета — Дизайн и цифровые продукты, 8 место, 2026">
-        <span class="award-text"><b>Рейтинг Рунета</b> — Дизайн и цифровые продукты, 8 место, 2026</span>
+        <span class="award-text"><b>Рейтинг Рунета</b>&nbsp;— Дизайн и&nbsp;цифровые продукты, 8&nbsp;место, 2026</span>
       </div>
       <span class="award-dot">/</span>
       <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/wda.jpg" alt="WDA — Сайты / Услуги, 2 место, 2025">
-        <span class="award-text"><b>WDA</b> — Сайты / Услуги, 2 место, 2025 — Сайт технического подразделения Rocket Dev</span>
+        <span class="award-text"><b>WDA</b>&nbsp;— Сайты / Услуги, 2&nbsp;место, 2025&nbsp;— Сайт технического подразделения Rocket Dev</span>
       </div>
       <span class="award-dot">/</span>
       <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/runet.jpg" alt="Рейтинг Рунета — Простые интернет магазины, 5 место, 2026">
-        <span class="award-text"><b>Рейтинг Рунета</b> — Простые интернет магазины, 5 место, 2026</span>
+        <span class="award-text"><b>Рейтинг Рунета</b>&nbsp;— Простые интернет магазины, 5&nbsp;место, 2026</span>
       </div>
       <span class="award-dot">/</span>
       <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/wda.jpg" alt="WDA — Цифровизация и трансформация / Корпоративные порталы, 1 место, 2025">
-        <span class="award-text"><b>WDA</b> — Цифровизация и трансформация / Корпоративные порталы, 1 место, 2025 — Чат-бот «Rocket Спасибо»</span>
+        <span class="award-text"><b>WDA</b>&nbsp;— Цифровизация и&nbsp;трансформация / Корпоративные порталы, 1&nbsp;место, 2025&nbsp;— Чат-бот «Rocket Спасибо»</span>
       </div>
       <span class="award-dot">/</span>
       <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/runet.jpg" alt="Рейтинг Рунета — Порталы и веб сервисы, 15 место, 2026">
-        <span class="award-text"><b>Рейтинг Рунета</b> — Порталы и веб сервисы, 15 место, 2026</span>
+        <span class="award-text"><b>Рейтинг Рунета</b>&nbsp;— Порталы и&nbsp;веб сервисы, 15&nbsp;место, 2026</span>
       </div>
       <span class="award-dot">/</span>
       <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/wda.jpg" alt="WDA — Цифровизация и трансформация / Корпоративные порталы, 2 место, 2024">
-        <span class="award-text"><b>WDA</b> — Цифровизация и трансформация / Корпоративные порталы, 2 место, 2024 — «Наш Монитор»</span>
+        <span class="award-text"><b>WDA</b>&nbsp;— Цифровизация и&nbsp;трансформация / Корпоративные порталы, 2&nbsp;место, 2024&nbsp;— «Наш Монитор»</span>
       </div>
       <span class="award-dot">/</span>
     </div>
@@ -608,11 +692,11 @@
       <div class="status-grid">
         <div class="status-compact">
           <h2>Ищу&nbsp;full-time позицию UX/UI Designer</h2>
-          <div class="status-modes">Готова присоединиться в течение ~1&nbsp;недели после оффера</div>
+          <div class="status-modes">Готова присоединиться в&nbsp;течение ~1&nbsp;недели после оффера</div>
           <p>Работаю с&nbsp;широким спектром задач&nbsp;— от&nbsp;продуктового дизайна и&nbsp;сложных интерфейсов до&nbsp;лендингов и&nbsp;корпоративных сайтов</p>
           <div class="status-actions">
             <a href="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/files/Angelina_Masalova_CV.pdf" download class="btn btn-cv" data-cursor="hover">Скачать CV</a>
-            <a href="https://t.me/uxuiangelina" class="btn btn-ghost-dark" data-cursor="hover">Написать в Telegram</a>
+            <a href="https://t.me/uxuiangelina" class="btn btn-ghost-dark" data-cursor="hover">Написать в&nbsp;Telegram</a>
           </div>
       </div>
     </div>
@@ -623,10 +707,10 @@
   <div class="wrap">
     <div class="section-head reveal">
       <div>
-        <span class="section-num">02 / Подход к&nbsp;работе</span>
-        <h2 class="section-title">Обо мне</h2>
+        <span class="section-num">Подход к&nbsp;работе</span>
+        <h2 class="section-title">Обо&nbsp;мне</h2>
       </div>
-      <a href="about.html" class="btn btn-ghost btn-all-cases" data-cursor="hover">Подробнее обо мне →</a>
+      <a href="about.html" class="btn btn-ghost btn-all-cases" data-cursor="hover">Подробнее обо&nbsp;мне →</a>
     </div>
     <div class="about-grid" style="margin-top:24px;">
       <div class="about-photo reveal">
@@ -634,7 +718,7 @@
           <div class="about-photo-square">
             <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/angelina2.jpg" alt="Ангелина Масалова">
           </div>
-          <div class="float-badge about-badge">Я навайбкодила этот сайт!</div>
+          <div class="float-badge about-badge">Я&nbsp;навайбкодила этот сайт!</div>
         </div>
       </div>
       <div class="about-text reveal">
@@ -644,7 +728,7 @@
           <span class="tag t1">Product Design</span>
           <span class="tag t2">B2B</span>
           <span class="tag t2">SaaS</span>
-          <span class="tag t1">Открыта к переезду</span>
+          <span class="tag t1">Открыта к&nbsp;переезду</span>
         </div>
       </div>
     </div>
@@ -653,23 +737,103 @@
 
 <section id="skills">
   <div class="wrap">
-    <div class="orbit-wrap reveal" style="margin-top:0;">
-      <div class="orbit-center">Мои&nbsp;компетенции</div>
-
-      <div class="orbit-item" style="top:14.4%; left:50.0%; transform:translate(-50%,-50%); animation-delay:0s;" data-cursor="hover" data-tip="Изучаю пользователей, контекст и&nbsp;задачу перед&nbsp;проектированием">Исследования</div>
-      <div class="orbit-item o2" style="top:17.9%; left:66.4%; transform:translate(-50%,-50%); animation-delay:.43s;" data-cursor="hover" data-tip="Нахожу проблемы в&nbsp;существующем продукте и&nbsp;пользовательских сценариях">UX Аудит</div>
-      <div class="orbit-item" style="top:27.8%; left:79.6%; transform:translate(-50%,-50%); animation-delay:.86s;" data-cursor="hover" data-tip="Прорабатываю путь пользователя и&nbsp;ключевые сценарии до&nbsp;перехода к&nbsp;дизайну экранов">Пользовательские сценарии</div>
-      <div class="orbit-item o2" style="top:42.1%; left:86.9%; transform:translate(-50%,-50%); animation-delay:1.29s;" data-cursor="hover" data-tip="Структурирую разделы, сущности и&nbsp;связи внутри продукта">Информационная архитектура</div>
-      <div class="orbit-item" style="top:57.9%; left:86.9%; transform:translate(-50%,-50%); animation-delay:1.71s;" data-cursor="hover" data-tip="Собираю интерактивные прототипы для&nbsp;проверки сценариев, обсуждения решений и&nbsp;подготовки к&nbsp;разработке">Прототипирование</div>
-      <div class="orbit-item o2" style="top:72.2%; left:79.6%; transform:translate(-50%,-50%); animation-delay:2.14s;" data-cursor="hover" data-tip="Проверяю решения на&nbsp;пользовательских сценариях и&nbsp;дорабатываю&nbsp;их">UX Тестирование</div>
-      <div class="orbit-item" style="top:82.1%; left:66.4%; transform:translate(-50%,-50%); animation-delay:2.57s;" data-cursor="hover" data-tip="Использую AI для&nbsp;исследования, идей, контента и&nbsp;ускорения рутинной работы">AI в дизайне</div>
-      <div class="orbit-item o2" style="top:85.6%; left:50.0%; transform:translate(-50%,-50%); animation-delay:3s;" data-cursor="hover" data-tip="Создаю и&nbsp;развиваю системы компонентов, которые помогают поддерживать единый и&nbsp;масштабируемый интерфейс">Дизайн токены</div>
-      <div class="orbit-item" style="top:82.1%; left:33.6%; transform:translate(-50%,-50%); animation-delay:3.43s;" data-cursor="hover" data-tip="Проектирую интерфейсы для&nbsp;разных разрешений, устройств и&nbsp;сценариев использования">Адаптивность</div>
-      <div class="orbit-item o2" style="top:72.2%; left:20.4%; transform:translate(-50%,-50%); animation-delay:3.86s;" data-cursor="hover" data-tip="Готовлю спеки и токены так, чтобы разработке не пришлось переспрашивать каждый отступ.">Передача в разработку</div>
-      <div class="orbit-item" style="top:57.9%; left:13.1%; transform:translate(-50%,-50%); animation-delay:4.29s;" data-cursor="hover" data-tip="Создаю компоненты и&nbsp;правила для&nbsp;единого и&nbsp;масштабируемого интерфейса">Дизайн-системы</div>
-      <div class="orbit-item o2" style="top:42.1%; left:13.1%; transform:translate(-50%,-50%); animation-delay:4.71s;" data-cursor="hover" data-tip="Создаю визуальные решения, которые поддерживают логику и&nbsp;задачи продукта">UI дизайн</div>
-      <div class="orbit-item" style="top:27.8%; left:20.4%; transform:translate(-50%,-50%); animation-delay:5.14s;" data-cursor="hover" data-tip="Учитываю цели бизнеса, потребности пользователей и&nbsp;ограничения проекта">Продуктовый подход</div>
-      <div class="orbit-item o2" style="top:17.9%; left:33.6%; transform:translate(-50%,-50%); animation-delay:5.57s;" data-cursor="hover" data-tip="Сравниваю решения конкурентов и&nbsp;ищу&nbsp;точки для&nbsp;улучшения">Анализ</div>
+    <div class="section-head reveal">
+      <div>
+        <span class="section-num">Чем занимаюсь</span>
+        <h2 class="section-title">Компетенции</h2>
+      </div>
+    </div>
+    <div class="skill-grid reveal-stagger">
+      <div class="skill-row open">
+        <button type="button" class="skill-head" aria-expanded="true" aria-controls="skill-body-01" id="skill-head-01">
+          <span class="skill-step">01</span><h3>Понять</h3>
+          <span class="skill-preview" aria-hidden="true"><span class="tag t1">Research</span><span class="tag t2">UX audit</span><span class="tag t3">Competitor&nbsp;analysis</span><span class="tag t4">Product&nbsp;thinking</span></span>
+          <span class="skill-chev" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="skill-body" id="skill-body-01" role="region" aria-labelledby="skill-head-01">
+          <div class="skill-inner">
+            <div class="skill-cards">
+              <div class="skill-card"><span class="tag t1">Research</span><div><b>Исследования</b><p>Изучаю пользователей, контекст и&nbsp;задачу до&nbsp;того, как&nbsp;рисовать&nbsp;экраны.</p></div><small class="skill-meta">Интервью&nbsp;· Опросы&nbsp;· Дневниковые&nbsp;исследования</small></div>
+              <div class="skill-card"><span class="tag t2">UX audit</span><div><b>UX-аудит</b><p>Нахожу проблемы в&nbsp;продукте и&nbsp;пользовательских сценариях, расставляю&nbsp;приоритеты.</p></div><small class="skill-meta">Эвристики&nbsp;· Разбор сценариев&nbsp;·&nbsp;Приоритизация</small></div>
+              <div class="skill-card"><span class="tag t3">Competitor&nbsp;analysis</span><div><b>Анализ</b><p>Сравниваю решения конкурентов, ищу точки для&nbsp;улучшения&nbsp;и&nbsp;роста.</p></div><small class="skill-meta">Бенчмаркинг&nbsp;· Паттерны рынка&nbsp;·&nbsp;Гипотезы</small></div>
+              <div class="skill-card"><span class="tag t4">Product&nbsp;thinking</span><div><b>Продуктовый подход</b><p>Учитываю цели бизнеса, потребности людей и&nbsp;ограничения&nbsp;проекта.</p></div><small class="skill-meta">Цели и&nbsp;метрики&nbsp;· Ограничения&nbsp;·&nbsp;Приоритеты</small></div>
+            </div>
+            <div class="skill-toolbar"><span>Инструменты</span><span class="tag">FigJam</span><span class="tag">Miro</span><span class="tag">Google Forms</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="skill-row">
+        <button type="button" class="skill-head" aria-expanded="false" aria-controls="skill-body-02" id="skill-head-02">
+          <span class="skill-step">02</span><h3>Спроектировать</h3>
+          <span class="skill-preview" aria-hidden="true"><span class="tag t2">User&nbsp;flows</span><span class="tag t3">Information&nbsp;architecture</span><span class="tag t4">Prototyping</span><span class="tag t1">Service design</span></span>
+          <span class="skill-chev" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="skill-body" id="skill-body-02" role="region" aria-labelledby="skill-head-02">
+          <div class="skill-inner">
+            <div class="skill-cards">
+              <div class="skill-card"><span class="tag t2">User&nbsp;flows</span><div><b>Пользовательские сценарии</b><p>Прорабатываю путь пользователя и&nbsp;ключевые сценарии до&nbsp;дизайна&nbsp;экранов.</p></div><small class="skill-meta">Путь пользователя&nbsp;· Edge&nbsp;cases&nbsp;·&nbsp;Состояния</small></div>
+              <div class="skill-card"><span class="tag t3">Information&nbsp;architecture</span><div><b>Информационная архитектура</b><p>Структурирую разделы, сущности и&nbsp;связи внутри&nbsp;продукта.</p></div><small class="skill-meta">Структура&nbsp;· Навигация&nbsp;· Сущности&nbsp;и&nbsp;связи</small></div>
+              <div class="skill-card"><span class="tag t4">Prototyping</span><div><b>Прототипирование</b><p>Собираю интерактивные прототипы для&nbsp;проверки идей и&nbsp;подготовки&nbsp;к&nbsp;разработке.</p></div><small class="skill-meta">Кликабельные макеты&nbsp;· Анимации&nbsp;· Микро-взаимодействия</small></div>
+              <div class="skill-card"><span class="tag t1">Service design</span><div><b>Проектирование услуги</b><p>Смотрю на&nbsp;сквозной опыт: от&nbsp;первого касания&nbsp;до&nbsp;поддержки.</p></div><small class="skill-meta">Customer&nbsp;journey&nbsp;· Фронт- и&nbsp;бэкстейдж&nbsp;·&nbsp;Blueprint</small></div>
+            </div>
+            <div class="skill-toolbar"><span>Инструменты</span><span class="tag t1">Figma</span><span class="tag ">Framer</span><span class="tag ">ProtoPie</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="skill-row">
+        <button type="button" class="skill-head" aria-expanded="false" aria-controls="skill-body-03" id="skill-head-03">
+          <span class="skill-step">03</span><h3>Оформить</h3>
+          <span class="skill-preview" aria-hidden="true"><span class="tag t3">UI</span><span class="tag t4">Design&nbsp;system</span><span class="tag t1">Responsive</span><span class="tag t2">Accessibility</span></span>
+          <span class="skill-chev" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="skill-body" id="skill-body-03" role="region" aria-labelledby="skill-head-03">
+          <div class="skill-inner">
+            <div class="skill-cards">
+              <div class="skill-card"><span class="tag t3">UI</span><div><b>UI-дизайн</b><p>Создаю визуальные решения, которые поддерживают логику и&nbsp;задачи&nbsp;продукта.</p></div><small class="skill-meta">Сетки&nbsp;· Типографика&nbsp;· Цвет&nbsp;·&nbsp;Состояния</small></div>
+              <div class="skill-card"><span class="tag t4">Design&nbsp;system</span><div><b>Дизайн-системы и&nbsp;токены</b><p>Строю компоненты и&nbsp;правила для&nbsp;единого, масштабируемого интерфейса.</p></div><small class="skill-meta">Design&nbsp;Tokens&nbsp;· Библиотеки компонентов&nbsp;· Design&nbsp;Governance</small></div>
+              <div class="skill-card"><span class="tag t1">Responsive</span><div><b>Адаптивность</b><p>Проектирую для&nbsp;разных разрешений, устройств и&nbsp;сценариев&nbsp;использования.</p></div><small class="skill-meta">Брейкпоинты&nbsp;· Мобайл и&nbsp;десктоп&nbsp;·&nbsp;Контекст</small></div>
+              <div class="skill-card"><span class="tag t2">Accessibility</span><div><b>Доступность (WCAG&nbsp;2.1)</b><p>Делаю интерфейсы, которыми могут пользоваться&nbsp;все.</p></div><small class="skill-meta">Контраст&nbsp;· Клавиатура&nbsp;· Читаемость</small></div>
+            </div>
+            <div class="skill-toolbar"><span>Инструменты</span><span class="tag t1">Figma</span><span class="tag ">Sketch</span><span class="tag ">Adobe Creative Suite</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="skill-row">
+        <button type="button" class="skill-head" aria-expanded="false" aria-controls="skill-body-04" id="skill-head-04">
+          <span class="skill-step">04</span><h3>Проверить и&nbsp;передать</h3>
+          <span class="skill-preview" aria-hidden="true"><span class="tag t4">Usability&nbsp;testing</span><span class="tag t1">Dev&nbsp;handoff</span><span class="tag t2">AI</span><span class="tag t3">A/B&nbsp;testing</span></span>
+          <span class="skill-chev" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="skill-body" id="skill-body-04" role="region" aria-labelledby="skill-head-04">
+          <div class="skill-inner">
+            <div class="skill-cards">
+              <div class="skill-card"><span class="tag t4">Usability&nbsp;testing</span><div><b>UX-тестирование</b><p>Проверяю решения на&nbsp;пользовательских сценариях и&nbsp;дорабатываю&nbsp;их.</p></div><small class="skill-meta">Модерируемые сессии&nbsp;· Гипотезы&nbsp;·&nbsp;Выводы</small></div>
+              <div class="skill-card"><span class="tag t1">Dev&nbsp;handoff</span><div><b>Передача в&nbsp;разработку</b><p>Готовлю спеки и&nbsp;токены так, чтобы разработке не&nbsp;пришлось переспрашивать.</p></div><small class="skill-meta">Спеки&nbsp;· Токены&nbsp;· Ревью реализации</small></div>
+              <div class="skill-card"><span class="tag t2">AI</span><div><b>AI в&nbsp;дизайне</b><p>Использую AI для&nbsp;исследования, идей, контента и&nbsp;ускорения&nbsp;рутины.</p></div><small class="skill-meta">Исследования&nbsp;· Контент&nbsp;·&nbsp;Автоматизация</small></div>
+              <div class="skill-card"><span class="tag t3">A/B&nbsp;testing</span><div><b>A/B-тестирование</b><p>Проверяю гипотезы на&nbsp;реальных данных и&nbsp;читаю&nbsp;результаты.</p></div><small class="skill-meta">Гипотезы&nbsp;· Метрики&nbsp;· Интерпретация</small></div>
+            </div>
+            <div class="skill-toolbar"><span>Инструменты</span><span class="tag t1">Figma</span><span class="tag ">Storybook</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="skill-row">
+        <button type="button" class="skill-head" aria-expanded="false" aria-controls="skill-body-05" id="skill-head-05">
+          <span class="skill-step">05</span><h3>Работать с&nbsp;командой</h3>
+          <span class="skill-preview" aria-hidden="true"><span class="tag t4">Workshops</span><span class="tag t1">Stakeholder&nbsp;alignment</span><span class="tag t2">Mentoring</span><span class="tag t3">Cross-functional</span></span>
+          <span class="skill-chev" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="skill-body" id="skill-body-05" role="region" aria-labelledby="skill-head-05">
+          <div class="skill-inner">
+            <div class="skill-cards">
+              <div class="skill-card"><span class="tag t4">Workshops</span><div><b>Фасилитация семинаров</b><p>Выравниваю команду на&nbsp;воркшопах и&nbsp;помогаю прийти&nbsp;к&nbsp;решению.</p></div><small class="skill-meta">Формат&nbsp;· Модерация&nbsp;· Итоги&nbsp;и&nbsp;next&nbsp;steps</small></div>
+              <div class="skill-card"><span class="tag t1">Stakeholder&nbsp;alignment</span><div><b>Согласование с&nbsp;бизнесом</b><p>Договариваюсь о&nbsp;целях и&nbsp;решениях со&nbsp;стейкхолдерами.</p></div><small class="skill-meta">Аргументация&nbsp;· Компромиссы&nbsp;·&nbsp;Прозрачность</small></div>
+              <div class="skill-card"><span class="tag t2">Mentoring</span><div><b>Критика и&nbsp;наставничество</b><p>Растим уровень дизайна в&nbsp;команде через разборы и&nbsp;обратную&nbsp;связь.</p></div><small class="skill-meta">Дизайн-критика&nbsp;· Менторство&nbsp;· Обратная&nbsp;связь</small></div>
+              <div class="skill-card"><span class="tag t3">Cross-functional</span><div><b>Кросс-функциональное лидерство</b><p>Веду продукт вместе с&nbsp;PM, разработкой&nbsp;и&nbsp;аналитикой.</p></div><small class="skill-meta">Синхронизация&nbsp;· Роли&nbsp;· Общий&nbsp;результат</small></div>
+            </div>
+            <div class="skill-toolbar"><span>Инструменты</span><span class="tag">FigJam</span><span class="tag">Miro</span><span class="tag">Notion</span></div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -678,7 +842,7 @@
   <div class="wrap">
     <div class="section-head reveal">
       <div>
-        <span class="section-num">04 / Избранные проекты</span>
+        <span class="section-num">Избранные проекты</span>
         <h2 class="section-title">Кейсы</h2>
       </div>
       <a href="cases.html" class="btn btn-ghost btn-all-cases" data-cursor="hover">Все кейсы →</a>
@@ -721,7 +885,7 @@
               <div class="case-tags"><span class="tag t1">Pettech</span><span class="tag t2">iOS</span><span class="tag t1">Android</span></div>
             </div>
             <h3>Проектирование pet-tech экосистемы вокруг жизненного цикла питомца</h3>
-            <p>Спроектировала продуктовую архитектуру, объединяющую уход, услуги, AI и комьюнити в единую систему регулярного взаимодействия с питомцем</p>
+            <p>Спроектировала продуктовую архитектуру, объединяющую уход, услуги, AI и&nbsp;комьюнити в&nbsp;единую систему регулярного взаимодействия с&nbsp;питомцем</p>
             <span class="case-link">Смотреть кейс <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           </div>
           <div class="case-image"><img src="images/petrm/casepet1.jpg" alt=""></div>
@@ -732,138 +896,99 @@
 </section>
 
 
-<section id="experience">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div>
-        <span class="section-num">05 / Мой путь</span>
-        <h2 class="section-title">Опыт</h2>
-      </div>
-      <a href="about.html" class="btn btn-ghost btn-all-cases" data-cursor="hover">Больше информации →</a>
-    </div>
-    <div class="timeline" id="expTimeline">
-      <div class="timeline-line"></div>
-      <div class="tl-item reveal">
-        <div class="tl-date">2025 — сейчас</div>
-        <h3>Старший UX/UI Designer, Efimov</h3>
-        <p>Проектировала цифровые продукты и&nbsp;концепты для&nbsp;B2B и&nbsp;B2C: исследовала задачи, прорабатывала пользовательские сценарии, структуру и&nbsp;интерфейсы, развивала дизайн-системы</p>
-        <div class="tl-tags"><span class="tag t1">B2B</span><span class="tag t2">Mobile & Web</span><span class="tag t1">UX Strategy</span></div>
-      </div>
-      <div class="tl-item reveal">
-        <div class="tl-date">2023 — 2025</div>
-        <h3>UX/UI Designer, Rocket Business</h3>
-        <p>Проектировала корпоративные сайты и&nbsp;digital-продукты: работала с&nbsp;пользовательскими сценариями, информационной архитектурой и&nbsp;визуальной подачей</p>
-        <div class="tl-tags"><span class="tag t2">Corporate websites</span><span class="tag t1">UX Research</span><span class="tag t2">Digital</span></div>
-      </div>
-      <div class="tl-item reveal">
-        <div class="tl-date">2021 — 2023</div>
-        <h3>Web Designer, UMK</h3>
-        <p>Проектировала интерфейсы цифровых продуктов, включая CRM и&nbsp;сервисы в&nbsp;сфере недвижимости. Работала с&nbsp;UX-структурой, сложными сценариями, аналитикой и&nbsp;дизайн-системами</p>
-        <div class="tl-tags"><span class="tag t1">CRM</span><span class="tag t2">Analytics</span><span class="tag t1">Design Systems</span></div>
-      </div>
-      <div class="tl-item reveal">
-        <div class="tl-date">Ранее</div>
-        <h3>Графический и digital-дизайн</h3>
-        <p>Работала с&nbsp;брендингом, рекламными материалами, digital-контентом и&nbsp;визуальными коммуникациями</p>
-        <div class="tl-tags"><span class="tag t2">Branding</span><span class="tag t1">Digital</span><span class="tag t2">Graphic Design</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section class="marquee-section" aria-label="Награды">
   <div class="marquee-track">
     <div class="marquee-list">
       <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/wda.jpg" alt="WDA — Поисковое продвижение / Продвижение услуг, 1 место, 2025">
-        <span class="award-text"><b>WDA</b> — Поисковое продвижение / Продвижение услуг, 1 место, 2025 — Редизайн для оптимизации премиум-портфолио</span>
+        <span class="award-text"><b>WDA</b>&nbsp;— Поисковое продвижение / Продвижение услуг, 1&nbsp;место, 2025&nbsp;— Редизайн для&nbsp;оптимизации премиум-портфолио</span>
       </div>
       <span class="award-dot">/</span>
       <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/runet.jpg" alt="Рейтинг Рунета — Разработка и развитие сайтов и веб-сервисов, 2026">
-        <span class="award-text"><b>Рейтинг Рунета</b> — Разработка и развитие сайтов и веб-сервисов, 2026</span>
+        <span class="award-text"><b>Рейтинг Рунета</b>&nbsp;— Разработка и&nbsp;развитие сайтов и&nbsp;веб-сервисов, 2026</span>
       </div>
       <span class="award-dot">/</span>
       <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/wda.jpg" alt="WDA — Услуги, 1 место, 2024">
-        <span class="award-text"><b>WDA</b> — Услуги, 1 место, 2024 — Корпоративный сайт Rocket Business</span>
+        <span class="award-text"><b>WDA</b>&nbsp;— Услуги, 1&nbsp;место, 2024&nbsp;— Корпоративный сайт Rocket Business</span>
       </div>
       <span class="award-dot">/</span>
       <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/runet.jpg" alt="Рейтинг Рунета — Дизайн и цифровые продукты, 8 место, 2026">
-        <span class="award-text"><b>Рейтинг Рунета</b> — Дизайн и цифровые продукты, 8 место, 2026</span>
+        <span class="award-text"><b>Рейтинг Рунета</b>&nbsp;— Дизайн и&nbsp;цифровые продукты, 8&nbsp;место, 2026</span>
       </div>
       <span class="award-dot">/</span>
       <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/wda.jpg" alt="WDA — Сайты / Услуги, 2 место, 2025">
-        <span class="award-text"><b>WDA</b> — Сайты / Услуги, 2 место, 2025 — Сайт технического подразделения Rocket Dev</span>
+        <span class="award-text"><b>WDA</b>&nbsp;— Сайты / Услуги, 2&nbsp;место, 2025&nbsp;— Сайт технического подразделения Rocket Dev</span>
       </div>
       <span class="award-dot">/</span>
       <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/runet.jpg" alt="Рейтинг Рунета — Простые интернет магазины, 5 место, 2026">
-        <span class="award-text"><b>Рейтинг Рунета</b> — Простые интернет магазины, 5 место, 2026</span>
+        <span class="award-text"><b>Рейтинг Рунета</b>&nbsp;— Простые интернет магазины, 5&nbsp;место, 2026</span>
       </div>
       <span class="award-dot">/</span>
       <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/wda.jpg" alt="WDA — Цифровизация и трансформация / Корпоративные порталы, 1 место, 2025">
-        <span class="award-text"><b>WDA</b> — Цифровизация и трансформация / Корпоративные порталы, 1 место, 2025 — Чат-бот «Rocket Спасибо»</span>
+        <span class="award-text"><b>WDA</b>&nbsp;— Цифровизация и&nbsp;трансформация / Корпоративные порталы, 1&nbsp;место, 2025&nbsp;— Чат-бот «Rocket Спасибо»</span>
       </div>
       <span class="award-dot">/</span>
       <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/runet.jpg" alt="Рейтинг Рунета — Порталы и веб сервисы, 15 место, 2026">
-        <span class="award-text"><b>Рейтинг Рунета</b> — Порталы и веб сервисы, 15 место, 2026</span>
+        <span class="award-text"><b>Рейтинг Рунета</b>&nbsp;— Порталы и&nbsp;веб сервисы, 15&nbsp;место, 2026</span>
       </div>
       <span class="award-dot">/</span>
       <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/wda.jpg" alt="WDA — Цифровизация и трансформация / Корпоративные порталы, 2 место, 2024">
-        <span class="award-text"><b>WDA</b> — Цифровизация и трансформация / Корпоративные порталы, 2 место, 2024 — «Наш Монитор»</span>
+        <span class="award-text"><b>WDA</b>&nbsp;— Цифровизация и&nbsp;трансформация / Корпоративные порталы, 2&nbsp;место, 2024&nbsp;— «Наш Монитор»</span>
       </div>
       <span class="award-dot">/</span>
     </div>
     <div class="marquee-list" aria-hidden="true">
       <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/wda.jpg" alt="WDA — Поисковое продвижение / Продвижение услуг, 1 место, 2025">
-        <span class="award-text"><b>WDA</b> — Поисковое продвижение / Продвижение услуг, 1 место, 2025 — Редизайн для оптимизации премиум-портфолио</span>
+        <span class="award-text"><b>WDA</b>&nbsp;— Поисковое продвижение / Продвижение услуг, 1&nbsp;место, 2025&nbsp;— Редизайн для&nbsp;оптимизации премиум-портфолио</span>
       </div>
       <span class="award-dot">/</span>
       <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/runet.jpg" alt="Рейтинг Рунета — Разработка и развитие сайтов и веб-сервисов, 2026">
-        <span class="award-text"><b>Рейтинг Рунета</b> — Разработка и развитие сайтов и веб-сервисов, 2026</span>
+        <span class="award-text"><b>Рейтинг Рунета</b>&nbsp;— Разработка и&nbsp;развитие сайтов и&nbsp;веб-сервисов, 2026</span>
       </div>
       <span class="award-dot">/</span>
       <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/wda.jpg" alt="WDA — Услуги, 1 место, 2024">
-        <span class="award-text"><b>WDA</b> — Услуги, 1 место, 2024 — Корпоративный сайт Rocket Business</span>
+        <span class="award-text"><b>WDA</b>&nbsp;— Услуги, 1&nbsp;место, 2024&nbsp;— Корпоративный сайт Rocket Business</span>
       </div>
       <span class="award-dot">/</span>
       <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/runet.jpg" alt="Рейтинг Рунета — Дизайн и цифровые продукты, 8 место, 2026">
-        <span class="award-text"><b>Рейтинг Рунета</b> — Дизайн и цифровые продукты, 8 место, 2026</span>
+        <span class="award-text"><b>Рейтинг Рунета</b>&nbsp;— Дизайн и&nbsp;цифровые продукты, 8&nbsp;место, 2026</span>
       </div>
       <span class="award-dot">/</span>
       <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/wda.jpg" alt="WDA — Сайты / Услуги, 2 место, 2025">
-        <span class="award-text"><b>WDA</b> — Сайты / Услуги, 2 место, 2025 — Сайт технического подразделения Rocket Dev</span>
+        <span class="award-text"><b>WDA</b>&nbsp;— Сайты / Услуги, 2&nbsp;место, 2025&nbsp;— Сайт технического подразделения Rocket Dev</span>
       </div>
       <span class="award-dot">/</span>
       <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/runet.jpg" alt="Рейтинг Рунета — Простые интернет магазины, 5 место, 2026">
-        <span class="award-text"><b>Рейтинг Рунета</b> — Простые интернет магазины, 5 место, 2026</span>
+        <span class="award-text"><b>Рейтинг Рунета</b>&nbsp;— Простые интернет магазины, 5&nbsp;место, 2026</span>
       </div>
       <span class="award-dot">/</span>
       <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/wda.jpg" alt="WDA — Цифровизация и трансформация / Корпоративные порталы, 1 место, 2025">
-        <span class="award-text"><b>WDA</b> — Цифровизация и трансформация / Корпоративные порталы, 1 место, 2025 — Чат-бот «Rocket Спасибо»</span>
+        <span class="award-text"><b>WDA</b>&nbsp;— Цифровизация и&nbsp;трансформация / Корпоративные порталы, 1&nbsp;место, 2025&nbsp;— Чат-бот «Rocket Спасибо»</span>
       </div>
       <span class="award-dot">/</span>
       <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/runet.jpg" alt="Рейтинг Рунета — Порталы и веб сервисы, 15 место, 2026">
-        <span class="award-text"><b>Рейтинг Рунета</b> — Порталы и веб сервисы, 15 место, 2026</span>
+        <span class="award-text"><b>Рейтинг Рунета</b>&nbsp;— Порталы и&nbsp;веб сервисы, 15&nbsp;место, 2026</span>
       </div>
       <span class="award-dot">/</span>
       <div class="award-item">
         <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/wda.jpg" alt="WDA — Цифровизация и трансформация / Корпоративные порталы, 2 место, 2024">
-        <span class="award-text"><b>WDA</b> — Цифровизация и трансформация / Корпоративные порталы, 2 место, 2024 — «Наш Монитор»</span>
+        <span class="award-text"><b>WDA</b>&nbsp;— Цифровизация и&nbsp;трансформация / Корпоративные порталы, 2&nbsp;место, 2024&nbsp;— «Наш Монитор»</span>
       </div>
       <span class="award-dot">/</span>
     </div>
@@ -874,7 +999,7 @@
   <div class="wrap">
     <div class="section-head reveal">
       <div>
-        <span class="section-num reveal">06 / Немного гордости</span>
+        <span class="section-num reveal">Немного гордости</span>
         <h2 class="section-title reveal">Достижения</h2>
       </div>
       <a href="about.html" class="btn btn-ghost btn-all-cases" data-cursor="hover">Подробнее →</a>
@@ -895,7 +1020,7 @@
       <a class="achieve-card" href="cases/fintech.html" data-cursor="view" data-cursor-label="Открыть">
         <div class="achieve-icon">🎤</div>
         <h3>Спроектировала финтех-приложение с&nbsp;нуля</h3>
-        <p>Разработала пользовательские сценарии и&nbsp;интерфейсы приложения для P2P-займов&nbsp;— от&nbsp;анализа рисков и&nbsp;логики сделок до&nbsp;подготовки макетов к&nbsp;разработке.</p>
+        <p>Разработала пользовательские сценарии и&nbsp;интерфейсы приложения для&nbsp;P2P-займов&nbsp;— от&nbsp;анализа рисков и&nbsp;логики сделок до&nbsp;подготовки макетов к&nbsp;разработке.</p>
         <div class="achieve-meta"><span>Efimov · 2025</span><span class="achieve-link">Смотреть кейс <svg viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
       </a>
       <a class="achieve-card" href="cases/fintechds.html" data-cursor="view" data-cursor-label="Открыть">
@@ -925,7 +1050,7 @@
 
 <section id="testimonials">
   <div class="wrap">
-    <span class="section-num reveal">07 / Написать коллегам в Телеграм</span>
+    <span class="section-num reveal">Написать коллегам в&nbsp;Телеграм</span>
     <h2 class="section-title reveal">Рекомендации</h2>
     <div class="testi-grid reveal-stagger" style="margin-top:48px;">
       <a class="testi-card" href="https://t.me/bogdanova_e" data-cursor="view" data-cursor-label="Написать">
@@ -961,12 +1086,12 @@
 
 <section id="contact" class="contact-dark">
   <div class="wrap contact-section">
-    <div class="eyebrow reveal">Открыта к предложениям</div>
+    <div class="eyebrow reveal">Открыта к&nbsp;предложениям</div>
     <h2 class="reveal">Готовы предложить оффер?</h2>
-    <p class="reveal" style="font-size:14px;">Отвечаю в течение пары часов. Открыта к full-time, контракту и разовым проектам.</p>
+    <p class="reveal" style="font-size:14px;">Отвечаю в&nbsp;течение пары часов. Открыта к&nbsp;full-time, контракту и&nbsp;разовым проектам.</p>
     <div class="hero-actions reveal">
-      <a href="https://t.me/uxuiangelina" class="btn btn-primary" data-cursor="hover">Написать в Telegram</a>
-      <a href="mailto:uxuiangelina@yandex.ru" class="btn btn-ghost-dark" data-cursor="hover">Написать на почту</a>
+      <a href="https://t.me/uxuiangelina" class="btn btn-primary" data-cursor="hover">Написать в&nbsp;Telegram</a>
+      <a href="mailto:uxuiangelina@yandex.ru" class="btn btn-ghost-dark" data-cursor="hover">Написать на&nbsp;почту</a>
     </div>
   </div>
 </section>
@@ -1044,7 +1169,6 @@ window.addEventListener('scroll', () => {
 const heroSection = document.getElementById('heroSection');
 const blob1 = document.getElementById('blob1');
 const blob2 = document.getElementById('blob2');
-const portraitImg = document.getElementById('portraitImg');
 if (heroSection) {
   heroSection.addEventListener('mousemove', e => {
     const r = heroSection.getBoundingClientRect();
@@ -1052,53 +1176,36 @@ if (heroSection) {
     const dy = (e.clientY - r.top) / r.height - 0.5;
     blob1.style.transform = 'translate(' + (dx * 30) + 'px,' + (dy * 30) + 'px)';
     blob2.style.transform = 'translate(' + (dx * -24) + 'px,' + (dy * -24) + 'px)';
-    if (portraitImg) portraitImg.style.transform = 'translate(' + (dx * 10) + 'px,' + (dy * 10) + 'px)';
   });
 }
-
-const statObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.querySelectorAll('.stat b').forEach(b => {
-        const raw = (b.dataset.target || '').trim();
-        const suffix = b.dataset.suffix || '';
-        const isNumber = /^-?\d+$/.test(raw);
-
-        if (isNumber) {
-          const target = parseInt(raw, 10);
-          let cur = 0;
-          const step = Math.max(1, Math.ceil(target / 40));
-          const t = setInterval(() => {
-            cur += step;
-            if (cur >= target) { cur = target; clearInterval(t); }
-            b.textContent = cur + suffix;
-          }, 30);
-        }
-        // Текстовые значения (не числа) не трогаем — их текст уже задан в HTML
-      });
-      statObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.4 });
-const statsRow = document.getElementById('statsRow');
-if (statsRow) statObserver.observe(statsRow);
 
 const io = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) entry.target.classList.add('in');
   });
 }, { threshold: 0.15 });
-document.querySelectorAll('.reveal, .reveal-stagger, .tl-item').forEach(el => io.observe(el));
+document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => io.observe(el));
 
 const drawObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) { entry.target.classList.add('in'); drawObserver.unobserve(entry.target); }
   });
 }, { threshold: 0.2 });
-const expTimeline = document.getElementById('expTimeline');
-if (expTimeline) drawObserver.observe(expTimeline);
 const processTrack = document.getElementById('processTrack');
 if (processTrack) drawObserver.observe(processTrack);
+
+// Компетенции: аккордеон, одна карточка открыта
+document.querySelectorAll('.skill-head').forEach(head => {
+  head.addEventListener('click', () => {
+    const row = head.parentElement;
+    const willOpen = !row.classList.contains('open');
+    document.querySelectorAll('.skill-row').forEach(r => {
+      r.classList.remove('open');
+      r.querySelector('.skill-head').setAttribute('aria-expanded', 'false');
+    });
+    if (willOpen) { row.classList.add('open'); head.setAttribute('aria-expanded', 'true'); }
+  });
+});
 </script>
 
 </body>
