@@ -121,7 +121,7 @@
   .carousel{ position:relative; border-radius:16px; overflow:hidden; margin:8px 0 32px; background:var(--bg-alt); }
   .car-track{ display:flex; overflow-x:auto; scroll-snap-type:x mandatory; scroll-behavior:smooth; scrollbar-width:none; -webkit-overflow-scrolling:touch; }
   .car-track::-webkit-scrollbar{ display:none; }
-  .car-slide{ flex:0 0 100%; scroll-snap-align:center; display:flex; align-items:center; justify-content:center; }
+  .car-slide{ flex:0 0 100%; scroll-snap-align:center; scroll-snap-stop:always; display:flex; align-items:center; justify-content:center; }
   .car-slide img{ width:100%; height:auto; display:block; }
   .car-btn{ position:absolute; top:calc(50% - 18px); width:36px; height:36px; padding:0; display:grid; place-items:center; border-radius:50%; border:1px solid var(--line-strong); background:rgba(255,255,255,.94); color:var(--text); cursor:pointer; box-shadow:none; transition:background .3s, border-color .3s, color .3s, opacity .2s; }
   .car-btn svg{ width:16px; height:16px; display:block; pointer-events:none; }
@@ -251,7 +251,7 @@ function imgs(){
     '<div class="car-track">' +
       names.map(function(n){ return '<div class="car-slide"><img src="' + img(n) + '" alt="" loading="lazy"></div>'; }).join('') +
     '</div>' +
-    '<button type="button" class="car-btn prev" data-dir="-1" aria-label="Назад" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>' +
+    '<button type="button" class="car-btn prev" data-dir="-1" aria-label="Назад"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>' +
     '<button type="button" class="car-btn next" data-dir="1" aria-label="Вперёд"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>' +
     '<div class="car-dots">' +
       names.map(function(n, i){ return '<button type="button" class="car-dot' + (i === 0 ? ' active' : '') + '" data-i="' + i + '" aria-label="Слайд ' + (i + 1) + '"></button>'; }).join('') +
@@ -259,30 +259,73 @@ function imgs(){
   '</div>';
 }
 (function(){
-  function go(car, i){
-    var t = car.querySelector('.car-track'), n = t.children.length;
-    i = Math.max(0, Math.min(n - 1, i));
-    t.scrollTo({ left: i * t.clientWidth, behavior: 'smooth' });
+  // Бесконечная карусель: [копия последнего] [1..n] [копия первого]; на копии «прыгаем» без анимации на настоящий слайд
+  function jump(t, pos){
+    var b = t.style.scrollBehavior;
+    t.style.scrollBehavior = 'auto';
+    t.scrollLeft = pos * t.clientWidth;
+    t.style.scrollBehavior = b;
   }
-  function current(car){
-    var t = car.querySelector('.car-track');
-    return Math.round(t.scrollLeft / t.clientWidth);
+  function pos(t){ return Math.round(t.scrollLeft / t.clientWidth); }
+  function setup(car){
+    if (car.dataset.ready) return;
+    var t = car.querySelector('.car-track'), n = t.children.length;
+    if (n < 2) return;
+    var head = t.children[n - 1].cloneNode(true), tail = t.children[0].cloneNode(true);
+    [head, tail].forEach(function(c){
+      c.setAttribute('aria-hidden', 'true');
+      var im = c.querySelector('img'); if (im) im.removeAttribute('loading');
+    });
+    t.insertBefore(head, t.firstChild);
+    t.appendChild(tail);
+    car.dataset.ready = '1';
+    car.dataset.n = n;
+    car.dataset.i = 0;
+    jump(t, 1);
+  }
+  function realIndex(car, p){ var n = +car.dataset.n; return ((p - 1) % n + n) % n; }
+  function paint(car){
+    var t = car.querySelector('.car-track'), i = realIndex(car, pos(t));
+    car.dataset.i = i;
+    car.querySelectorAll('.car-dot').forEach(function(d, k){ d.classList.toggle('active', k === i); });
+  }
+  function settle(car){
+    var t = car.querySelector('.car-track'), n = +car.dataset.n, p = pos(t);
+    if (p === 0) jump(t, n);
+    else if (p === n + 1) jump(t, 1);
+    paint(car);
+  }
+  function go(car, p){
+    var t = car.querySelector('.car-track'), n = +car.dataset.n;
+    settle(car);                                  // если стоим на копии — сначала встаём на настоящий слайд
+    p = Math.max(0, Math.min(n + 1, p));
+    t.scrollTo({ left: p * t.clientWidth, behavior: 'smooth' });
   }
   document.addEventListener('click', function(e){
     var b = e.target.closest('.car-btn, .car-dot');
     if (!b) return;
     var car = b.closest('.carousel');
-    if (b.classList.contains('car-dot')) go(car, +b.dataset.i);
-    else go(car, current(car) + (+b.dataset.dir));
+    setup(car);
+    var t = car.querySelector('.car-track');
+    if (b.classList.contains('car-dot')) go(car, +b.dataset.i + 1);
+    else go(car, pos(t) + (+b.dataset.dir));
   });
+  var timers = new WeakMap();
   document.addEventListener('scroll', function(e){
     var t = e.target;
     if (!t.classList || !t.classList.contains('car-track')) return;
-    var car = t.parentNode, i = current(car), n = t.children.length;
-    car.querySelectorAll('.car-dot').forEach(function(d, k){ d.classList.toggle('active', k === i); });
-    car.querySelector('.prev').disabled = (i === 0);
-    car.querySelector('.next').disabled = (i === n - 1);
+    var car = t.parentNode;
+    if (!car.dataset.ready) return;
+    paint(car);
+    clearTimeout(timers.get(car));
+    timers.set(car, setTimeout(function(){ settle(car); }, 90));
   }, true);
+  window.addEventListener('resize', function(){
+    document.querySelectorAll('.carousel[data-ready]').forEach(function(car){
+      jump(car.querySelector('.car-track'), (+car.dataset.i) + 1);
+    });
+  });
+  window.initCarousels = function(){ document.querySelectorAll('.carousel').forEach(setup); };
 })();
 // ============ ЭТОТ КЕЙС (всё содержимое страницы) ============
 setImgDir('construct'); // картинки в тексте берутся из images/construct/
@@ -456,6 +499,7 @@ function render(){
 }
 
 render();
+initCarousels();
 
 const navEl = document.getElementById('nav');
 window.addEventListener('scroll', () => {
