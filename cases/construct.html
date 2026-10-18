@@ -125,6 +125,7 @@
   .car-slide img{ width:100%; height:auto; display:block; }
   .car-btn{ position:absolute; top:calc(50% - 18px); width:36px; height:36px; padding:0; display:grid; place-items:center; border-radius:50%; border:1px solid var(--line-strong); background:rgba(255,255,255,.94); color:var(--text); cursor:pointer; box-shadow:none; transition:background .3s, border-color .3s, color .3s, opacity .2s; }
   .car-btn svg{ width:16px; height:16px; display:block; pointer-events:none; }
+  .car-btn.next svg{ transform:translateX(1px); } .car-btn.prev svg{ transform:translateX(-1px); } /* оптическая центровка: остриё шеврона визуально легче */
   .car-btn:hover{ background:var(--accent); border-color:var(--accent); color:#fff; }
   .car-btn:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
   .car-btn.prev{ left:14px; } .car-btn.next{ right:14px; }
