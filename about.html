@@ -89,10 +89,10 @@
   @media (min-width:901px){ .about-grid{ grid-template-columns:1.15fr .85fr; } }
   .about-photo{ display:flex; justify-content:center; position:relative; }
   .about-photo-wrap{ position:relative; }
-  .about-photo-square{ position:relative; width:280px; height:280px; border-radius:var(--radius); overflow:hidden; box-shadow:0 30px 60px -28px rgba(17,17,17,.35); }
+  .about-photo-square{ position:relative; width:360px; height:360px; border-radius:var(--radius); overflow:hidden; box-shadow:0 30px 60px -28px rgba(17,17,17,.35); animation:float 5s ease-in-out infinite; }
   .about-photo-square img{ width:100%; height:100%; object-fit:cover; }
-  .about-badge{ bottom:-18px; left:-18px; }
-  @media (max-width:900px){ .about-photo-square{ width:220px; height:220px; } .about-badge{ left:8px; bottom:8px; } }
+  .about-badge{ top:auto; left:auto; bottom:-18px; right:-18px; animation-delay:1.6s; }
+  @media (max-width:900px){ .about-photo{ justify-content:flex-start; } .about-photo-wrap{ width:100%; } .about-photo-square{ width:100%; height:auto; aspect-ratio:1/1; } .about-badge{ top:auto; left:auto; bottom:8px; right:8px; } }
   .about-text .lead{ margin-top:14px; }
 
   .eyebrow{ display:inline-flex; align-items:center; gap:8px; font-size:13px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--accent); margin-bottom:10px; }
@@ -195,7 +195,7 @@
   .mt-project a svg{ width:13px; height:13px; transition:transform .3s var(--ease); }
   .mt-project:hover a svg{ transform:translateX(4px); }
 
-  .contact-dark{ background:var(--dark-bg); color:var(--dark-text); position:relative; overflow:hidden; }
+  .contact-dark{ background:var(--dark-bg); color:var(--dark-text); border-top:none; position:relative; overflow:hidden; }
   .contact-dark::before{ content:''; position:absolute; width:520px; height:520px; border-radius:50%; background:var(--accent); filter:blur(150px); opacity:.25; top:-220px; left:50%; transform:translateX(-50%); pointer-events:none; }
   .contact-dark .wrap{ position:relative; z-index:1; }
   .contact-section{ text-align:left; padding-top:96px; padding-bottom:96px; }
@@ -220,7 +220,7 @@
   .btn-ghost-dark{ border:1px solid rgba(245,245,243,.3); color:var(--dark-text); }
   .btn-ghost-dark:hover{ border-color:#fff; transform:translateY(-2px); background:rgba(255,255,255,.06); }
 
-  footer.footer-dark{ background:var(--dark-bg); border-top:1px solid var(--dark-line); padding:22px 0; }
+  footer.footer-dark{ background:var(--dark-bg); border-top:1px solid var(--dark-line); padding:22px 0; line-height:1.55; -webkit-font-smoothing:antialiased; }
   footer.footer-dark .wrap{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
   footer.footer-dark span{ font-size:13px; color:var(--dark-text-2); }
   .footer-links{ display:flex; gap:24px; list-style:none; font-size:14px; color:var(--dark-text-2); }
@@ -445,20 +445,20 @@
         </div>
         <div class="mt-block projects">
           <div class="mt-project-grid">
-            <div class="mt-project">
+<div class="mt-project">
               <b>Rocket Business</b>
               <p>Пересобрала структуру сайта вокруг реальных задач пользователя: упростила навигацию, переработала подачу кейсов и усилила путь к отправке заявки. Проект стал победителем Workspace Digital Awards 2024 в номинации «Услуги».</p>
               <a href="cases/rb.html">Смотреть кейс<svg viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
             </div>
             <div class="mt-project">
-              <b>Rocket Dev</b>
-              <p>Спроектировала сайт технического подразделения компании. Проект получил 2 место на Workspace Digital Awards 2025 в номинации «Сайты / Услуги».</p>
-              <a href="https://workspace.ru/awards/cases/razrabotka-sayta-rocket-dev/" target="_blank" rel="noopener">Перейти на сайт WDA<svg viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              <b>Сайт многопрофильной клиники семейного здоровья</b>
+              <p>Спроектировала сайт клиники: структуру услуг, страницы специалистов и путь к записи на приём.</p>
+              <a href="case-post.html?slug=care">Смотреть кейс<svg viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
             </div>
             <div class="mt-project">
-              <b>Чат-бот «Rocket Спасибо»</b>
-              <p>Спроектировала корпоративного чат-бота. Проект получил 1 место на Workspace Digital Awards 2025 в номинации «Цифровизация и трансформация / Корпоративные порталы».</p>
-              <a href="https://workspace.ru/awards/cases/razrabotka-chat-bota-rocket-spasibo/" target="_blank" rel="noopener">Перейти на сайт WDA<svg viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              <b>Сайт мебельного магазина: каталог, проекты и индивидуальный подбор</b>
+              <p>Спроектировала каталог, страницы проектов и сценарий индивидуального подбора мебели.</p>
+              <a href="case-post.html?slug=mebel">Смотреть кейс<svg viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
             </div>
           </div>
         </div>
@@ -503,20 +503,6 @@
           <ul>
             <li>Часть новых клиентов приходила по рекомендациям — без отдельного маркетинга</li>
           </ul>
-        </div>
-        <div class="mt-block projects">
-          <div class="mt-project-grid">
-            <div class="mt-project">
-              <b>Айдентика для городского фестиваля</b>
-              <p>Разработала логотип, палитру и навигацию для мероприятия.</p>
-              <a href="case-post.html?slug=freelance-festival-brand">Смотреть кейс<svg viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-            </div>
-            <div class="mt-project">
-              <b>Брендбук для галереи современного искусства</b>
-              <p>Собрала гайдлайны по стилю, тону коммуникации и оформлению.</p>
-              <a href="case-post.html?slug=freelance-gallery-brand">Смотреть кейс<svg viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -571,10 +557,10 @@
 
 <section id="testimonials">
   <div class="wrap">
-    <div class="section-h">Уточнить про меня у коллег</div>
+    <div class="section-h">Написать коллегам в Телеграм</div>
     <h2 class="section-title">Рекомендации</h2>
     <div class="testi-grid" style="margin-top:8px;">
-      <a class="testi-card" href="https://t.me/bogdanova_e" data-cursor="view" data-cursor-label="Спросить">
+      <a class="testi-card" href="https://t.me/bogdanova_e" data-cursor="view" data-cursor-label="Написать">
         <div class="testi-person">
           <div class="testi-avatar">БЕ</div>
           <div>
@@ -583,7 +569,7 @@
           </div>
         </div>
       </a>
-      <a class="testi-card" href="https://t.me/kasyanenko_v" data-cursor="view" data-cursor-label="Спросить">
+      <a class="testi-card" href="https://t.me/kasyanenko_v" data-cursor="view" data-cursor-label="Написать">
         <div class="testi-person">
           <div class="testi-avatar">КВ</div>
           <div>
@@ -592,7 +578,7 @@
           </div>
         </div>
       </a>
-      <a class="testi-card" href="https://t.me/kim_v" data-cursor="view" data-cursor-label="Спросить">
+      <a class="testi-card" href="https://t.me/kim_v" data-cursor="view" data-cursor-label="Написать">
         <div class="testi-person">
           <div class="testi-avatar">КВ</div>
           <div>
