@@ -171,7 +171,7 @@
   @keyframes float{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(-10px);} }
   @keyframes pulse{ 0%,100%{opacity:1;} 50%{opacity:.35;} }
 
-  header.hero{ padding:112px 0 56px; position:relative; overflow:hidden; }
+  header.hero{ padding:100px 0 48px; position:relative; overflow:hidden; }
   .hero-blob{ position:absolute; border-radius:50%; filter:blur(80px); opacity:.32; z-index:0; pointer-events:none; }
   .blob-1{ width:440px; height:440px; background:var(--accent); top:-140px; right:6%; animation:blobFloat 12s ease-in-out infinite; }
   .blob-2{ width:560px; height:560px; background:var(--accent-2); bottom:-80px; left:-140px; animation:blobFloat 14s ease-in-out infinite reverse; }
@@ -214,32 +214,31 @@
   @media (max-width:900px){ .badge-1{left:8px;} .badge-2{right:8px;} }
 
   .hero-bento{ display:grid; grid-template-columns:repeat(36,minmax(0,1fr)); gap:16px; position:relative; z-index:1; }
-  .hb-main{ grid-column:span 24; display:flex; flex-direction:column; justify-content:space-between; gap:28px; padding:32px 40px; border-radius:24px; border:1px solid var(--line); background:rgba(255,255,255,.72); backdrop-filter:blur(18px) saturate(160%); -webkit-backdrop-filter:blur(18px) saturate(160%); }
-  .hb-main .eyebrow{ margin-bottom:18px; }
-  .hb-main .hero-title{ font-size:clamp(34px,4.4vw,54px); }
+  .hb-main{ grid-column:span 27; display:flex; flex-direction:column; justify-content:space-between; gap:24px; padding:28px 40px; border-radius:24px; border:1px solid var(--line); background:rgba(255,255,255,.72); backdrop-filter:blur(18px) saturate(160%); -webkit-backdrop-filter:blur(18px) saturate(160%); }
+  .hb-main .eyebrow{ margin-bottom:14px; }
+  .hb-main .hero-title{ font-size:clamp(32px,4vw,48px); }
   .hb-main .hero-actions{ margin-top:0; }
-  .hb-main .btn-primary{ background-image:linear-gradient(100deg,#fff 0%,#fff 64%,var(--accent) 100%); background-color:#fff; color:var(--text); box-shadow:inset 0 0 0 1px var(--line-strong); }
-  .hb-main .btn-primary:hover{ filter:none; box-shadow:inset 0 0 0 1px var(--accent); }
+  .hb-main .lead{ margin-top:16px; font-size:14px; line-height:1.45; color:var(--text-2); max-width:60ch; }
 
-  .hb-person{ grid-column:span 12; display:flex; flex-direction:column; gap:14px; padding:12px; border-radius:24px; border:1px solid var(--line); background:var(--surface); text-align:left; }
+  .hb-person{ grid-column:span 9; display:flex; flex-direction:column; gap:14px; padding:12px; border-radius:24px; border:1px solid var(--line); background:var(--surface); text-align:left; }
   .hb-photo{ position:relative; flex:1 1 auto; min-height:140px; border-radius:16px; overflow:hidden; background:var(--bg-alt); }
   .hb-photo img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 20%; }
   .hb-person-info{ display:flex; flex-direction:column; gap:12px; padding:0 10px 10px; }
   .hb-person-info b{ display:block; font-family:'Manrope'; font-weight:800; font-size:16px; line-height:1.2; letter-spacing:-.01em; }
   .hb-person-info span.role{ display:block; margin-top:3px; font-size:13px; color:var(--text-2); }
-  .hb-person .case-tags{ flex-direction:row; flex-wrap:wrap; align-items:flex-start; gap:6px; }
+  .hb-person .case-tags{ flex-direction:column; align-items:flex-start; gap:6px; }
   .hb-person .tag{ white-space:nowrap; }
 
-  .fact-award{ grid-column:span 12; position:relative; overflow:hidden; display:flex; flex-direction:column; justify-content:space-between; gap:16px; padding:28px; border-radius:24px; background:var(--dark-bg); color:var(--dark-text); }
+  .fact-award{ grid-column:span 12; position:relative; overflow:hidden; display:flex; flex-direction:column; justify-content:space-between; gap:14px; padding:24px; border-radius:24px; background:var(--dark-bg); color:var(--dark-text); }
   .fact-award::before{ content:''; position:absolute; width:320px; height:320px; border-radius:50%; background:linear-gradient(135deg,var(--accent) 0%,var(--accent-2) 100%); filter:blur(80px); opacity:.55; top:-130px; right:-130px; pointer-events:none; }
   .fact-award > *{ position:relative; z-index:1; }
   .fact-kicker{ display:flex; align-items:center; gap:10px; font-size:12px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--text-2); }
   .fact-award .fact-kicker{ color:var(--dark-text-2); }
   .fact-award-main{ display:flex; align-items:center; gap:18px; }
-  .fact-big{ font-family:'Manrope'; font-weight:800; font-size:92px; line-height:.85; letter-spacing:-.05em; }
-  .fact-big-label{ font-family:'Manrope'; font-weight:700; font-size:18px; line-height:1.25; letter-spacing:-.01em; }
+  .fact-big{ font-family:'Manrope'; font-weight:800; font-size:76px; line-height:.85; letter-spacing:-.05em; }
+  .fact-big-label{ font-family:'Manrope'; font-weight:700; font-size:15px; line-height:1.25; letter-spacing:-.01em; }
   .fact-award-list{ list-style:none; }
-  .fact-award-list li{ display:flex; justify-content:space-between; align-items:baseline; gap:10px; padding:9px 0; border-top:1px solid var(--dark-line); font-size:13px; color:var(--dark-text-2); }
+  .fact-award-list li{ display:flex; justify-content:space-between; align-items:baseline; gap:10px; padding:7px 0; border-top:1px solid var(--dark-line); font-size:13px; color:var(--dark-text-2); }
   .fact-award-list li b{ font-weight:700; color:var(--dark-text); text-align:right; }
 
   .fact-card{ grid-column:span 8; display:flex; flex-direction:column; border:1px solid var(--line); border-radius:24px; padding:24px; background:var(--surface); transition:transform .35s var(--ease), box-shadow .35s var(--ease), border-color .35s var(--ease); }
@@ -247,7 +246,7 @@
   .fact-ico{ width:36px; height:36px; flex:0 0 auto; border-radius:12px; display:grid; place-items:center; background:var(--accent-soft); color:var(--accent); }
   .fact-ico svg{ width:18px; height:18px; }
   .fact-card.fc-2 .fact-ico, .fact-card.fc-3 .fact-ico{ background:var(--accent-2-soft); color:var(--accent-2); }
-  .fact-card b{ display:block; margin-top:auto; padding-top:20px; font-family:'Manrope'; font-weight:800; font-size:clamp(19px,1.9vw,23px); line-height:1.1; letter-spacing:-.02em; }
+  .fact-card b{ display:block; margin-top:auto; padding-top:16px; font-family:'Manrope'; font-weight:700; font-size:16px; line-height:1.25; letter-spacing:-.01em; }
   .fact-card p{ margin-top:8px; font-size:13px; line-height:1.45; color:var(--text-2); max-width:34ch; }
 
   @media (max-width:1000px){
@@ -309,14 +308,22 @@
   .section-desc{ color:var(--text-2); max-width:36ch; font-size:16px; }
 
   #about{ border-top:none; padding-top:60px; }
-  .about-grid{ display:grid; grid-template-columns:1fr; gap:40px; align-items:center; }
-  @media (min-width:901px){ .about-grid{ grid-template-columns:1.15fr .85fr; gap:56px; } }
-  .about-text p{ font-size:17px; line-height:1.5; color:var(--text-2); max-width:44ch; }
-  .about-photo, .about-photo-wrap{ position:relative; }
-  .about-photo-square{ position:relative; width:100%; aspect-ratio:6/5; border-radius:28px; overflow:hidden; background:var(--bg-alt); box-shadow:0 30px 60px -28px rgba(17,17,17,.35); }
-  .about-photo-square img{ width:100%; height:100%; object-fit:cover; object-position:center 25%; }
+  #skills, #work{ border-top:none; }
+  .about-card{ display:grid; grid-template-columns:1fr; gap:0; padding:12px; border-radius:32px; border:1px solid var(--line); background:var(--surface); box-shadow:0 30px 60px -40px rgba(17,17,17,.25); }
+  @media (min-width:901px){ .about-card{ grid-template-columns:1.1fr .9fr; } }
+  .about-photo, .about-photo-wrap{ position:relative; height:100%; }
+  .about-photo-square{ position:relative; width:100%; height:100%; min-height:460px; border-radius:22px; overflow:hidden; background:var(--bg-alt); }
+  .about-photo-square img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 25%; }
   .about-badge{ top:auto; left:auto; bottom:20px; right:20px; animation-delay:1.6s; }
-  @media (max-width:900px){ .about-photo-square{ aspect-ratio:4/3; border-radius:22px; } .about-badge{ bottom:14px; right:14px; } }
+  .about-content{ display:flex; flex-direction:column; justify-content:space-between; gap:36px; padding:36px 40px 32px 48px; }
+  .about-text p{ font-size:17px; line-height:1.5; color:var(--text-2); max-width:44ch; }
+  .about-more{ align-self:flex-start; }
+  @media (max-width:900px){
+    .about-photo-square{ min-height:0; height:auto; aspect-ratio:4/3; }
+    .about-photo-wrap{ height:auto; }
+    .about-content{ padding:28px 16px 20px; gap:28px; }
+    .about-badge{ bottom:14px; right:14px; }
+  }
   .cv-link{ display:inline-flex; align-items:center; gap:8px; font-weight:600; font-size:15px; color:var(--accent); cursor:none; }
 
   .approach-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
@@ -391,7 +398,7 @@
   .skill-head h3{ font-size:clamp(20px,2.2vw,26px); line-height:1.15; }
   .skill-preview{ display:flex; flex-wrap:wrap; gap:6px; margin-left:auto; justify-content:flex-end; transition:opacity .25s; }
   .skill-preview .tag{ font-size:10.5px; padding:3px 9px; }
-  .skill-row.open .skill-preview{ opacity:0; pointer-events:none; }
+  @media (min-width:1100px){ .skill-card > .tag{ display:none; } }
   .skill-chev{ flex:none; width:36px; height:36px; border-radius:50%; border:1px solid var(--line-strong); display:grid; place-items:center; color:var(--text); transition:background .3s, border-color .3s, color .3s; }
   .skill-chev svg{ display:block; transition:transform .45s var(--ease); }
   .skill-row.open .skill-chev{ background:var(--accent); border-color:var(--accent); color:#fff; }
@@ -410,8 +417,7 @@
   .skill-meta{ margin-top:auto; padding-top:10px; min-height:calc(12px*1.5*2 + 11px); font-size:12px; line-height:1.5; color:var(--text); opacity:.62; border-top:1px dashed var(--line-strong); width:100%; }
   .skill-toolbar{ display:flex; flex-wrap:wrap; align-items:center; gap:6px; padding:12px 0 20px; border-top:1px solid var(--line); }
   .skill-toolbar > span:first-child{ font-size:12px; font-weight:600; color:var(--text-2); letter-spacing:.04em; text-transform:uppercase; margin-right:8px; }
-  .skill-toolbar .tag{ background:var(--bg-alt); color:var(--text); }
-  .skill-toolbar .tag.t1{ background:var(--accent-soft); color:var(--accent); }
+  .skill-toolbar .tag{ background:var(--accent-soft); color:var(--accent); }
   @media (max-width:1099px){
     .skill-preview{ display:none; }
     .skill-head{ padding:18px 20px; }
@@ -446,7 +452,7 @@
 
   .testi-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
   @media (max-width:900px){ .testi-grid{ grid-template-columns:1fr; } }
-  .testi-card{ display:block; border:1px solid var(--line); border-radius:16px; padding:32px; transition:transform .35s var(--ease), border-color .35s ease, box-shadow .35s var(--ease); cursor:none; }
+  .testi-card{ display:block; border:1px solid var(--line); border-radius:16px; padding:32px; background:var(--surface); transition:transform .35s var(--ease), border-color .35s ease, box-shadow .35s var(--ease); cursor:none; }
   .testi-card:hover{ transform:translateY(-4px); border-color:transparent; box-shadow:0 24px 48px -28px rgba(17,17,17,.2); }
   .testi-quote{ font-size:13px; color:var(--text-2); margin-bottom:24px; }
   .testi-person{ display:flex; align-items:center; gap:12px; }
@@ -538,22 +544,12 @@
           <h1 class="hero-title">
             <span class="word" style="--i:0">Проектирую цифровые продукты</span>
           </h1>
+          <p class="lead">Разбираюсь в&nbsp;задаче и&nbsp;проектирую решение. UX/UI Designer широкого профиля. Работаю со&nbsp;сложными цифровыми продуктами, корпоративными сайтами и&nbsp;лендингами</p>
         </div>
         <div class="hero-actions">
           <a href="cases.html" class="btn btn-primary" data-cursor="hover">Смотреть кейсы</a>
           <a href="https://t.me/uxuiangelina" class="btn btn-ghost" data-cursor="hover">Связаться</a>
         </div>
-      </div>
-      <div class="fact-award">
-        <div class="fact-kicker">Признание индустрии</div>
-        <div class="fact-award-main">
-          <div class="fact-big">9</div>
-          <div class="fact-big-label">наград за&nbsp;сайты и&nbsp;сервисы</div>
-        </div>
-        <ul class="fact-award-list">
-          <li><span>WDA</span><b>5&nbsp;призовых, 3&nbsp;первых</b></li>
-          <li><span>Рейтинг Рунета</span><b>4&nbsp;номинации</b></li>
-        </ul>
       </div>
       <div class="hb-person">
         <div class="hb-photo"><img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/angelina.jpg" alt="Ангелина Масалова"></div>
@@ -568,18 +564,28 @@
           </div>
         </div>
       </div>
+      <div class="fact-award">
+        <div class="fact-award-main">
+          <div class="fact-big">9</div>
+          <div class="fact-big-label">наград за&nbsp;сайты и&nbsp;сервисы</div>
+        </div>
+        <ul class="fact-award-list">
+          <li><span>WDA</span><b>5&nbsp;призовых, 3&nbsp;первых</b></li>
+          <li><span>Рейтинг Рунета</span><b>4&nbsp;номинации</b></li>
+        </ul>
+      </div>
       <div class="fact-card fc-2">
-          <div class="fact-kicker"><span class="fact-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 3 8l9 5 9-5-9-5Z"/><path d="m3 13 9 5 9-5"/></svg></span>Сложность</div>
+          <div class="fact-kicker"><span class="fact-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 3 8l9 5 9-5-9-5Z"/><path d="m3 13 9 5 9-5"/></svg></span></div>
           <b>Fintech и&nbsp;B2B с&nbsp;тяжёлой логикой</b>
           <p>Юридические сценарии, кабинеты, роли и&nbsp;статусы&nbsp;— без&nbsp;потери понятности</p>
         </div>
       <div class="fact-card fc-3">
-          <div class="fact-kicker"><span class="fact-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m12 7 0 5 3 2"/></svg></span>Полный цикл</div>
+          <div class="fact-kicker"><span class="fact-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m12 7 0 5 3 2"/></svg></span></div>
           <b>От&nbsp;CJM до&nbsp;handoff</b>
           <p>Исследование, архитектура, прототипы и&nbsp;спеки для&nbsp;разработки</p>
         </div>
       <div class="fact-card fc-4">
-          <div class="fact-kicker"><span class="fact-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c.6-3.4 3-5 6-5s5.4 1.6 6 5"/><path d="M16 5.5a3 3 0 0 1 0 5.5M18 15.2c1.7.6 2.7 2.2 3 4.8"/></svg></span>Команда</div>
+          <div class="fact-kicker"><span class="fact-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c.6-3.4 3-5 6-5s5.4 1.6 6 5"/><path d="M16 5.5a3 3 0 0 1 0 5.5M18 15.2c1.7.6 2.7 2.2 3 4.8"/></svg></span></div>
           <b>Растим дизайнеров вместе</b>
           <p>Воркшопы для&nbsp;junior, митапы и&nbsp;общая база знаний</p>
         </div>
@@ -705,15 +711,8 @@
 
 <section id="about">
   <div class="wrap">
-    <div class="section-head reveal">
-      <div>
-        <span class="section-num">Подход к&nbsp;работе</span>
-        <h2 class="section-title">Обо&nbsp;мне</h2>
-      </div>
-      <a href="about.html" class="btn btn-ghost btn-all-cases" data-cursor="hover">Детально об&nbsp;опыте →</a>
-    </div>
-    <div class="about-grid" style="margin-top:24px;">
-      <div class="about-photo reveal">
+    <div class="about-card reveal">
+      <div class="about-photo">
         <div class="about-photo-wrap">
           <div class="about-photo-square">
             <img src="https://raw.githubusercontent.com/uxuiangelina/portfolio/main/images/angelina2.jpg" alt="Ангелина Масалова">
@@ -721,15 +720,22 @@
           <div class="float-badge about-badge">Я&nbsp;навайбкодила этот сайт!</div>
         </div>
       </div>
-      <div class="about-text reveal">
-        <p>Мне&nbsp;нравится докапываться до&nbsp;сути задачи и&nbsp;находить решение, которое работает не&nbsp;только визуально, но&nbsp;и&nbsp;для&nbsp;бизнеса и&nbsp;пользователя.</p>
-        <p style="margin-top:16px;">Люблю порядок в&nbsp;сложных задачах, понятную коммуникацию и&nbsp;когда за&nbsp;красивым интерфейсом стоит действительно продуманная логика</p>
-        <div class="case-tags" style="margin-top:22px;">
-          <span class="tag t1">Product Design</span>
-          <span class="tag t2">B2B</span>
-          <span class="tag t2">SaaS</span>
-          <span class="tag t1">Открыта к&nbsp;переезду</span>
+      <div class="about-content">
+        <div>
+          <span class="section-num">Подход к&nbsp;работе</span>
+          <h2 class="section-title">Обо&nbsp;мне</h2>
         </div>
+        <div class="about-text">
+          <p>Мне&nbsp;нравится докапываться до&nbsp;сути задачи и&nbsp;находить решение, которое работает не&nbsp;только визуально, но&nbsp;и&nbsp;для&nbsp;бизнеса и&nbsp;пользователя.</p>
+          <p style="margin-top:16px;">Люблю порядок в&nbsp;сложных задачах, понятную коммуникацию и&nbsp;когда за&nbsp;красивым интерфейсом стоит действительно продуманная логика</p>
+          <div class="case-tags" style="margin-top:22px;">
+            <span class="tag t1">Product Design</span>
+            <span class="tag t2">B2B</span>
+            <span class="tag t2">SaaS</span>
+            <span class="tag t1">Открыта к&nbsp;переезду</span>
+          </div>
+        </div>
+        <a href="about.html" class="btn btn-ghost about-more" data-cursor="hover">Подробнее о&nbsp;моём опыте →</a>
       </div>
     </div>
   </div>
