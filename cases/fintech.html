@@ -99,6 +99,10 @@
   .tag{ font-size:12px; font-weight:600; padding:6px 13px; border-radius:999px; }
   .tag.t1{ background:var(--accent-soft); color:var(--accent); }
   .tag.t2{ background:var(--accent-2-soft); color:var(--accent-2); }
+  .case-tags .tag.product{ background:var(--accent-soft); color:var(--accent); }
+  .case-tags .tag.activity{ background:var(--accent-2-soft); color:var(--accent-2); }
+  .case-tags .tag.stage{ background:var(--bg-alt); color:var(--text-2); }
+  .case-tags .tag.industry{ background:var(--green-soft); color:var(--green); }
   h1.case-title{ font-size:clamp(28px,5vw,44px); max-width:20ch; margin-bottom:20px; }
   .case-lead{ color:var(--text-2); font-size:14px; max-width:62ch; margin-bottom:36px; }
 
@@ -331,10 +335,10 @@ function imgs(){
 setImgDir('fintech'); // картинки в тексте берутся из images/fintech/
 const CASE = {
     slug: 'fintech',
-    title: 'P2P-финтех-продукт с&nbsp;юридической&nbsp;логикой',
+    title: 'P2P-fintech-продукт с&nbsp;юридической&nbsp;логикой',
     lead: 'Спроектировала с&nbsp;нуля мобильный P2P-сервис для&nbsp;оформления и&nbsp;сопровождения займов между&nbsp;физическими лицами&nbsp;— от&nbsp;идеи&nbsp;до&nbsp;запуска.',
-    tags: [['Fintech','t1'], ['P2P','t2'], ['Mobile App','t1'], ['Product Design','t2']],
-    product: ['iOS-приложение','Android-приложение'], activity: 'Проектирование', stage: 'С&nbsp;нуля', industry: 'Финтех',
+    tags: [['Fintech','industry'], ['LegalTech','industry'], ['P2P','product'], ['Mobile App','product'], ['Product Design','activity'], ['Проектирование','activity']],
+    product: ['iOS-приложение','Android-приложение'], activity: 'Проектирование', stage: 'С&nbsp;нуля', industry: ['Fintech','LegalTech'],
     meta: [
       { label: 'Формат проекта', value: 'Продукт' },
       { label: 'Моя роль', value: 'UX/UI Designer' },
@@ -410,10 +414,10 @@ const CASE = {
       <h2>Навигация и&nbsp;дополнительные разделы</h2>
       <p>Помимо основных сценариев работы с&nbsp;займом, я&nbsp;предусмотрела отдельное меню для&nbsp;функций, которые не&nbsp;относятся непосредственно к&nbsp;созданию или&nbsp;исполнению&nbsp;сделки.</p>
       <p>В&nbsp;него вошли претензии, база знаний, информация о&nbsp;сервисе, настройки и&nbsp;юридическая информация. Такое разделение помогает отделить работу с&nbsp;обязательствами от&nbsp;справочных материалов, параметров приложения и&nbsp;документов, регулирующих использование&nbsp;платформы.</p>
-      <p><strong>База знаний</strong> предназначена для&nbsp;получения справочной информации о&nbsp;работе сервиса и&nbsp;порядке действий в&nbsp;различных ситуациях. Она&nbsp;позволяет разобраться в&nbsp;вопросе и&nbsp;вернуться к&nbsp;основному сценарию, не&nbsp;смешивая объяснения с&nbsp;непосредственными операциями&nbsp;по&nbsp;займу.</p>
-      <p><strong>Раздел «О&nbsp;нас»</strong> раскрывает информацию о&nbsp;самом проекте. В&nbsp;финансовом продукте это&nbsp;дополнительная возможность понять, с&nbsp;каким сервисом взаимодействует пользователь.</p>
-      <p><strong>Настройки</strong> объединяют параметры приложения и&nbsp;пользовательские предпочтения, отделяя управление сервисом от&nbsp;действий, влияющих&nbsp;на&nbsp;обязательства.</p>
-      <p><strong>Юридическая информация</strong> вынесена в&nbsp;самостоятельный раздел, чтобы&nbsp;пользователь мог&nbsp;найти документы и&nbsp;условия работы платформы вне&nbsp;сценария оформления сделки. Это&nbsp;также позволяет разграничить правила использования сервиса и&nbsp;документы, относящиеся к&nbsp;конкретному&nbsp;займу.</p>
+      <p>База знаний предназначена для&nbsp;получения справочной информации о&nbsp;работе сервиса и&nbsp;порядке действий в&nbsp;различных ситуациях. Она&nbsp;позволяет разобраться в&nbsp;вопросе и&nbsp;вернуться к&nbsp;основному сценарию, не&nbsp;смешивая объяснения с&nbsp;непосредственными операциями&nbsp;по&nbsp;займу.</p>
+      <p>Раздел «О&nbsp;нас» раскрывает информацию о&nbsp;самом проекте. В&nbsp;финансовом продукте это&nbsp;дополнительная возможность понять, с&nbsp;каким сервисом взаимодействует пользователь.</p>
+      <p>Настройки объединяют параметры приложения и&nbsp;пользовательские предпочтения, отделяя управление сервисом от&nbsp;действий, влияющих&nbsp;на&nbsp;обязательства.</p>
+      <p>Юридическая информация вынесена в&nbsp;самостоятельный раздел, чтобы&nbsp;пользователь мог&nbsp;найти документы и&nbsp;условия работы платформы вне&nbsp;сценария оформления сделки. Это&nbsp;также позволяет разграничить правила использования сервиса и&nbsp;документы, относящиеся к&nbsp;конкретному&nbsp;займу.</p>
        ${imgs('fintech21.jpg','fintech22.jpg')}
       
       <h2>Дизайн-система</h2>
@@ -434,22 +438,23 @@ const CASE = {
 const RELATED = [
   {
     slug: "fintechds",
-    title: "Как&nbsp;построить дизайн-систему для&nbsp;state-driven финтех-продукта",
+    title: "Как&nbsp;построить дизайн-систему для&nbsp;state-driven fintech-продукта",
     tags: [["Fintech", "t1"], ["MVP", "t2"], ["Mobile app", "t1"]],
     product: ["iOS-приложение", "Android-приложение"],
     activity: "Проектирование",
     stage: "MVP",
-    industry: "Финтех",
+    industry: ["Fintech", "LegalTech"],
     cover: "fintechds/fintechds1.jpg"
   },
   {
     slug: "fintechanalytics",
-    title: "Как&nbsp;превратить сложную финансово-юридическую задачу в&nbsp;понятную продуктовую&nbsp;систему",
+    title: "Исследования и&nbsp;аналитика сложного финансово-юридического приложения",
+    miniTitle: "До&nbsp;проектирования: исследования и&nbsp;аналитика сложного финансово-юридического приложения",
     tags: [["Fintech", "t1"], ["P2P", "t2"], ["Mobile app", "t1"]],
     product: ["iOS-приложение", "Android-приложение"],
     activity: "Проектирование",
     stage: "С&nbsp;нуля",
-    industry: "Финтех",
+    industry: ["Fintech", "LegalTech"],
     cover: "fintechanalytics/fintechanalytics1.jpg"
   }
 ];
@@ -466,7 +471,7 @@ function miniCard(c){
   return '<p class="mini-label">Читайте об&nbsp;этом подробнее тут</p>' +
     '<a class="mini-card" href="' + c.slug + '.html">' +
       '<span class="mini-thumb"><img src="' + coverUrl(c.cover, 240, 160) + '" alt=""></span>' +
-      '<span class="mini-title">' + c.title + '</span>' +
+      '<span class="mini-title">' + (c.miniTitle || c.title) + '</span>' +
       '<span class="mini-arrow">→</span>' +
     '</a>';
 }
@@ -520,7 +525,7 @@ function render(){
                   '<div class="rel-tags">' +
                     c.product.map(p => '<span class="tag product">' + p + '</span>').join('') +
                     '<span class="tag activity">' + c.activity + '</span>' +
-                    '<span class="tag industry">' + c.industry + '</span>' +
+                    [].concat(c.industry).map(i => '<span class="tag industry">' + i + '</span>').join('') +
                   '</div>' +
                   '<h2>' + c.title + '</h2>' +
                 '</div>' +
