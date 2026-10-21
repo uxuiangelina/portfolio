@@ -159,12 +159,12 @@
   .filter-option input{ accent-color:var(--accent); width:16px; height:16px; }
   .filter-option-count{ font-size:12px; color:var(--text-2); font-weight:500; flex:0 0 auto; }
   .copy-link-btn{
-    display:inline-flex; align-items:center; justify-content:center; width:42px; height:42px; flex:0 0 auto;
-    border:1px dashed var(--line-strong); border-radius:50%; background:transparent; color:var(--text-2); cursor:pointer;
-    position:relative; transition:border-color .2s ease, color .2s ease, background .2s ease;
+    display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; flex:0 0 auto; margin-left:auto;
+    border:none; border-radius:50%; background:transparent; color:var(--text-2); opacity:.55; cursor:pointer;
+    position:relative; transition:opacity .2s ease, color .2s ease, background .2s ease;
   }
-  .copy-link-btn:hover{ border-color:var(--text); color:var(--text); }
-  .copy-link-btn.copied{ border-color:var(--green); border-style:solid; background:var(--green-soft); color:var(--green); }
+  .copy-link-btn:hover{ opacity:1; color:var(--text); background:var(--bg-alt); }
+  .copy-link-btn.copied{ opacity:1; background:var(--green-soft); color:var(--green); }
   .copy-link-btn svg{
     position:absolute; top:50%; left:50%; margin:-8px 0 0 -8px;
     transition:opacity .3s var(--ease), transform .3s var(--ease);
@@ -323,38 +323,42 @@ function coverUrl(c){
    Если страницу не удалось загрузить (например, открыто как файл, без сервера),
    используются запасные данные из CASES_FALLBACK.
    ===================================================================== */
-const CASE_SLUGS = ["construct", "fintech", "care", "pawds", "mebel", "zebra", "souz", "fintechds", "numi", "pawanalytic", "corporate", "fintechretention", "bereg", "pawrm", "industrial", "fintechanalytics", "fund", "miningux", "rb", "autopro", "mask", "nutrition", "miningds"];
+const CASE_SLUGS = ["construct", "pawrm", "care", "fintech", "zebra", "mask", "miningux", "fintechanalytics", "mebel", "souz", "pawanalytic", "industrial", "fintechretention"];
 
 const CASES_FALLBACK = [
-  {"slug": "construct", "title": "Интернет-магазин строительной техники: каталог, конфигуратор и&nbsp;личный кабинет", "cover": "construct/construct1.jpg", "product": ["Сайт"], "activity": ["UX/UI Design"], "industry": ["B2B / Спецтехника"]},
-  {"slug": "fintech", "title": "P2P-финтех-продукт с&nbsp;юридической логикой", "cover": "fintech/fintech1.jpg", "product": ["iOS-приложение", "Android-приложение"], "activity": ["Проектирование"], "industry": ["Финтех"]},
+  {"slug": "construct", "title": "Интернет-магазин строительной техники: каталог, конфигуратор и&nbsp;личный кабинет", "cover": "construct/construct1.jpg", "product": ["Сайт"], "activity": ["UX/UI Design"], "industry": ["B2B"]},
+  {"slug": "pawrm", "title": "Как развивать pet-tech продукт после MVP", "cover": "pawrm/pawrm1.jpg", "product": ["iOS-приложение", "Android-приложение"], "activity": ["Product Strategy"], "industry": ["Pettech", "E-commerce", "Медицина"]},
   {"slug": "care", "title": "Сайт многопрофильной клиники семейного здоровья", "cover": "care/care1.jpg", "product": ["Сайт"], "activity": ["UX/UI Design"], "industry": ["Медицина"]},
-  {"slug": "pawds", "title": "Как спроектировать единый UX для pet-tech продукта", "cover": "pawds/pawds1.jpg", "product": ["iOS-приложение", "Android-приложение"], "activity": ["UX/UI Design"], "industry": ["Pettech"]},
-  {"slug": "mebel", "title": "Сайт мебельного магазина: каталог, проекты и&nbsp;индивидуальный подбор", "cover": "mebel1.jpg", "product": ["Сайт"], "activity": ["UX/UI Design"], "industry": ["E-commerce / Мебель"]},
-  {"slug": "zebra", "title": "Мобильное приложение для управления складскими и курьерскими процессами", "cover": "zebra/zebra1.jpg", "product": ["Android-приложение"], "activity": ["UX/UI Design"], "industry": ["Logistics / E-commerce"]},
-  {"slug": "souz", "title": "ERP и веб-портал для управления недвижимостью, продажами и ипотечными сделками", "cover": "souz/souz1.jpg", "product": ["Сайт"], "activity": ["UX/UI Design"], "industry": ["Real Estate / ERP"]},
-  {"slug": "fintechds", "title": "State-driven дизайн-система для финтех-продукта", "cover": "fintechds/fintechds1.jpg", "product": ["iOS-приложение", "Android-приложение"], "activity": ["Дизайн-система"], "industry": ["Финтех"]},
-  {"slug": "numi", "title": "Интернет-магазин праздничного декора: сценарии выбора и покупки", "cover": "numi/numi1.jpg", "product": ["Сайт"], "activity": ["UX/UI Design"], "industry": ["E-commerce"]},
-  {"slug": "pawanalytic", "title": "Как определить продуктовую модель pet-tech сервиса до начала дизайна", "cover": "pawanalytic/pawanalytic1.jpg", "product": ["iOS-приложение", "Android-приложение"], "activity": ["Product Research"], "industry": ["Pettech"]},
-  {"slug": "corporate", "title": "Корпоративный сайт IT-агентства с нуля", "cover": "corporate/corporate1.jpg", "product": ["Сайт"], "activity": ["UX/UI Design"], "industry": ["Digital / IT"]},
-  {"slug": "fintechretention", "title": "State-driven дизайн-система для финтех-продукта", "cover": "fintechds/fintechds1.jpg", "product": ["iOS-приложение", "Android-приложение"], "activity": ["Дизайн-система"], "industry": ["Финтех"]},
-  {"slug": "bereg", "title": "Лазурный берег", "cover": "bereg/bereg1.jpg", "product": ["Сайт"], "activity": ["UX/UI Design"], "industry": ["Restaurant / Hotel"]},
-  {"slug": "pawrm", "title": "Как развивать pet-tech продукт после MVP", "cover": "pawrm/pawrm1.jpg", "product": ["iOS-приложение", "Android-приложение"], "activity": ["Product Strategy"], "industry": ["Pettech"]},
-  {"slug": "industrial", "title": "B2B-маркетплейс для промышленного оборудования", "cover": "industrial/industrial1.jpg", "product": ["Сайт"], "activity": ["UX/UI Design"], "industry": ["B2B / Промышленное оборудование"]},
+  {"slug": "fintech", "title": "P2P-финтех-продукт с&nbsp;юридической логикой", "cover": "fintech/fintech1.jpg", "product": ["iOS-приложение", "Android-приложение"], "activity": ["Проектирование"], "industry": ["Финтех"]},
+  {"slug": "zebra", "title": "Мобильное приложение для управления складскими и курьерскими процессами", "cover": "zebra/zebra1.jpg", "product": ["Android-приложение"], "activity": ["UX/UI Design"], "industry": ["Логистика", "E-commerce", "B2B"]},
+  {"slug": "mask", "title": "Интернет-магазин мебели с каталогом, поиском и гибкой системой фильтрации", "cover": "mask/mask1.jpg", "product": ["Сайт"], "activity": ["UX/UI Design"], "industry": ["E-commerce"]},
+  {"slug": "miningux", "title": "Как пересобрать UX-архитектуру сложной B2B-платформы", "cover": "miningux/miningux1.jpg", "product": ["Сайт"], "activity": ["Проектирование"], "industry": ["B2B"]},
   {"slug": "fintechanalytics", "title": "Как превратить сложную финансово-юридическую задачу в понятную продуктовую систему", "cover": "fintechanalytics/fintechanalytics1.jpg", "product": ["iOS-приложение", "Android-приложение"], "activity": ["Проектирование"], "industry": ["Финтех"]},
-  {"slug": "fund", "title": "Сайт благотворительного фонда с прозрачной структурой, каталогом проектов и системой пожертвований", "cover": "fund/fund1.jpg", "product": ["Сайт"], "activity": ["UX/UI Design"], "industry": ["Благотворительность / NGO"]},
-  {"slug": "miningux", "title": "Как пересобрать UX-архитектуру сложной B2B-платформы", "cover": "miningux/miningux1.jpg", "product": ["Сайт"], "activity": ["Проектирование"], "industry": ["B2B / Индустрия"]},
-  {"slug": "rb", "title": "Сайт digital-агентства: новая структура, визуальная система и презентация экспертизы", "cover": "rb/rb1.jpg", "product": ["Сайт"], "activity": ["UX/UI Design"], "industry": ["Digital / Услуги"]},
-  {"slug": "autopro", "title": "Лендинг для премиального детейлинг-сервиса", "cover": "autopro/autopro1.jpg", "product": ["Сайт"], "activity": ["UX/UI Design"], "industry": ["Детейлинг / Automotive"]},
-  {"slug": "mask", "title": "Интернет-магазин мебели с каталогом, поиском и гибкой системой фильтрации", "cover": "mask/mask1.jpg", "product": ["Сайт"], "activity": ["UX/UI Design"], "industry": ["E-commerce / Мебель"]},
-  {"slug": "nutrition", "title": "Корпоративный сайт для презентации сложных B2B-продуктов", "cover": "nutrition/nutrition1.jpg", "product": ["Сайт"], "activity": ["UX/UI Design"], "industry": ["B2B / Продукция"]},
-  {"slug": "miningds", "title": "Как подготовить B2B-платформу к дальнейшему масштабированию", "cover": "miningds/miningds1.jpg", "product": ["Сайт"], "activity": ["Дизайн-система"], "industry": ["B2B / Индустрия"]}
+  {"slug": "mebel", "title": "Сайт мебельного магазина: каталог, проекты и&nbsp;индивидуальный подбор", "cover": "mebel1.jpg", "product": ["Сайт"], "activity": ["UX/UI Design"], "industry": ["E-commerce"]},
+  {"slug": "souz", "title": "ERP и веб-портал для управления недвижимостью, продажами и ипотечными сделками", "cover": "souz/souz1.jpg", "product": ["Сайт"], "activity": ["UX/UI Design"], "industry": ["Недвижимость"]},
+  {"slug": "pawanalytic", "title": "Как определить продуктовую модель pet-tech сервиса до начала дизайна", "cover": "pawanalytic/pawanalytic1.jpg", "product": ["iOS-приложение", "Android-приложение"], "activity": ["Product Research"], "industry": ["Pettech", "E-commerce", "Медицина"]},
+  {"slug": "industrial", "title": "B2B-маркетплейс для промышленного оборудования", "cover": "industrial/industrial1.jpg", "product": ["Сайт"], "activity": ["UX/UI Design"], "industry": ["B2B"]},
+  {"slug": "fintechretention", "title": "State-driven дизайн-система для финтех-продукта", "cover": "fintechds/fintechds1.jpg", "product": ["iOS-приложение", "Android-приложение"], "activity": ["Дизайн-система"], "industry": ["Финтех"]}
 ];
 
+const INDUSTRY_MAP = {
+  "B2B / Спецтехника": ["B2B"],
+  "B2B / Промышленное оборудование": ["B2B"],
+  "B2B / Индустрия": ["B2B"],
+  "E-commerce / Мебель": ["E-commerce"],
+  "Logistics / E-commerce": ["Логистика", "E-commerce", "B2B"],
+  "Pettech": ["Pettech", "E-commerce", "Медицина"],
+  "Real Estate / ERP": ["Недвижимость"],
+};
+function normIndustry(arr){
+  const out = [];
+  arr.forEach(v => (INDUSTRY_MAP[v] || [v]).forEach(x => { if (out.indexOf(x) < 0) out.push(x); }));
+  return out;
+}
 function toArr(v){ return (Array.isArray(v) ? v : [v]).filter(x => x !== undefined && x !== null && String(x).trim() !== ''); }
 function normalizeCase(c){
   return { slug:c.slug, title:c.title || '', cover:c.cover || (c.slug + '1.jpg'),
-           product:toArr(c.product), activity:toArr(c.activity), industry:toArr(c.industry), hidden:!!c.hidden };
+           product:toArr(c.product), activity:toArr(c.activity), industry:normIndustry(toArr(c.industry)), hidden:!!c.hidden };
 }
 
 /* --- разбор JS-литералов из текста страницы кейса (без исполнения всей страницы) --- */
@@ -449,7 +453,7 @@ const translations = {
   'copy.copied': 'Скопировано!'
 };
 
-const PAGE_SIZE = 12;
+const PAGE_SIZE = 14;
 const state = { product:new Set(), activity:new Set(), industry:new Set(), page:1 };
 
 /* ---------- filters <-> URL ---------- */
