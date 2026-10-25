@@ -1,0 +1,1170 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ангелина Масалова — UX/UI Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAFAFA;
+    --bg-alt:#F2F2F0;
+    --surface:#FFFFFF;
+    --text:#111111;
+    --text-2:#6E6E73;
+    --accent:#4A5DE0;
+    --accent-soft:rgba(74,93,224,.08);
+    --accent-soft-2:rgba(74,93,224,.16);
+    --accent-2:#FF6B4A;
+    --accent-2-soft:rgba(255,107,74,.10);
+    --green:#2BAF7A; --green-soft:rgba(43,175,122,.12);
+    --teal:#0EA5B7; --teal-soft:rgba(14,165,183,.12);
+    --line:rgba(17,17,17,.09);
+    --line-strong:rgba(17,17,17,.16);
+    --dark-bg:#0B0B0C;
+    --dark-text:#F5F5F3;
+    --dark-text-2:rgba(245,245,243,.6);
+    --dark-line:rgba(245,245,243,.12);
+    --radius:18px;
+    --ease:cubic-bezier(.16,1,.3,1);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    font-size:18px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+    cursor:none;
+  }
+  @media (max-width:900px){ body{ cursor:auto; } }
+  h1, h2, h3, .display{
+    font-family:'Manrope',sans-serif;
+    font-weight:800;
+    letter-spacing:-0.02em;
+    line-height:1.05;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  ::selection{background:var(--accent-soft-2);}
+
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+  @media (max-width:640px){ .wrap{padding:0 20px;} }
+
+  .cursor{
+    position:fixed; top:0; left:0; width:14px; height:14px; border-radius:50%;
+    background:var(--text); pointer-events:none; z-index:9999;
+    transform:translate(-50%,-50%);
+    transition:width .35s var(--ease), height .35s var(--ease), background .35s var(--ease), opacity .2s ease;
+    mix-blend-mode:difference;
+  }
+  .cursor.grow{ width:96px; height:96px; background:var(--text); }
+  .cursor-label{
+    position:fixed; top:0; left:0; z-index:9999; pointer-events:none;
+    font-family:'Inter'; font-size:12px; font-weight:600; letter-spacing:.06em; text-transform:uppercase;
+    color:#fff; opacity:0; transform:translate(-50%,-50%); transition:opacity .25s ease;
+    mix-blend-mode:difference;
+  }
+  .cursor-label.show{ opacity:1; }
+  @media (max-width:900px){ .cursor, .cursor-label{ display:none; } }
+
+  .progress{
+    position:fixed; top:0; left:0; height:2px; background:linear-gradient(90deg,var(--accent),var(--accent-2));
+    width:0%; z-index:1001; transition:width .1s linear;
+  }
+
+  #intro{
+    position:fixed; inset:0; background:var(--bg); z-index:2000;
+    display:flex; align-items:center; justify-content:center;
+    transition:opacity .7s var(--ease), transform .7s var(--ease), visibility .7s var(--ease);
+  }
+  #intro.hide{ opacity:0; transform:scale(1.04); visibility:hidden; }
+  .intro-inner{ text-align:center; }
+  .intro-badge{ font-family:'Manrope'; font-weight:800; font-size:13px; letter-spacing:.24em; color:var(--text-2); margin-bottom:20px; }
+  .intro-count{
+    font-family:'Manrope'; font-weight:800; font-size:76px; line-height:1;
+    background:linear-gradient(120deg,var(--text),var(--accent));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .intro-track{ width:200px; height:2px; background:var(--line-strong); margin:28px auto 0; border-radius:2px; overflow:hidden; }
+  .intro-fill{ width:0%; height:100%; background:linear-gradient(90deg,var(--accent),var(--accent-2)); transition:width .12s linear; }
+
+  nav{
+    position:fixed; top:0; left:0; right:0; z-index:1100;
+    padding:20px 0; transition:background .4s var(--ease), backdrop-filter .4s var(--ease), border-color .4s var(--ease), padding .3s var(--ease);
+    border-bottom:1px solid transparent;
+  }
+  nav.scrolled{
+    background:rgba(250,250,250,.7);
+    backdrop-filter:blur(16px) saturate(160%);
+    -webkit-backdrop-filter:blur(16px) saturate(160%);
+    border-bottom:1px solid var(--line);
+    padding:14px 0;
+  }
+  nav .wrap{display:flex; align-items:center; justify-content:space-between;}
+  .logo{ display:flex; align-items:center; gap:11px; }
+  .logo-circle{ display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%; border:1px solid var(--line-strong); flex:0 0 auto; transition:border-color .3s var(--ease); } 
+  .logo-mark{ width:19px; height:auto; }
+  .logo-text{ display:flex; flex-direction:column; line-height:1.25; }
+  .logo-text .logo-name{ font-family:'Manrope'; font-weight:700; font-size:14px; letter-spacing:-0.01em; color:var(--text); }
+  .logo-text .logo-role{ font-size:14px; color:var(--text-2); }
+  a.logo{ cursor:none; }
+  .nav-links{display:flex; gap:36px; list-style:none;}
+  .nav-links a{ font-size:14px; font-weight:500; color:var(--text-2); position:relative; padding:4px 0; transition:color .25s ease; }
+  .nav-links a::after{ content:''; position:absolute; left:0; bottom:0; width:0; height:1px; background:var(--text); transition:width .3s var(--ease); }
+  .nav-links a:hover{color:var(--text);}
+  .nav-links a:hover::after{width:100%;}
+  .nav-cta{ font-size:14px; font-weight:600; padding:9px 18px; border:1px solid var(--line-strong); border-radius:999px; transition:all .3s var(--ease); }
+  .nav-cta:hover{background:var(--text); color:#fff; border-color:var(--text);}
+  .nav-right{ display:flex; align-items:center; gap:28px; }
+  @media (max-width:820px){ .nav-links{display:none;} }
+
+  .nav-toggle{ display:none; position:relative; width:40px; height:40px; border:1px solid var(--line-strong); border-radius:50%; background:none; cursor:pointer; align-items:center; justify-content:center; flex:0 0 auto; z-index:1101; -webkit-tap-highlight-color:transparent; }
+  .nav-toggle span{ position:relative; width:16px; height:1.5px; background:var(--text); border-radius:2px; transition:background .3s ease; }
+  .nav-toggle span::before, .nav-toggle span::after{ content:''; position:absolute; left:0; width:16px; height:1.5px; background:var(--text); border-radius:2px; transition:top .25s var(--ease), transform .25s var(--ease); }
+  .nav-toggle span::before{ top:-6px; }
+  .nav-toggle span::after{ top:6px; }
+  .nav-toggle.active span{ background:transparent; }
+  .nav-toggle.active span::before{ top:0; transform:rotate(45deg); }
+  .nav-toggle.active span::after{ top:0; transform:rotate(-45deg); }
+  @media (max-width:820px){ .nav-toggle{ display:flex; } }
+
+  .mobile-menu{ position:fixed; inset:0; z-index:1090; background:var(--dark-bg); color:var(--dark-text); display:flex; flex-direction:column; align-items:flex-start; justify-content:center; gap:28px; padding:0 32px; opacity:0; visibility:hidden; transform:translateY(-16px); transition:opacity .4s var(--ease), visibility .4s var(--ease), transform .4s var(--ease); overflow:hidden; }
+  .mobile-menu::before{ content:''; position:absolute; width:480px; height:480px; border-radius:50%; background:var(--accent); filter:blur(140px); opacity:.4; top:-160px; right:-140px; pointer-events:none; }
+  .mobile-menu::after{ content:''; position:absolute; width:320px; height:320px; border-radius:50%; background:var(--accent); filter:blur(120px); opacity:.28; bottom:-140px; left:-100px; pointer-events:none; }
+  .mobile-menu.open{ opacity:1; visibility:visible; transform:translateY(0); }
+  .mobile-menu a{ font-family:'Manrope'; font-weight:700; font-size:26px; color:var(--dark-text); position:relative; z-index:1; }
+  .mobile-menu .mm-logo{ position:absolute; top:26px; left:32px; transform:none; z-index:1; font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif; font-weight:400; }
+  .mobile-menu .mm-logo .logo-circle{ border-color:var(--dark-line); }
+  .mobile-menu .mm-logo .logo-name{ color:var(--dark-text); }
+  .mobile-menu .mm-logo .logo-role{ color:var(--dark-text-2); }
+  .mobile-menu .nav-cta{ margin-top:8px; border:none; padding:0; background:none; border-radius:0; font-family:'Manrope'; font-weight:700; font-size:26px; color:var(--dark-text); }
+  .mobile-menu .nav-cta:hover{ background:none; border:none; transform:none; }
+  .mm-contacts{ position:absolute; left:32px; right:32px; bottom:40px; display:flex; flex-direction:row; flex-wrap:wrap; gap:10px 24px; z-index:1; margin:0; }
+  .mobile-menu .mm-contacts a{ color:var(--dark-text-2); -webkit-tap-highlight-color:transparent; }
+  .mobile-menu .mm-contacts a:active{ opacity:.6; }
+  body.menu-open .nav-toggle span::before, body.menu-open .nav-toggle span::after{ background:var(--dark-text); }
+  body.menu-open nav .logo, body.menu-open nav .nav-cta{ opacity:0; pointer-events:none; transition:opacity .2s ease; }
+  body.menu-open{ overflow:hidden; }
+  @media (min-width:821px){ .mobile-menu{ display:none; } }
+  @media (max-width:640px){ .mobile-menu{ padding:0 20px; } .mobile-menu .mm-logo{ left:20px; } .mm-contacts{ left:20px; right:20px; bottom:28px; } }
+  body.menu-open nav, body.menu-open nav#nav, body.menu-open nav.scrolled{ background:transparent; backdrop-filter:none; -webkit-backdrop-filter:none; border-bottom-color:transparent; }
+  body.menu-open .nav-toggle{ border-color:var(--dark-line); }
+  .nav-cta{ white-space:nowrap; }
+  @media (max-width:640px){ .nav-right{ gap:12px; } nav .nav-cta{ padding:8px 14px; } }
+
+  .reveal{ opacity:0; transform:translateY(28px); transition:opacity .9s var(--ease), transform .9s var(--ease); }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+  .reveal-stagger > *{ opacity:0; transform:translateY(24px); transition:opacity .8s var(--ease), transform .8s var(--ease); }
+  .reveal-stagger.in > *{ opacity:1; transform:translateY(0); }
+  .reveal-stagger.in > *:nth-child(1){transition-delay:.05s;}
+  .reveal-stagger.in > *:nth-child(2){transition-delay:.12s;}
+  .reveal-stagger.in > *:nth-child(3){transition-delay:.19s;}
+  .reveal-stagger.in > *:nth-child(4){transition-delay:.26s;}
+  .reveal-stagger.in > *:nth-child(5){transition-delay:.33s;}
+  .reveal-stagger.in > *:nth-child(6){transition-delay:.40s;}
+  .reveal-stagger.in > *:nth-child(7){transition-delay:.47s;}
+
+  @keyframes float{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(-10px);} }
+  @keyframes pulse{ 0%,100%{opacity:1;} 50%{opacity:.35;} }
+
+  header.hero{ padding:100px 0 48px; position:relative; overflow:hidden; }
+  .hero-blob{ position:absolute; border-radius:50%; filter:blur(80px); opacity:.32; z-index:0; pointer-events:none; }
+  .blob-1{ width:440px; height:440px; background:var(--accent); top:-140px; right:6%; animation:blobFloat 12s ease-in-out infinite; }
+  .blob-2{ width:560px; height:560px; background:var(--accent-2); bottom:-80px; left:-140px; animation:blobFloat 14s ease-in-out infinite reverse; }
+  @keyframes blobFloat{ 0%,100%{transform:translate(0,0);} 50%{transform:translate(20px,-20px);} }
+
+  .eyebrow{ display:inline-flex; align-items:center; gap:8px; font-size:13px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--accent); margin-bottom:22px; }
+  .eyebrow::before{ content:''; width:6px; height:6px; border-radius:50%; background:var(--accent); animation:pulse 2.2s ease-in-out infinite; }
+
+  @media (max-width:900px){ header.hero{padding:120px 0 70px;} }
+
+  .hero-title{ font-family:'Manrope'; font-weight:800; letter-spacing:-.02em; line-height:1.05; font-size:clamp(38px,5.4vw,64px); max-width:none; overflow:hidden; }
+  .hero-title .word{ display:inline-block; opacity:0; transform:translateY(110%); animation:wordUp .8s var(--ease) forwards; animation-delay:calc(var(--i) * .07s + .1s); }
+  @keyframes wordUp{ to{ opacity:1; transform:translateY(0); } }
+
+  .hero-actions{ display:flex; gap:14px; margin-top:40px; flex-wrap:wrap; }
+  .btn{ display:inline-flex; align-items:center; gap:8px; padding:15px 26px; border-radius:999px; font-size:15px; font-weight:600; transition:all .35s var(--ease); border:1px solid transparent; }
+  .btn-primary{ border:none; background-image:linear-gradient(100deg,var(--text) 0%, var(--accent) 100%); background-color:var(--text); color:#fff; position:relative; overflow:hidden; }
+  .btn-primary:hover{ filter:brightness(1.1); transform:translateY(-2px); }
+  .btn-ghost{ border-color:var(--line-strong); }
+  .btn-ghost:hover{ border-color:var(--text); transform:translateY(-2px); }
+  .btn-ghost-dark{ border:1px solid rgba(245,245,243,.3); color:var(--dark-text); }
+  .btn-ghost-dark:hover{ border-color:#fff; transform:translateY(-2px); background:rgba(255,255,255,.06); }
+  .btn-cv{ border:none; background-image:linear-gradient(100deg,var(--accent) 0%,var(--accent-2) 100%); background-color:var(--accent); color:#fff; text-align:center; position:relative; overflow:hidden; }
+  .btn-cv:hover{ filter:brightness(1.08); transform:translateY(-2px); }
+
+  .btn-primary::after, .btn-cv::after{
+    content:''; position:absolute; top:0; left:-60%; width:40%; height:100%;
+    background:linear-gradient(115deg, transparent 0%, rgba(255,255,255,.55) 45%, rgba(255,255,255,.85) 50%, rgba(255,255,255,.55) 55%, transparent 100%);
+    transform:skewX(-20deg); pointer-events:none; mix-blend-mode:overlay;
+    transition:left .75s var(--ease);
+  }
+  .btn-primary:hover::after, .btn-cv:hover::after{ left:130%; }
+  @media (prefers-reduced-motion: reduce){ .btn-primary::after, .btn-cv::after{ transition:none; } }
+  .btn-all-cases{ border:1px solid var(--line-strong); }
+  .btn-all-cases:hover{ border-color:var(--text); transform:translateY(-2px); }
+
+  .float-badge{ position:absolute; background:rgba(255,255,255,.86); backdrop-filter:blur(10px); border:1px solid var(--line); border-radius:14px; padding:12px 16px; font-size:13px; font-weight:600; box-shadow:0 20px 40px -20px rgba(17,17,17,.28); animation:float 5s ease-in-out infinite; }
+
+  .hero-bento{ display:grid; grid-template-columns:repeat(36,minmax(0,1fr)); gap:16px; position:relative; z-index:1; }
+  .hb-main{ grid-column:span 27; display:flex; flex-direction:column; justify-content:space-between; gap:24px; padding:28px 40px; border-radius:24px; border:1px solid var(--line); background:rgba(255,255,255,.72); backdrop-filter:blur(18px) saturate(160%); -webkit-backdrop-filter:blur(18px) saturate(160%); }
+  .hb-main .eyebrow{ margin-bottom:14px; }
+  .hb-main .hero-title{ font-size:clamp(32px,4vw,48px); }
+  .hb-main .hero-actions{ margin-top:0; }
+  .hb-main .lead{ margin-top:16px; font-size:14px; line-height:1.45; color:var(--text-2); max-width:60ch; }
+
+  .hb-person{ grid-column:span 9; display:flex; flex-direction:column; gap:14px; padding:12px; border-radius:24px; border:1px solid var(--line); background:var(--surface); text-align:left; }
+  .hb-photo{ position:relative; flex:1 1 auto; min-height:140px; border-radius:16px; overflow:hidden; background:var(--bg-alt); }
+  .hb-photo img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 20%; }
+  .hb-person-info{ display:flex; flex-direction:column; gap:12px; padding:0 10px 10px; }
+  .hb-person-info b{ display:block; font-family:'Manrope'; font-weight:800; font-size:16px; line-height:1.2; letter-spacing:-.01em; }
+  .hb-person-info span.role{ display:block; margin-top:3px; font-size:13px; color:var(--text-2); }
+  .hb-person .case-tags{ flex-direction:column; align-items:flex-start; gap:6px; }
+  .hb-person .tag{ white-space:nowrap; }
+
+  .fact-award{ grid-column:span 12; position:relative; overflow:hidden; display:flex; flex-direction:column; justify-content:space-between; gap:14px; padding:24px; border-radius:24px; background:var(--dark-bg); color:var(--dark-text); }
+  .fact-award::before{ content:''; position:absolute; width:320px; height:320px; border-radius:50%; background:linear-gradient(135deg,var(--accent) 0%,var(--accent-2) 100%); filter:blur(80px); opacity:.55; top:-130px; right:-130px; pointer-events:none; }
+  .fact-award > *{ position:relative; z-index:1; }
+  .fact-kicker{ display:flex; align-items:center; gap:10px; font-size:12px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--text-2); }
+  .fact-award .fact-kicker{ color:var(--dark-text-2); }
+  .fact-award-main{ display:flex; align-items:center; gap:18px; }
+  .fact-big{ font-family:'Manrope'; font-weight:800; font-size:76px; line-height:.85; letter-spacing:-.05em; }
+  .fact-big-label{ font-family:'Manrope'; font-weight:700; font-size:15px; line-height:1.25; letter-spacing:-.01em; }
+  .fact-award-list{ list-style:none; }
+  .fact-award-list li{ display:flex; justify-content:space-between; align-items:baseline; gap:10px; padding:7px 0; border-top:1px solid var(--dark-line); font-size:13px; color:var(--dark-text-2); }
+  .fact-award-list li b{ font-weight:700; color:var(--dark-text); text-align:right; }
+
+  .fact-card{ grid-column:span 8; display:flex; flex-direction:column; border:1px solid var(--line); border-radius:24px; padding:24px; background:var(--surface); transition:transform .35s var(--ease), box-shadow .35s var(--ease), border-color .35s var(--ease); }
+  .fact-card:hover{ transform:translateY(-4px); box-shadow:0 24px 48px -28px rgba(17,17,17,.2); border-color:transparent; }
+  .fact-ico{ width:36px; height:36px; flex:0 0 auto; border-radius:12px; display:grid; place-items:center; background:var(--accent-soft); color:var(--accent); }
+  .fact-ico svg{ width:18px; height:18px; }
+  .fact-card.fc-2 .fact-ico, .fact-card.fc-3 .fact-ico{ background:var(--accent-2-soft); color:var(--accent-2); }
+  .fact-card b{ display:block; margin-top:auto; padding-top:16px; font-family:'Manrope'; font-weight:700; font-size:16px; line-height:1.25; letter-spacing:-.01em; }
+  .fact-card p{ margin-top:8px; font-size:13px; line-height:1.45; color:var(--text-2); max-width:34ch; }
+
+  @media (max-width:1000px){
+    .hero-bento{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .hb-main, .hb-person, .fact-award{ grid-column:1 / -1; }
+    .hb-person{ order:1; }
+    .fact-award, .fact-card{ order:2; }
+    .hb-main{ padding:32px 28px; gap:32px; }
+    .hb-person{ flex-direction:row; align-items:stretch; gap:16px; }
+    .hb-photo{ flex:0 0 150px; min-height:150px; }
+    .hb-person-info{ flex:1; min-width:0; justify-content:center; padding:8px 12px 8px 0; }
+    .hb-person .case-tags{ flex-direction:row; flex-wrap:wrap; }
+    .fact-card{ grid-column:span 1; }
+    .fact-card:last-child{ grid-column:1 / -1; }
+  }
+  @media (max-width:560px){
+    .fact-card{ grid-column:1 / -1; }
+    .hb-main{ padding:28px 22px; }
+    .hb-photo{ flex-basis:96px; min-height:96px; }
+    .hb-person{ gap:12px; }
+  }
+
+  .marquee-section{ padding:28px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); overflow:hidden; background:var(--surface); }
+  .marquee-track{ display:flex; width:max-content; animation:marqueeScroll 42s linear infinite; }
+  .marquee-section:hover .marquee-track{ animation-play-state:paused; }
+  .marquee-list{ display:flex; align-items:center; flex-shrink:0; }
+  .award-item{ display:flex; align-items:center; gap:14px; padding:0 38px; white-space:nowrap; color:var(--text); cursor:none; }
+  .award-item img{ width:30px; height:30px; border-radius:8px; object-fit:cover; flex-shrink:0; background:var(--bg-alt); }
+  .award-item .award-text{ font-size:14px; color:var(--text-2); }
+  .award-item .award-text b{ color:var(--text); font-weight:700; }
+  .award-dot{ color:var(--line-strong); font-size:14px; flex-shrink:0; }
+  @keyframes marqueeScroll{ from{ transform:translateX(0);} to{ transform:translateX(-50%);} }
+  @media (prefers-reduced-motion: reduce){ .marquee-track{ animation:none; } }
+  @media (max-width:640px){ .award-item{ padding:0 20px; gap:10px; } .award-item img{ width:24px; height:24px; } .award-item .award-text{ font-size:13px; } }
+
+  .status-banner{ padding:80px 0; border-top:1px solid var(--line); }
+  .status-card{ background:var(--dark-bg); color:var(--dark-text); border-radius:28px; padding:64px 56px; position:relative; overflow:hidden; }
+  .status-card::before{ content:''; position:absolute; width:620px; height:620px; border-radius:50%; background:linear-gradient(135deg,var(--accent) 0%,var(--accent-2) 100%); filter:blur(100px); opacity:.55; top:50%; right:-220px; transform:translateY(-50%); pointer-events:none; }
+  .status-card::after{ content:''; position:absolute; width:340px; height:340px; border-radius:50%; background:linear-gradient(135deg,var(--accent-2) 0%,var(--accent) 100%); filter:blur(90px); opacity:.28; bottom:-160px; left:-100px; pointer-events:none; }
+  @media (max-width:640px){ .status-card{ padding:40px 24px; border-radius:20px; } .status-card::before{ width:420px; height:420px; opacity:.4; } }
+  .status-grid{ display:grid; grid-template-columns:1.3fr .9fr; gap:56px; align-items:center; position:relative; z-index:1; }
+  @media (max-width:900px){ .status-grid{ grid-template-columns:1fr; gap:36px; } }
+  .status-compact{ text-align:left; max-width:540px; margin:0; position:relative; z-index:1; padding:20px 0; }
+  .status-compact h2{ color:var(--dark-text); font-size:clamp(22px,3vw,32px); max-width:16ch; margin-bottom:18px; white-space:nowrap; }
+  @media (max-width:640px){ .status-compact h2{ white-space:normal; } }
+  .status-modes{ font-size:14px; font-weight:600; color:var(--accent-2); letter-spacing:.03em; margin-bottom:14px; }
+  .status-compact p{ color:var(--dark-text-2); font-size:14px !important; line-height:1.5; margin-bottom:26px; }
+  .status-actions{ display:flex; flex-wrap:wrap; gap:14px; margin-top:6px; }
+
+  section{ padding:120px 0; border-top:1px solid var(--line); }
+  @media (max-width:640px){ section{ padding:80px 0; } }
+  .section-head{ display:flex; justify-content:space-between; align-items:flex-end; gap:24px; margin-bottom:56px; flex-wrap:wrap; }
+  .section-num{ font-size:13px; font-weight:600; color:var(--accent); letter-spacing:.04em; margin-bottom:14px; display:block; }
+  .section-title{ font-size:clamp(30px,4vw,44px); max-width:16ch; }
+
+  #about{ border-top:none; padding-top:60px; }
+  #skills, #work{ border-top:none; }
+  .about-card{ display:grid; grid-template-columns:1fr; gap:0; padding:12px; border-radius:32px; border:1px solid var(--line); background:var(--surface); box-shadow:0 30px 60px -40px rgba(17,17,17,.25); }
+  @media (min-width:901px){ .about-card{ grid-template-columns:.55fr 1.45fr; } }
+  .about-photo, .about-photo-wrap{ position:relative; height:100%; }
+  .about-photo-square{ position:relative; width:100%; height:100%; min-height:0; border-radius:22px; overflow:hidden; background:var(--bg-alt); }
+  .about-photo-square img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 25%; }
+  .about-badge{ top:auto; left:auto; bottom:20px; right:20px; animation-delay:1.6s; }
+  .about-content{ display:flex; flex-direction:column; justify-content:space-between; gap:36px; padding:36px 40px 32px 56px; }
+  .about-text p{ font-size:14px; line-height:1.45; color:var(--text-2); max-width:56ch; }
+  .about-more{ align-self:flex-start; }
+  @media (max-width:900px){
+    .about-photo-square{ min-height:0; height:auto; aspect-ratio:2/1; }
+    .about-photo-wrap{ height:auto; }
+    .about-content{ padding:28px 16px 20px; gap:28px; }
+    .about-badge{ bottom:14px; right:14px; }
+  }
+
+  .case-list{ display:flex; flex-direction:column; gap:32px; }
+  .case-card{ position:relative; display:block; border-radius:var(--radius); background:var(--surface); border:1px solid var(--line); overflow:hidden; cursor:none; transition:transform .5s var(--ease), box-shadow .5s var(--ease), border-color .5s var(--ease); }
+  .case-card:hover{ transform:translateY(-8px) scale(1.008); box-shadow:0 34px 64px -28px rgba(17,17,17,.22); border-color:transparent; }
+  .case-body{ padding:40px 44px 44px; display:grid; grid-template-columns:1.2fr 1fr; gap:36px; align-items:start; }
+  .case-text{ min-width:0; display:flex; flex-direction:column; align-self:stretch; }
+  .case-top{ display:flex; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+  .case-tags{ display:flex; gap:8px; flex-wrap:wrap; }
+  .tag{ font-size:12px; font-weight:600; letter-spacing:.03em; padding:6px 12px; border-radius:999px; background:var(--bg-alt); color:var(--text-2); }
+  .tag.t1{ background:var(--accent-soft); color:var(--accent); }
+  .tag.t2{ background:var(--accent-2-soft); color:var(--accent-2); }
+.tag.t3{ background:var(--green-soft); color:var(--green); }
+.tag.t4{ background:var(--teal-soft); color:var(--teal); }
+  .case-card h3{ font-size:clamp(24px,3vw,32px); margin-top:24px; max-width:22ch; }
+  .case-card p{ margin-top:14px; margin-bottom:26px; color:var(--text-2); max-width:56ch; font-size:14px; line-height:1.45; }
+  .case-image{ border-radius:14px; overflow:hidden; background:var(--bg-alt); aspect-ratio:4/3; }
+  .case-image img{ width:100%; height:100%; object-fit:cover; display:block; transition:transform .5s var(--ease); }
+  .case-card:hover .case-image img{ transform:scale(1.06); }
+  .case-link{ margin-top:auto; align-self:flex-start; display:inline-flex; align-items:center; gap:8px; font-weight:600; font-size:14px; line-height:1.45; color:var(--accent); }
+  .case-link svg{ transition:transform .3s var(--ease); }
+  .case-card:hover .case-link svg{ transform:translateX(4px); }
+  @media (max-width:900px){ .case-body{ grid-template-columns:1fr; } }
+
+  .achieve-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  @media (max-width:900px){ .achieve-grid{ grid-template-columns:1fr; } }
+  .achieve-card{ display:flex; flex-direction:column; border:1px solid var(--line); border-radius:20px; padding:34px 30px; background:var(--surface); transition:transform .35s var(--ease), box-shadow .35s var(--ease), border-color .35s var(--ease); text-decoration:none; color:inherit; cursor:none; }
+  .achieve-card:hover{ transform:translateY(-4px); box-shadow:0 24px 48px -28px rgba(17,17,17,.2); border-color:transparent; }
+  .achieve-card--static{ cursor:default; }
+  .achieve-card--static:hover{ transform:none; box-shadow:none; border-color:var(--line); }
+  .achieve-icon{ font-size:28px; margin-bottom:18px; }
+  .achieve-card h3{ font-size:16px; margin-bottom:10px; max-width:24ch; line-height:1.3; }
+  @media (max-width:900px){ .achieve-card h3{ max-width:none; } }
+  .achieve-card p{ font-size:14px; color:var(--text-2); margin-bottom:20px; }
+  .achieve-meta{ margin-top:auto; display:flex; align-items:center; justify-content:space-between; gap:12px; font-size:12px; color:var(--text-2); font-weight:600; padding-top:16px; border-top:1px solid var(--line); }
+  .achieve-link{ display:inline-flex; align-items:center; gap:5px; color:var(--accent); font-weight:600; flex-shrink:0; }
+  .achieve-link svg{ width:13px; height:13px; transition:transform .3s var(--ease); }
+  .achieve-card:hover .achieve-link svg{ transform:translateX(4px); }
+
+  /* Компетенции: компактные карточки-теги, секция помещается на 1 экран */
+  #skills{ padding:40px 0 32px; }
+  #skills .section-head{ margin-bottom:14px; gap:12px; }
+  #skills .section-title{ font-size:clamp(28px,3.4vw,38px); }
+  .skill-grid{ display:flex; flex-direction:column; gap:12px; }
+  .skill-row{ border:1px solid var(--line); border-radius:22px; background:var(--surface); transition:box-shadow .4s var(--ease), border-color .3s; }
+  .skill-row:hover{ border-color:var(--line-strong); }
+  .skill-row.open{ box-shadow:0 28px 56px -36px rgba(17,17,17,.3); border-color:var(--line-strong); }
+  .skill-head{ all:unset; box-sizing:border-box; width:100%; display:flex; align-items:center; gap:18px; padding:16px 28px; cursor:pointer; border-radius:22px; }
+  .skill-head:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+  .skill-step{ font-size:13px; font-weight:600; color:var(--accent); letter-spacing:.04em; min-width:22px; }
+  .skill-head h3{ font-size:clamp(20px,2.2vw,26px); line-height:1.15; }
+  .skill-preview{ display:flex; flex-wrap:wrap; gap:6px; margin-left:auto; justify-content:flex-end; transition:opacity .25s; }
+  .skill-preview .tag{ font-size:10.5px; padding:3px 9px; }
+  @media (min-width:1100px){ .skill-card > .tag{ display:none; } }
+  .skill-chev{ flex:none; width:36px; height:36px; border-radius:50%; border:1px solid var(--line-strong); display:grid; place-items:center; color:var(--text); transition:background .3s, border-color .3s, color .3s; }
+  .skill-chev svg{ display:block; transition:transform .45s var(--ease); }
+  .skill-row.open .skill-chev{ background:var(--accent); border-color:var(--accent); color:#fff; }
+  .skill-row.open .skill-chev svg{ transform:rotate(180deg); }
+  .skill-head:hover .skill-chev{ border-color:var(--accent); }
+  .skill-body{ display:grid; grid-template-rows:0fr; transition:grid-template-rows .5s var(--ease); }
+  .skill-row.open .skill-body{ grid-template-rows:1fr; }
+  .skill-inner{ min-height:0; overflow:hidden; margin:0 28px; visibility:hidden; transition:visibility 0s .5s; }
+  .skill-row.open .skill-inner{ visibility:visible; transition-delay:0s; }
+  .skill-cards{ display:grid; grid-template-columns:repeat(4,1fr); }
+  .skill-card{ display:flex; flex-direction:column; align-items:flex-start; gap:8px; padding:6px 22px 18px; border-left:1px solid var(--line); }
+  .skill-card:first-child{ border-left:0; padding-left:0; }
+  .skill-card .tag{ font-size:11px; padding:4px 10px; }
+  .skill-card b{ display:block; font-size:16px; font-weight:700; line-height:1.25; color:var(--text); }
+  .skill-card p{ margin-top:4px; font-size:13.5px; line-height:1.45; color:var(--text-2); min-height:calc(13.5px*1.45*3); }
+  .skill-meta{ margin-top:auto; padding-top:10px; min-height:calc(12px*1.5*2 + 11px); font-size:12px; line-height:1.5; color:var(--text); opacity:.62; border-top:1px dashed var(--line-strong); width:100%; }
+  .skill-toolbar{ display:flex; flex-wrap:wrap; align-items:center; gap:6px; padding:12px 0 20px; border-top:1px solid var(--line); }
+  .skill-toolbar > span:first-child{ font-size:12px; font-weight:600; color:var(--text-2); letter-spacing:.04em; text-transform:uppercase; margin-right:8px; }
+  .skill-toolbar .tag{ background:var(--accent-soft); color:var(--accent); }
+  @media (max-width:1099px){
+    .skill-preview{ display:none; }
+    .skill-head{ padding:18px 20px; }
+    .skill-head .skill-chev{ margin-left:auto; }
+    .skill-card p, .skill-meta{ min-height:0; }
+    .skill-inner{ margin:0 20px; }
+    .skill-cards{ grid-template-columns:repeat(2,1fr); }
+    .skill-card:nth-child(odd){ border-left:0; padding-left:0; }
+  }
+  @media (max-width:560px){
+    .skill-cards{ grid-template-columns:1fr; }
+    .skill-card, .skill-card:nth-child(odd){ border-left:0; padding:14px 0; border-top:1px solid var(--line); }
+    .skill-card:first-child{ border-top:0; }
+    #skills{ padding:56px 0; }
+  }
+
+  .testi-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  @media (max-width:900px){ .testi-grid{ grid-template-columns:1fr; } }
+  .testi-card{ display:block; border:1px solid var(--line); border-radius:16px; padding:32px; background:var(--surface); transition:transform .35s var(--ease), border-color .35s ease, box-shadow .35s var(--ease); cursor:none; }
+  .testi-card:hover{ transform:translateY(-4px); border-color:transparent; box-shadow:0 24px 48px -28px rgba(17,17,17,.2); }
+  .testi-person{ display:flex; align-items:center; gap:12px; }
+  .testi-avatar{ width:44px; height:44px; border-radius:50%; background:var(--text); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:14px; font-family:'Manrope'; flex:0 0 auto; } .testi-avatar{ overflow:hidden; } .testi-avatar img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .testi-person b{ display:block; font-size:14px; }
+  .testi-person span{ font-size:13px; color:var(--text-2); display:block; }
+
+  .contact-dark{ background:var(--dark-bg); color:var(--dark-text); border-top:none; position:relative; overflow:hidden; }
+  .contact-dark::before{ content:''; position:absolute; width:520px; height:520px; border-radius:50%; background:var(--accent); filter:blur(150px); opacity:.25; top:-220px; left:50%; transform:translateX(-50%); }
+  .contact-section{ text-align:left; padding-top:96px; padding-bottom:96px; position:relative; z-index:1; }
+  .contact-dark h2{ font-size:clamp(28px,4.4vw,52px); max-width:none; white-space:nowrap; margin:0 0 18px; color:var(--dark-text); }
+  @media (max-width:640px){ .contact-dark h2{ white-space:normal; } }
+  .contact-dark p{ color:var(--dark-text-2); font-size:18px; margin-bottom:36px; }
+  .contact-dark .eyebrow{ color:var(--accent-2); }
+  .contact-dark .eyebrow::before{ background:var(--accent-2); }
+  footer.footer-dark{ background:var(--dark-bg); border-top:1px solid var(--dark-line); padding:22px 0; }
+  footer.footer-dark .wrap{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
+  footer.footer-dark span{ font-size:13px; color:var(--dark-text-2); }
+  .footer-links{ display:flex; gap:24px; list-style:none; font-size:14px; color:var(--dark-text-2); }
+  .footer-links a:hover{ color:#fff; }
+
+  @media (prefers-reduced-motion: reduce){ *{ animation-duration:.001ms !important; transition-duration:.001ms !important; } }
+</style>
+</head>
+<body>
+
+<div id="intro">
+  <div class="intro-inner">
+    <div class="intro-badge">UX / UI</div>
+    <div class="intro-count" id="introCount">0</div>
+    <div class="intro-track"><div class="intro-fill" id="introFill"></div></div>
+  </div>
+</div>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-label" id="cursorLabel"></div>
+<div class="progress" id="progress"></div>
+
+<nav id="nav">
+  <div class="wrap">
+    <a class="logo" href="index.html" data-cursor="hover">
+      <span class="logo-circle"><img src="files/logo.svg" alt="" class="logo-mark"></span>
+      <div class="logo-text">
+        <span class="logo-name">Ангелина&nbsp;Масалова</span>
+        <span class="logo-role">UX/UI&nbsp;Designer</span>
+      </div>
+    </a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="cases.html">Кейсы</a></li>
+        <li><a href="about.html">Обо&nbsp;мне</a></li>
+      </ul>
+      <a href="files/Angelina_Masalova_CV.pdf" download class="nav-cta" data-cursor="hover">Скачать&nbsp;CV</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a class="logo mm-logo" href="index.html">
+    <span class="logo-circle"><img src="files/logo.svg" alt="" class="logo-mark"></span>
+    <div class="logo-text">
+      <span class="logo-name">Ангелина&nbsp;Масалова</span>
+      <span class="logo-role">UX/UI&nbsp;Designer</span>
+    </div>
+  </a>
+  <a href="cases.html">Кейсы</a>
+  <a href="about.html">Обо&nbsp;мне</a>
+  <a href="files/Angelina_Masalova_CV.pdf" download class="nav-cta">Скачать&nbsp;CV</a>
+  <div class="mm-contacts">
+    <a href="mailto:uxuiangelina@yandex.ru">E-mail</a>
+    <a href="https://t.me/uxuiangelina" target="_blank" rel="noopener">Telegram</a>
+    <a href="https://wa.me/79996941608" target="_blank" rel="noopener">Whatsapp</a>
+  </div>
+</div>
+
+<header class="hero" id="heroSection">
+  <div class="hero-blob blob-1" id="blob1"></div>
+  <div class="hero-blob blob-2" id="blob2"></div>
+  <div class="wrap">
+    <div class="hero-bento reveal-stagger">
+      <div class="hb-main">
+        <div>
+          <div class="eyebrow">Открыта к&nbsp;предложениям</div>
+          <h1 class="hero-title">
+            <span class="word" style="--i:0">Проектирую цифровые продукты</span>
+          </h1>
+          <p class="lead">Разбираюсь в&nbsp;задаче и&nbsp;проектирую решение. UX/UI Designer широкого профиля. Работаю со&nbsp;сложными цифровыми продуктами, корпоративными сайтами и&nbsp;лендингами</p>
+        </div>
+        <div class="hero-actions">
+          <a href="cases.html" class="btn btn-primary" data-cursor="hover">Смотреть кейсы</a>
+          <a href="https://t.me/uxuiangelina" class="btn btn-ghost" data-cursor="hover">Связаться</a>
+        </div>
+      </div>
+      <div class="hb-person">
+        <div class="hb-photo"><img src="images/angelina.jpg" alt="Ангелина Масалова"></div>
+        <div class="hb-person-info">
+          <div>
+            <b>Ангелина Масалова</b>
+            <span class="role">Senior UX/UI Designer</span>
+          </div>
+          <div class="case-tags">
+            <span class="tag t1">Более 5&nbsp;лет опыта</span>
+            <span class="tag t2">🟢 Ищу full-time</span>
+          </div>
+        </div>
+      </div>
+      <div class="fact-award">
+        <div class="fact-award-main">
+          <div class="fact-big">9</div>
+          <div class="fact-big-label">наград за&nbsp;сайты и&nbsp;сервисы</div>
+        </div>
+        <ul class="fact-award-list">
+          <li><span>WDA</span><b>5&nbsp;призовых, 3&nbsp;первых</b></li>
+          <li><span>Рейтинг Рунета</span><b>4&nbsp;номинации</b></li>
+        </ul>
+      </div>
+      <div class="fact-card fc-2">
+          <div class="fact-kicker"><span class="fact-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 3 8l9 5 9-5-9-5Z"/><path d="m3 13 9 5 9-5"/></svg></span></div>
+          <b>Fintech и&nbsp;B2B с&nbsp;тяжёлой логикой</b>
+          <p>Юридические сценарии, кабинеты, роли и&nbsp;статусы&nbsp;— без&nbsp;потери понятности</p>
+        </div>
+      <div class="fact-card fc-3">
+          <div class="fact-kicker"><span class="fact-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m12 7 0 5 3 2"/></svg></span></div>
+          <b>От&nbsp;CJM до&nbsp;handoff</b>
+          <p>Исследование, архитектура, прототипы и&nbsp;спеки для&nbsp;разработки</p>
+        </div>
+      <div class="fact-card fc-4">
+          <div class="fact-kicker"><span class="fact-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c.6-3.4 3-5 6-5s5.4 1.6 6 5"/><path d="M16 5.5a3 3 0 0 1 0 5.5M18 15.2c1.7.6 2.7 2.2 3 4.8"/></svg></span></div>
+          <b>Растим дизайнеров вместе</b>
+          <p>Воркшопы для&nbsp;junior, митапы и&nbsp;общая база знаний</p>
+        </div>
+    </div>
+  </div>
+  </header>
+
+<section class="marquee-section" aria-label="Награды">
+  <div class="marquee-track">
+    <div class="marquee-list">
+      <div class="award-item">
+        <img src="images/wda.jpg" alt="WDA — Поисковое продвижение / Продвижение услуг, 1 место, 2025">
+        <span class="award-text"><b>WDA</b>&nbsp;— Поисковое продвижение / Продвижение услуг, 1&nbsp;место, 2025&nbsp;— Редизайн для&nbsp;оптимизации премиум-портфолио</span>
+      </div>
+      <span class="award-dot">/</span>
+      <div class="award-item">
+        <img src="images/runet.jpg" alt="Рейтинг Рунета — Разработка и развитие сайтов и веб-сервисов, 2026">
+        <span class="award-text"><b>Рейтинг Рунета</b>&nbsp;— Разработка и&nbsp;развитие сайтов и&nbsp;веб-сервисов, 2026</span>
+      </div>
+      <span class="award-dot">/</span>
+      <div class="award-item">
+        <img src="images/wda.jpg" alt="WDA — Услуги, 1 место, 2024">
+        <span class="award-text"><b>WDA</b>&nbsp;— Услуги, 1&nbsp;место, 2024&nbsp;— Корпоративный сайт Rocket Business</span>
+      </div>
+      <span class="award-dot">/</span>
+      <div class="award-item">
+        <img src="images/runet.jpg" alt="Рейтинг Рунета — Дизайн и цифровые продукты, 8 место, 2026">
+        <span class="award-text"><b>Рейтинг Рунета</b>&nbsp;— Дизайн и&nbsp;цифровые продукты, 8&nbsp;место, 2026</span>
+      </div>
+      <span class="award-dot">/</span>
+      <div class="award-item">
+        <img src="images/wda.jpg" alt="WDA — Сайты / Услуги, 2 место, 2025">
+        <span class="award-text"><b>WDA</b>&nbsp;— Сайты / Услуги, 2&nbsp;место, 2025&nbsp;— Сайт технического подразделения Rocket Dev</span>
+      </div>
+      <span class="award-dot">/</span>
+      <div class="award-item">
+        <img src="images/runet.jpg" alt="Рейтинг Рунета — Простые интернет магазины, 5 место, 2026">
+        <span class="award-text"><b>Рейтинг Рунета</b>&nbsp;— Простые интернет магазины, 5&nbsp;место, 2026</span>
+      </div>
+      <span class="award-dot">/</span>
+      <div class="award-item">
+        <img src="images/wda.jpg" alt="WDA — Цифровизация и трансформация / Корпоративные порталы, 1 место, 2025">
+        <span class="award-text"><b>WDA</b>&nbsp;— Цифровизация и&nbsp;трансформация / Корпоративные порталы, 1&nbsp;место, 2025&nbsp;— Чат-бот «Rocket Спасибо»</span>
+      </div>
+      <span class="award-dot">/</span>
+      <div class="award-item">
+        <img src="images/runet.jpg" alt="Рейтинг Рунета — Порталы и веб сервисы, 15 место, 2026">
+        <span class="award-text"><b>Рейтинг Рунета</b>&nbsp;— Порталы и&nbsp;веб сервисы, 15&nbsp;место, 2026</span>
+      </div>
+      <span class="award-dot">/</span>
+      <div class="award-item">
+        <img src="images/wda.jpg" alt="WDA — Цифровизация и трансформация / Корпоративные порталы, 2 место, 2024">
+        <span class="award-text"><b>WDA</b>&nbsp;— Цифровизация и&nbsp;трансформация / Корпоративные порталы, 2&nbsp;место, 2024&nbsp;— «Наш Монитор»</span>
+      </div>
+      <span class="award-dot">/</span>
+    </div>
+    <div class="marquee-list" aria-hidden="true">
+      <div class="award-item">
+        <img src="images/wda.jpg" alt="WDA — Поисковое продвижение / Продвижение услуг, 1 место, 2025">
+        <span class="award-text"><b>WDA</b>&nbsp;— Поисковое продвижение / Продвижение услуг, 1&nbsp;место, 2025&nbsp;— Редизайн для&nbsp;оптимизации премиум-портфолио</span>
+      </div>
+      <span class="award-dot">/</span>
+      <div class="award-item">
+        <img src="images/runet.jpg" alt="Рейтинг Рунета — Разработка и развитие сайтов и веб-сервисов, 2026">
+        <span class="award-text"><b>Рейтинг Рунета</b>&nbsp;— Разработка и&nbsp;развитие сайтов и&nbsp;веб-сервисов, 2026</span>
+      </div>
+      <span class="award-dot">/</span>
+      <div class="award-item">
+        <img src="images/wda.jpg" alt="WDA — Услуги, 1 место, 2024">
+        <span class="award-text"><b>WDA</b>&nbsp;— Услуги, 1&nbsp;место, 2024&nbsp;— Корпоративный сайт Rocket Business</span>
+      </div>
+      <span class="award-dot">/</span>
+      <div class="award-item">
+        <img src="images/runet.jpg" alt="Рейтинг Рунета — Дизайн и цифровые продукты, 8 место, 2026">
+        <span class="award-text"><b>Рейтинг Рунета</b>&nbsp;— Дизайн и&nbsp;цифровые продукты, 8&nbsp;место, 2026</span>
+      </div>
+      <span class="award-dot">/</span>
+      <div class="award-item">
+        <img src="images/wda.jpg" alt="WDA — Сайты / Услуги, 2 место, 2025">
+        <span class="award-text"><b>WDA</b>&nbsp;— Сайты / Услуги, 2&nbsp;место, 2025&nbsp;— Сайт технического подразделения Rocket Dev</span>
+      </div>
+      <span class="award-dot">/</span>
+      <div class="award-item">
+        <img src="images/runet.jpg" alt="Рейтинг Рунета — Простые интернет магазины, 5 место, 2026">
+        <span class="award-text"><b>Рейтинг Рунета</b>&nbsp;— Простые интернет магазины, 5&nbsp;место, 2026</span>
+      </div>
+      <span class="award-dot">/</span>
+      <div class="award-item">
+        <img src="images/wda.jpg" alt="WDA — Цифровизация и трансформация / Корпоративные порталы, 1 место, 2025">
+        <span class="award-text"><b>WDA</b>&nbsp;— Цифровизация и&nbsp;трансформация / Корпоративные порталы, 1&nbsp;место, 2025&nbsp;— Чат-бот «Rocket Спасибо»</span>
+      </div>
+      <span class="award-dot">/</span>
+      <div class="award-item">
+        <img src="images/runet.jpg" alt="Рейтинг Рунета — Порталы и веб сервисы, 15 место, 2026">
+        <span class="award-text"><b>Рейтинг Рунета</b>&nbsp;— Порталы и&nbsp;веб сервисы, 15&nbsp;место, 2026</span>
+      </div>
+      <span class="award-dot">/</span>
+      <div class="award-item">
+        <img src="images/wda.jpg" alt="WDA — Цифровизация и трансформация / Корпоративные порталы, 2 место, 2024">
+        <span class="award-text"><b>WDA</b>&nbsp;— Цифровизация и&nbsp;трансформация / Корпоративные порталы, 2&nbsp;место, 2024&nbsp;— «Наш Монитор»</span>
+      </div>
+      <span class="award-dot">/</span>
+    </div>
+  </div>
+</section>
+
+<section class="status-banner">
+  <div class="wrap">
+    <div class="status-card reveal">
+      <div class="status-grid">
+        <div class="status-compact">
+          <h2>Ищу&nbsp;full-time позицию UX/UI Designer</h2>
+          <div class="status-modes">Готова присоединиться в&nbsp;течение ~1&nbsp;недели после оффера</div>
+          <p>Работаю с&nbsp;широким спектром задач&nbsp;— от&nbsp;продуктового дизайна и&nbsp;сложных интерфейсов до&nbsp;лендингов и&nbsp;корпоративных сайтов</p>
+          <div class="status-actions">
+            <a href="files/Angelina_Masalova_CV.pdf" download class="btn btn-cv" data-cursor="hover">Скачать CV</a>
+            <a href="https://t.me/uxuiangelina" class="btn btn-ghost-dark" data-cursor="hover">Написать в&nbsp;Telegram</a>
+          </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="about-card reveal">
+      <div class="about-photo">
+        <div class="about-photo-wrap">
+          <div class="about-photo-square">
+            <img src="images/angelina2.jpg" alt="Ангелина Масалова">
+          </div>
+          <div class="float-badge about-badge">Я&nbsp;навайбкодила этот сайт!</div>
+        </div>
+      </div>
+      <div class="about-content">
+        <div>
+          <span class="section-num">Подход к&nbsp;работе</span>
+          <h2 class="section-title">Обо&nbsp;мне</h2>
+        </div>
+        <div class="about-text">
+          <p>Мне&nbsp;нравится докапываться до&nbsp;сути задачи и&nbsp;находить решение, которое работает не&nbsp;только визуально, но&nbsp;и&nbsp;для&nbsp;бизнеса и&nbsp;пользователя.</p>
+          <p style="margin-top:16px;">Люблю порядок в&nbsp;сложных задачах, понятную коммуникацию и&nbsp;когда за&nbsp;красивым интерфейсом стоит действительно продуманная логика</p>
+          <div class="case-tags" style="margin-top:22px;">
+            <span class="tag t1">Product Design</span>
+            <span class="tag t2">B2B</span>
+            <span class="tag t2">SaaS</span>
+            <span class="tag t1">Открыта к&nbsp;переезду</span>
+          </div>
+        </div>
+        <a href="about.html" class="btn btn-ghost about-more" data-cursor="hover">Подробнее о&nbsp;моём опыте →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <span class="section-num">Чем занимаюсь</span>
+        <h2 class="section-title">Компетенции</h2>
+      </div>
+    </div>
+    <div class="skill-grid reveal-stagger">
+      <div class="skill-row open">
+        <button type="button" class="skill-head" aria-expanded="true" aria-controls="skill-body-01" id="skill-head-01">
+          <span class="skill-step">01</span><h3>Понять</h3>
+          <span class="skill-preview" aria-hidden="true"><span class="tag t1">Research</span><span class="tag t2">UX audit</span><span class="tag t3">Competitor&nbsp;analysis</span><span class="tag t4">Product&nbsp;thinking</span></span>
+          <span class="skill-chev" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="skill-body" id="skill-body-01" role="region" aria-labelledby="skill-head-01">
+          <div class="skill-inner">
+            <div class="skill-cards">
+              <div class="skill-card"><span class="tag t1">Research</span><div><b>Исследования</b><p>Изучаю пользователей, контекст и&nbsp;задачу до&nbsp;того, как&nbsp;рисовать&nbsp;экраны.</p></div><small class="skill-meta">Интервью&nbsp;· Опросы&nbsp;· Дневниковые&nbsp;исследования</small></div>
+              <div class="skill-card"><span class="tag t2">UX audit</span><div><b>UX-аудит</b><p>Нахожу проблемы в&nbsp;продукте и&nbsp;пользовательских сценариях, расставляю&nbsp;приоритеты.</p></div><small class="skill-meta">Эвристики&nbsp;· Разбор сценариев&nbsp;·&nbsp;Приоритизация</small></div>
+              <div class="skill-card"><span class="tag t3">Competitor&nbsp;analysis</span><div><b>Анализ</b><p>Сравниваю решения конкурентов, ищу точки для&nbsp;улучшения&nbsp;и&nbsp;роста.</p></div><small class="skill-meta">Бенчмаркинг&nbsp;· Паттерны рынка&nbsp;·&nbsp;Гипотезы</small></div>
+              <div class="skill-card"><span class="tag t4">Product&nbsp;thinking</span><div><b>Продуктовый подход</b><p>Учитываю цели бизнеса, потребности людей и&nbsp;ограничения&nbsp;проекта.</p></div><small class="skill-meta">Цели и&nbsp;метрики&nbsp;· Ограничения&nbsp;·&nbsp;Приоритеты</small></div>
+            </div>
+            <div class="skill-toolbar"><span>Инструменты</span><span class="tag">FigJam</span><span class="tag">Miro</span><span class="tag">Google Forms</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="skill-row">
+        <button type="button" class="skill-head" aria-expanded="false" aria-controls="skill-body-02" id="skill-head-02">
+          <span class="skill-step">02</span><h3>Спроектировать</h3>
+          <span class="skill-preview" aria-hidden="true"><span class="tag t2">User&nbsp;flows</span><span class="tag t3">Information&nbsp;architecture</span><span class="tag t4">Prototyping</span><span class="tag t1">Service design</span></span>
+          <span class="skill-chev" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="skill-body" id="skill-body-02" role="region" aria-labelledby="skill-head-02">
+          <div class="skill-inner">
+            <div class="skill-cards">
+              <div class="skill-card"><span class="tag t2">User&nbsp;flows</span><div><b>Пользовательские сценарии</b><p>Прорабатываю путь пользователя и&nbsp;ключевые сценарии до&nbsp;дизайна&nbsp;экранов.</p></div><small class="skill-meta">Путь пользователя&nbsp;· Edge&nbsp;cases&nbsp;·&nbsp;Состояния</small></div>
+              <div class="skill-card"><span class="tag t3">Information&nbsp;architecture</span><div><b>Информационная архитектура</b><p>Структурирую разделы, сущности и&nbsp;связи внутри&nbsp;продукта.</p></div><small class="skill-meta">Структура&nbsp;· Навигация&nbsp;· Сущности&nbsp;и&nbsp;связи</small></div>
+              <div class="skill-card"><span class="tag t4">Prototyping</span><div><b>Прототипирование</b><p>Собираю интерактивные прототипы для&nbsp;проверки идей и&nbsp;подготовки&nbsp;к&nbsp;разработке.</p></div><small class="skill-meta">Кликабельные макеты&nbsp;· Анимации&nbsp;· Микро-взаимодействия</small></div>
+              <div class="skill-card"><span class="tag t1">Service design</span><div><b>Проектирование услуги</b><p>Смотрю на&nbsp;сквозной опыт: от&nbsp;первого касания&nbsp;до&nbsp;поддержки.</p></div><small class="skill-meta">Customer&nbsp;journey&nbsp;· Фронт- и&nbsp;бэкстейдж&nbsp;·&nbsp;Blueprint</small></div>
+            </div>
+            <div class="skill-toolbar"><span>Инструменты</span><span class="tag t1">Figma</span><span class="tag ">Framer</span><span class="tag ">ProtoPie</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="skill-row">
+        <button type="button" class="skill-head" aria-expanded="false" aria-controls="skill-body-03" id="skill-head-03">
+          <span class="skill-step">03</span><h3>Оформить</h3>
+          <span class="skill-preview" aria-hidden="true"><span class="tag t3">UI</span><span class="tag t4">Design&nbsp;system</span><span class="tag t1">Responsive</span><span class="tag t2">Accessibility</span></span>
+          <span class="skill-chev" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="skill-body" id="skill-body-03" role="region" aria-labelledby="skill-head-03">
+          <div class="skill-inner">
+            <div class="skill-cards">
+              <div class="skill-card"><span class="tag t3">UI</span><div><b>UI-дизайн</b><p>Создаю визуальные решения, которые поддерживают логику и&nbsp;задачи&nbsp;продукта.</p></div><small class="skill-meta">Сетки&nbsp;· Типографика&nbsp;· Цвет&nbsp;·&nbsp;Состояния</small></div>
+              <div class="skill-card"><span class="tag t4">Design&nbsp;system</span><div><b>Дизайн-системы и&nbsp;токены</b><p>Строю компоненты и&nbsp;правила для&nbsp;единого, масштабируемого интерфейса.</p></div><small class="skill-meta">Design&nbsp;Tokens&nbsp;· Библиотеки компонентов&nbsp;· Design&nbsp;Governance</small></div>
+              <div class="skill-card"><span class="tag t1">Responsive</span><div><b>Адаптивность</b><p>Проектирую для&nbsp;разных разрешений, устройств и&nbsp;сценариев&nbsp;использования.</p></div><small class="skill-meta">Брейкпоинты&nbsp;· Мобайл и&nbsp;десктоп&nbsp;·&nbsp;Контекст</small></div>
+              <div class="skill-card"><span class="tag t2">Accessibility</span><div><b>Доступность (WCAG&nbsp;2.1)</b><p>Делаю интерфейсы, которыми могут пользоваться&nbsp;все.</p></div><small class="skill-meta">Контраст&nbsp;· Клавиатура&nbsp;· Читаемость</small></div>
+            </div>
+            <div class="skill-toolbar"><span>Инструменты</span><span class="tag t1">Figma</span><span class="tag ">Sketch</span><span class="tag ">Adobe Creative Suite</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="skill-row">
+        <button type="button" class="skill-head" aria-expanded="false" aria-controls="skill-body-04" id="skill-head-04">
+          <span class="skill-step">04</span><h3>Проверить и&nbsp;передать</h3>
+          <span class="skill-preview" aria-hidden="true"><span class="tag t4">Usability&nbsp;testing</span><span class="tag t1">Dev&nbsp;handoff</span><span class="tag t2">AI</span><span class="tag t3">A/B&nbsp;testing</span></span>
+          <span class="skill-chev" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="skill-body" id="skill-body-04" role="region" aria-labelledby="skill-head-04">
+          <div class="skill-inner">
+            <div class="skill-cards">
+              <div class="skill-card"><span class="tag t4">Usability&nbsp;testing</span><div><b>UX-тестирование</b><p>Проверяю решения на&nbsp;пользовательских сценариях и&nbsp;дорабатываю&nbsp;их.</p></div><small class="skill-meta">Модерируемые сессии&nbsp;· Гипотезы&nbsp;·&nbsp;Выводы</small></div>
+              <div class="skill-card"><span class="tag t1">Dev&nbsp;handoff</span><div><b>Передача в&nbsp;разработку</b><p>Готовлю спеки и&nbsp;токены так, чтобы разработке не&nbsp;пришлось переспрашивать.</p></div><small class="skill-meta">Спеки&nbsp;· Токены&nbsp;· Ревью реализации</small></div>
+              <div class="skill-card"><span class="tag t2">AI</span><div><b>AI в&nbsp;дизайне</b><p>Использую AI для&nbsp;исследования, идей, контента и&nbsp;ускорения&nbsp;рутины.</p></div><small class="skill-meta">Исследования&nbsp;· Контент&nbsp;·&nbsp;Автоматизация</small></div>
+              <div class="skill-card"><span class="tag t3">A/B&nbsp;testing</span><div><b>A/B-тестирование</b><p>Проверяю гипотезы на&nbsp;реальных данных и&nbsp;читаю&nbsp;результаты.</p></div><small class="skill-meta">Гипотезы&nbsp;· Метрики&nbsp;· Интерпретация</small></div>
+            </div>
+            <div class="skill-toolbar"><span>Инструменты</span><span class="tag t1">Figma</span><span class="tag ">Storybook</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="skill-row">
+        <button type="button" class="skill-head" aria-expanded="false" aria-controls="skill-body-05" id="skill-head-05">
+          <span class="skill-step">05</span><h3>Работать с&nbsp;командой</h3>
+          <span class="skill-preview" aria-hidden="true"><span class="tag t4">Workshops</span><span class="tag t1">Stakeholder&nbsp;alignment</span><span class="tag t2">Mentoring</span><span class="tag t3">Cross-functional</span></span>
+          <span class="skill-chev" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </button>
+        <div class="skill-body" id="skill-body-05" role="region" aria-labelledby="skill-head-05">
+          <div class="skill-inner">
+            <div class="skill-cards">
+              <div class="skill-card"><span class="tag t4">Workshops</span><div><b>Фасилитация семинаров</b><p>Выравниваю команду на&nbsp;воркшопах и&nbsp;помогаю прийти&nbsp;к&nbsp;решению.</p></div><small class="skill-meta">Формат&nbsp;· Модерация&nbsp;· Итоги&nbsp;и&nbsp;next&nbsp;steps</small></div>
+              <div class="skill-card"><span class="tag t1">Stakeholder&nbsp;alignment</span><div><b>Согласование с&nbsp;бизнесом</b><p>Договариваюсь о&nbsp;целях и&nbsp;решениях со&nbsp;стейкхолдерами.</p></div><small class="skill-meta">Аргументация&nbsp;· Компромиссы&nbsp;·&nbsp;Прозрачность</small></div>
+              <div class="skill-card"><span class="tag t2">Mentoring</span><div><b>Критика и&nbsp;наставничество</b><p>Растим уровень дизайна в&nbsp;команде через разборы и&nbsp;обратную&nbsp;связь.</p></div><small class="skill-meta">Дизайн-критика&nbsp;· Менторство&nbsp;· Обратная&nbsp;связь</small></div>
+              <div class="skill-card"><span class="tag t3">Cross-functional</span><div><b>Кросс-функциональное лидерство</b><p>Веду продукт вместе с&nbsp;PM, разработкой&nbsp;и&nbsp;аналитикой.</p></div><small class="skill-meta">Синхронизация&nbsp;· Роли&nbsp;· Общий&nbsp;результат</small></div>
+            </div>
+            <div class="skill-toolbar"><span>Инструменты</span><span class="tag">FigJam</span><span class="tag">Miro</span><span class="tag">Notion</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <span class="section-num">Избранные проекты</span>
+        <h2 class="section-title">Кейсы</h2>
+      </div>
+      <a href="cases.html" class="btn btn-ghost btn-all-cases" data-cursor="hover">Все кейсы →</a>
+    </div>
+
+    <div class="case-list">
+      <a class="case-card reveal" data-cursor="view" data-cursor-label="Открыть" href="cases/fintech.html">
+        <div class="case-body">
+          <div class="case-text">
+            <div class="case-top">
+              <div class="case-tags"><span class="tag t1">Fintech</span><span class="tag t2">iOS</span><span class="tag t1">Android</span></div>
+            </div>
+            <h3>Финтех с&nbsp;юридической логикой: UX&nbsp;для&nbsp;цифровых займов между людьми</h3>
+            <p>End-to-end UX-проектирование финтех-сервиса: от&nbsp;бизнес-требований и&nbsp;CJM до&nbsp;сложных юридических сценариев, где&nbsp;интерфейс помогает фиксировать обязательства, снижать конфликты и&nbsp;удерживать пользователей.
+</p>
+            <span class="case-link">Смотреть кейс <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div>
+          <div class="case-image"><img src="images/fintech/casefinmain1.jpg" alt=""></div>
+        </div>
+      </a>
+
+      <a class="case-card reveal" data-cursor="view" data-cursor-label="Открыть" href="cases/construct.html">
+        <div class="case-body">
+          <div class="case-text">
+            <div class="case-top">
+              <div class="case-tags"><span class="tag t1">B2B</span><span class="tag t2">E-commerce</span><span class="tag t1">Конфигуратор</span></div>
+            </div>
+            <h3>Интернет-магазин строительной техники: каталог, конфигуратор и&nbsp;личный&nbsp;кабинет</h3>
+            <p>Спроектировала путь от&nbsp;поиска и&nbsp;сравнения техники до&nbsp;подбора совместимого оборудования и&nbsp;формирования заявки без&nbsp;уточнений у&nbsp;менеджера</p>
+            <span class="case-link">Смотреть кейс <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div>
+          <div class="case-image"><img src="images/construct/construct1.jpg" alt=""></div>
+        </div>
+      </a>
+
+      <a class="case-card reveal" data-cursor="view" data-cursor-label="Открыть" href="cases/zebra.html">
+        <div class="case-body">
+          <div class="case-text">
+            <div class="case-top">
+              <div class="case-tags"><span class="tag t1">Logistics</span><span class="tag t2">Android</span><span class="tag t1">Enterprise</span></div>
+            </div>
+            <h3>Логистическое приложение для&nbsp;ТСД&nbsp;Zebra</h3>
+            <p>Спроектировала приложение для&nbsp;терминалов сбора данных, объединив складские и&nbsp;курьерские процессы&nbsp;— от&nbsp;комплектации заказа до&nbsp;доставки</p>
+            <span class="case-link">Смотреть кейс <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div>
+          <div class="case-image"><img src="images/zebra/zebra1.jpg" alt=""></div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<section class="marquee-section" aria-label="Награды">
+  <div class="marquee-track">
+    <div class="marquee-list">
+      <div class="award-item">
+        <img src="images/wda.jpg" alt="WDA — Поисковое продвижение / Продвижение услуг, 1 место, 2025">
+        <span class="award-text"><b>WDA</b>&nbsp;— Поисковое продвижение / Продвижение услуг, 1&nbsp;место, 2025&nbsp;— Редизайн для&nbsp;оптимизации премиум-портфолио</span>
+      </div>
+      <span class="award-dot">/</span>
+      <div class="award-item">
+        <img src="images/runet.jpg" alt="Рейтинг Рунета — Разработка и развитие сайтов и веб-сервисов, 2026">
+        <span class="award-text"><b>Рейтинг Рунета</b>&nbsp;— Разработка и&nbsp;развитие сайтов и&nbsp;веб-сервисов, 2026</span>
+      </div>
+      <span class="award-dot">/</span>
+      <div class="award-item">
+        <img src="images/wda.jpg" alt="WDA — Услуги, 1 место, 2024">
+        <span class="award-text"><b>WDA</b>&nbsp;— Услуги, 1&nbsp;место, 2024&nbsp;— Корпоративный сайт Rocket Business</span>
+      </div>
+      <span class="award-dot">/</span>
+      <div class="award-item">
+        <img src="images/runet.jpg" alt="Рейтинг Рунета — Дизайн и цифровые продукты, 8 место, 2026">
+        <span class="award-text"><b>Рейтинг Рунета</b>&nbsp;— Дизайн и&nbsp;цифровые продукты, 8&nbsp;место, 2026</span>
+      </div>
+      <span class="award-dot">/</span>
+      <div class="award-item">
+        <img src="images/wda.jpg" alt="WDA — Сайты / Услуги, 2 место, 2025">
+        <span class="award-text"><b>WDA</b>&nbsp;— Сайты / Услуги, 2&nbsp;место, 2025&nbsp;— Сайт технического подразделения Rocket Dev</span>
+      </div>
+      <span class="award-dot">/</span>
+      <div class="award-item">
+        <img src="images/runet.jpg" alt="Рейтинг Рунета — Простые интернет магазины, 5 место, 2026">
+        <span class="award-text"><b>Рейтинг Рунета</b>&nbsp;— Простые интернет магазины, 5&nbsp;место, 2026</span>
+      </div>
+      <span class="award-dot">/</span>
+      <div class="award-item">
+        <img src="images/wda.jpg" alt="WDA — Цифровизация и трансформация / Корпоративные порталы, 1 место, 2025">
+        <span class="award-text"><b>WDA</b>&nbsp;— Цифровизация и&nbsp;трансформация / Корпоративные порталы, 1&nbsp;место, 2025&nbsp;— Чат-бот «Rocket Спасибо»</span>
+      </div>
+      <span class="award-dot">/</span>
+      <div class="award-item">
+        <img src="images/runet.jpg" alt="Рейтинг Рунета — Порталы и веб сервисы, 15 место, 2026">
+        <span class="award-text"><b>Рейтинг Рунета</b>&nbsp;— Порталы и&nbsp;веб сервисы, 15&nbsp;место, 2026</span>
+      </div>
+      <span class="award-dot">/</span>
+      <div class="award-item">
+        <img src="images/wda.jpg" alt="WDA — Цифровизация и трансформация / Корпоративные порталы, 2 место, 2024">
+        <span class="award-text"><b>WDA</b>&nbsp;— Цифровизация и&nbsp;трансформация / Корпоративные порталы, 2&nbsp;место, 2024&nbsp;— «Наш Монитор»</span>
+      </div>
+      <span class="award-dot">/</span>
+    </div>
+    <div class="marquee-list" aria-hidden="true">
+      <div class="award-item">
+        <img src="images/wda.jpg" alt="WDA — Поисковое продвижение / Продвижение услуг, 1 место, 2025">
+        <span class="award-text"><b>WDA</b>&nbsp;— Поисковое продвижение / Продвижение услуг, 1&nbsp;место, 2025&nbsp;— Редизайн для&nbsp;оптимизации премиум-портфолио</span>
+      </div>
+      <span class="award-dot">/</span>
+      <div class="award-item">
+        <img src="images/runet.jpg" alt="Рейтинг Рунета — Разработка и развитие сайтов и веб-сервисов, 2026">
+        <span class="award-text"><b>Рейтинг Рунета</b>&nbsp;— Разработка и&nbsp;развитие сайтов и&nbsp;веб-сервисов, 2026</span>
+      </div>
+      <span class="award-dot">/</span>
+      <div class="award-item">
+        <img src="images/wda.jpg" alt="WDA — Услуги, 1 место, 2024">
+        <span class="award-text"><b>WDA</b>&nbsp;— Услуги, 1&nbsp;место, 2024&nbsp;— Корпоративный сайт Rocket Business</span>
+      </div>
+      <span class="award-dot">/</span>
+      <div class="award-item">
+        <img src="images/runet.jpg" alt="Рейтинг Рунета — Дизайн и цифровые продукты, 8 место, 2026">
+        <span class="award-text"><b>Рейтинг Рунета</b>&nbsp;— Дизайн и&nbsp;цифровые продукты, 8&nbsp;место, 2026</span>
+      </div>
+      <span class="award-dot">/</span>
+      <div class="award-item">
+        <img src="images/wda.jpg" alt="WDA — Сайты / Услуги, 2 место, 2025">
+        <span class="award-text"><b>WDA</b>&nbsp;— Сайты / Услуги, 2&nbsp;место, 2025&nbsp;— Сайт технического подразделения Rocket Dev</span>
+      </div>
+      <span class="award-dot">/</span>
+      <div class="award-item">
+        <img src="images/runet.jpg" alt="Рейтинг Рунета — Простые интернет магазины, 5 место, 2026">
+        <span class="award-text"><b>Рейтинг Рунета</b>&nbsp;— Простые интернет магазины, 5&nbsp;место, 2026</span>
+      </div>
+      <span class="award-dot">/</span>
+      <div class="award-item">
+        <img src="images/wda.jpg" alt="WDA — Цифровизация и трансформация / Корпоративные порталы, 1 место, 2025">
+        <span class="award-text"><b>WDA</b>&nbsp;— Цифровизация и&nbsp;трансформация / Корпоративные порталы, 1&nbsp;место, 2025&nbsp;— Чат-бот «Rocket Спасибо»</span>
+      </div>
+      <span class="award-dot">/</span>
+      <div class="award-item">
+        <img src="images/runet.jpg" alt="Рейтинг Рунета — Порталы и веб сервисы, 15 место, 2026">
+        <span class="award-text"><b>Рейтинг Рунета</b>&nbsp;— Порталы и&nbsp;веб сервисы, 15&nbsp;место, 2026</span>
+      </div>
+      <span class="award-dot">/</span>
+      <div class="award-item">
+        <img src="images/wda.jpg" alt="WDA — Цифровизация и трансформация / Корпоративные порталы, 2 место, 2024">
+        <span class="award-text"><b>WDA</b>&nbsp;— Цифровизация и&nbsp;трансформация / Корпоративные порталы, 2&nbsp;место, 2024&nbsp;— «Наш Монитор»</span>
+      </div>
+      <span class="award-dot">/</span>
+    </div>
+  </div>
+</section>
+
+<section id="achievements">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <span class="section-num reveal">Немного гордости</span>
+        <h2 class="section-title reveal">Достижения</h2>
+      </div>
+      <a href="about.html" class="btn btn-ghost btn-all-cases" data-cursor="hover">Подробнее →</a>
+    </div>
+    <div class="achieve-grid reveal-stagger" style="margin-top:48px;">
+      <a class="achieve-card" href="https://workspace.ru/awards/" target="_blank" rel="noopener" data-cursor="view" data-cursor-label="Перейти">
+        <div class="achieve-icon">🏆</div>
+        <h3>Призовое место в&nbsp;Workspace Digital Awards</h3>
+        <p>Корпоративный сайт Rocket Business занял 1-е&nbsp;место в&nbsp;номинации «Сайты&nbsp;/&nbsp;Услуги» Workspace Digital Awards.</p>
+        <div class="achieve-meta"><span>Rocket Business · 2024</span><span class="achieve-link">Перейти на&nbsp;сайт WDA<svg viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      </a>
+      <div class="achieve-card achieve-card--static">
+        <div class="achieve-icon">🧩</div>
+        <h3>Запустила UX/UI-воркшопы для&nbsp;junior-дизайнеров</h3>
+        <p>Организовала регулярные разборы реальных продуктов и&nbsp;UX-задач, чтобы помогать начинающим дизайнерам развивать проектное мышление и&nbsp;аргументировать решения.</p>
+        <div class="achieve-meta"><span>Efimov · 2025</span></div>
+      </div>
+      <a class="achieve-card" href="cases/fintech.html" data-cursor="view" data-cursor-label="Открыть">
+        <div class="achieve-icon">🎤</div>
+        <h3>Спроектировала финтех-приложение с&nbsp;нуля</h3>
+        <p>Разработала пользовательские сценарии и&nbsp;интерфейсы приложения для&nbsp;P2P-займов&nbsp;— от&nbsp;анализа рисков и&nbsp;логики сделок до&nbsp;подготовки макетов к&nbsp;разработке.</p>
+        <div class="achieve-meta"><span>Efimov · 2025</span><span class="achieve-link">Смотреть кейс <svg viewBox="0 0 24 24" fill="none"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      </a>
+      <div class="achieve-card achieve-card--static">
+        <div class="achieve-icon">🚀</div>
+        <h3>Масштабировала дизайн-систему на&nbsp;несколько продуктов</h3>
+        <p>Создала библиотеку компонентов и&nbsp;токенов, которую переиспользовали в&nbsp;четырёх внутренних продуктах и&nbsp;социальных сетях компании.</p>
+        <div class="achieve-meta"><span>Efimov · 2025</span></div>
+      </div>
+      <div class="achieve-card achieve-card--static">
+        <div class="achieve-icon">🗣️</div>
+        <h3>Вела профессиональные митапы для&nbsp;команды</h3>
+        <p>Организовывала и&nbsp;модерировала внутренние встречи для&nbsp;обмена опытом, обсуждения рабочих вопросов и&nbsp;профессионального развития команды.</p>
+        <div class="achieve-meta"><span>Rocket Business · 2024</span></div>
+      </div>
+      <div class="achieve-card achieve-card--static">
+        <div class="achieve-icon">🤝</div>
+        <h3>Систематизировала знания команды</h3>
+        <p>Создала общую базу проектных материалов, инструкций, Figma-файлов и&nbsp;решений типовых задач, чтобы упростить поиск информации и&nbsp;работу с&nbsp;накопленным опытом.</p>
+        <div class="achieve-meta"><span>Efimov · 2026</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section id="testimonials">
+  <div class="wrap">
+    <span class="section-num reveal">Написать коллегам в&nbsp;Телеграм</span>
+    <h2 class="section-title reveal">Рекомендации</h2>
+    <div class="testi-grid reveal-stagger" style="margin-top:48px;">
+      <a class="testi-card" href="https://t.me/bogdanova_e" data-cursor="view" data-cursor-label="Написать">
+        <div class="testi-person">
+          <div class="testi-avatar"><img src="images/be.jpg" alt="Богданова Елизавета"></div>
+          <div>
+            <b>Богданова Елизавета</b>
+            <span>Технический директор, Rocket Business</span>
+          </div>
+        </div>
+      </a>
+      <a class="testi-card" href="https://t.me/kasyanenko_v" data-cursor="view" data-cursor-label="Написать">
+        <div class="testi-person">
+          <div class="testi-avatar"><img src="images/kv.jpg" alt="Касьяненко Владислав"></div>
+          <div>
+            <b>Касьяненко Владислав</b>
+            <span>Арт-директор, Efimov</span>
+          </div>
+        </div>
+      </a>
+      <a class="testi-card" href="https://t.me/kim_v" data-cursor="view" data-cursor-label="Написать">
+        <div class="testi-person">
+          <div class="testi-avatar"><img src="images/vk.jpg" alt="Ким Владислав"></div>
+          <div>
+            <b>Ким Владислав</b>
+            <span>Project Manager, UMK</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact-dark">
+  <div class="wrap contact-section">
+    <div class="eyebrow">Открыта к&nbsp;предложениям</div>
+    <h2>Готовы предложить оффер?</h2>
+    <p style="font-size:14px;">Отвечаю в&nbsp;течение пары часов. Открыта к&nbsp;full-time, контракту и&nbsp;разовым&nbsp;проектам.</p>
+    <div class="hero-actions">
+      <a href="https://t.me/uxuiangelina" class="btn btn-primary" data-cursor="hover">Написать в&nbsp;Telegram</a>
+      <a href="mailto:uxuiangelina@yandex.ru" class="btn btn-ghost-dark" data-cursor="hover">Написать на&nbsp;почту</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer-dark">
+  <div class="wrap">
+    <span>©&nbsp;2026&nbsp;· Angelina&nbsp;Masalova</span>
+    <ul class="footer-links">
+      <li><a href="mailto:uxuiangelina@yandex.ru">E-mail</a></li>
+      <li><a href="https://t.me/uxuiangelina">Telegram</a></li>
+      <li><a href="https://wa.me/79996941608">Whatsapp</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const countEl = document.getElementById('introCount');
+  const fillEl = document.getElementById('introFill');
+  let p = 0;
+  const t = setInterval(() => {
+    p += Math.ceil(Math.random() * 9) + 3;
+    if (p >= 100) { p = 100; clearInterval(t); }
+    countEl.textContent = p;
+    fillEl.style.width = p + '%';
+    if (p === 100) {
+      setTimeout(() => document.getElementById('intro').classList.add('hide'), 350);
+    }
+  }, 90);
+})();
+
+const cursor = document.getElementById('cursor');
+const cursorLabel = document.getElementById('cursorLabel');
+window.addEventListener('mousemove', e => {
+  cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px';
+  cursorLabel.style.left = e.clientX + 'px'; cursorLabel.style.top = e.clientY + 'px';
+});
+document.querySelectorAll('[data-cursor="hover"], .nav-links a').forEach(el => {
+  el.addEventListener('mouseenter', () => cursor.classList.add('grow'));
+  el.addEventListener('mouseleave', () => cursor.classList.remove('grow'));
+});
+document.querySelectorAll('[data-cursor="view"]').forEach(el => {
+  el.addEventListener('mouseenter', () => { cursor.classList.add('grow'); cursorLabel.textContent = el.dataset.cursorLabel || 'Открыть'; cursorLabel.classList.add('show'); });
+  el.addEventListener('mouseleave', () => { cursor.classList.remove('grow'); cursorLabel.classList.remove('show'); });
+});
+
+const navToggle = document.getElementById('navToggle');
+const mobileMenu = document.getElementById('mobileMenu');
+if (navToggle && mobileMenu) {
+  const closeMenu = () => {
+    mobileMenu.classList.remove('open');
+    navToggle.classList.remove('active');
+    navToggle.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('menu-open');
+  };
+  navToggle.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    navToggle.classList.toggle('active', isOpen);
+    navToggle.setAttribute('aria-expanded', String(isOpen));
+    document.body.classList.toggle('menu-open', isOpen);
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+  window.addEventListener('resize', () => { if (window.innerWidth > 820) closeMenu(); });
+}
+
+const nav = document.getElementById('nav');
+const progress = document.getElementById('progress');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+  const h = document.documentElement;
+  const pct = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+  progress.style.width = pct + '%';
+});
+
+const heroSection = document.getElementById('heroSection');
+const blob1 = document.getElementById('blob1');
+const blob2 = document.getElementById('blob2');
+if (heroSection) {
+  heroSection.addEventListener('mousemove', e => {
+    const r = heroSection.getBoundingClientRect();
+    const dx = (e.clientX - r.left) / r.width - 0.5;
+    const dy = (e.clientY - r.top) / r.height - 0.5;
+    blob1.style.transform = 'translate(' + (dx * 30) + 'px,' + (dy * 30) + 'px)';
+    blob2.style.transform = 'translate(' + (dx * -24) + 'px,' + (dy * -24) + 'px)';
+  });
+}
+
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('in');
+  });
+}, { threshold: 0.15 });
+document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => io.observe(el));
+
+const drawObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) { entry.target.classList.add('in'); drawObserver.unobserve(entry.target); }
+  });
+}, { threshold: 0.2 });
+const processTrack = document.getElementById('processTrack');
+if (processTrack) drawObserver.observe(processTrack);
+
+// Компетенции: аккордеон, одна карточка открыта
+document.querySelectorAll('.skill-head').forEach(head => {
+  head.addEventListener('click', () => {
+    const row = head.parentElement;
+    const willOpen = !row.classList.contains('open');
+    document.querySelectorAll('.skill-row').forEach(r => {
+      r.classList.remove('open');
+      r.querySelector('.skill-head').setAttribute('aria-expanded', 'false');
+    });
+    if (willOpen) { row.classList.add('open'); head.setAttribute('aria-expanded', 'true'); }
+  });
+});
+</script>
+
+</body>
+</html>
