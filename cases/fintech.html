@@ -168,6 +168,21 @@
   footer.footer-dark span{ font-size:13px; color:var(--dark-text-2); }
   .footer-links{ display:flex; gap:24px; list-style:none; font-size:14px; color:var(--dark-text-2); }
   .footer-links a:hover{ color:#fff; }
+
+  /* ===== Блок «Мой вклад» — переиспользуемый: заполняется полем contribution в CASE ===== */
+  .contrib{ position:relative; overflow:hidden; margin:0 0 48px; padding:36px; border-radius:20px; background:var(--dark-bg); color:var(--dark-text); }
+  .contrib::before{ content:''; position:absolute; width:380px; height:380px; border-radius:50%; background:var(--accent); filter:blur(130px); opacity:.35; top:-200px; right:-120px; pointer-events:none; }
+  .contrib > *{ position:relative; z-index:1; }
+  .contrib-label{ display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--accent-2); margin-bottom:14px; }
+  .contrib-label::before{ content:''; width:6px; height:6px; border-radius:50%; background:var(--accent-2); }
+  .contrib-title{ font-family:'Manrope',sans-serif; font-weight:800; letter-spacing:-0.02em; line-height:1.2; font-size:clamp(16px,1.7vw,19px); line-height:1.4; max-width:56ch; margin-bottom:22px; color:var(--dark-text); }
+  .contrib-list{ list-style:none; margin:0; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:0 40px; counter-reset:c; }
+  .contrib-list li{ counter-increment:c; position:relative; padding:18px 0 18px 40px; border-top:1px solid var(--dark-line); margin:0; }
+  .contrib-list li::before{ content:counter(c,decimal-leading-zero); position:absolute; left:0; top:20px; font-family:'Manrope',sans-serif; font-weight:700; font-size:13px; color:var(--accent-2); }
+  .contrib-list b{ display:block; font-weight:600; font-size:15px; color:var(--dark-text); margin-bottom:4px; }
+  .contrib-list span{ font-size:13.5px; line-height:1.55; color:var(--dark-text-2); }
+  @media (max-width:760px){ .contrib{ padding:26px 22px; } .contrib-list{ grid-template-columns:1fr; } }
+  .overview{ margin-bottom:32px; }
 </style>
 </head>
 <body>
@@ -325,6 +340,17 @@ const CASE = {
     ],
     cover: 'fintech/fintech1.jpg',
     tools: ['Figma','FigJam','ChatGPT','Figma AI','Miro'],
+    contribution: {
+      label: 'Мой вклад',
+      title: 'Перевела финансово-юридическую модель в&nbsp;понятный интерфейс сделки',
+      items: [
+        ['Модель состояний', 'Статусы сделки задают информацию и&nbsp;доступные действия на&nbsp;каждом этапе.'],
+        ['Своя идентификация', 'Без госсистемы спроектировала верификацию: паспорт, лицо, проверка и&nbsp;модерация.'],
+        ['Честная передача денег', 'Интерфейс показывает только то, что&nbsp;система действительно может зафиксировать.'],
+        ['От&nbsp;идеи до&nbsp;UI-системы', 'Архитектура, прототипы, обработка ошибок и&nbsp;дизайн-система продукта.']
+      ]
+    },
+
     body: `
       <h2>Контекст</h2>
       <p>Мобильный сервис для&nbsp;оформления займов между&nbsp;физическими лицами с&nbsp;фиксацией условий сделки, подтверждением личности участников и&nbsp;сопровождением обязательств после&nbsp;передачи&nbsp;денег.</p>
@@ -436,6 +462,13 @@ function render(){
   const tagsHtml = CASE.tags.map(t => '<span class="tag ' + t[1] + '">' + t[0] + '</span>').join('');
   const overviewHtml = CASE.meta.map(m => '<div><span>' + m.label + '</span><b>' + m.value + '</b></div>').join('');
 
+  const C = CASE.contribution;
+  const contribHtml = C ? '<section class="contrib">' +
+      '<div class="contrib-label">' + (C.label || 'Мой вклад') + '</div>' +
+      '<div class="contrib-title">' + C.title + '</div>' +
+      '<ul class="contrib-list">' + C.items.map(i => '<li><b>' + i[0] + '</b><span>' + i[1] + '</span></li>').join('') + '</ul>' +
+    '</section>' : '';
+
   document.getElementById('app').innerHTML =
     '<header class="case-head"><div class="wrap">' +
       '<h1 class="case-title">' + CASE.title + '</h1>' +
@@ -443,6 +476,7 @@ function render(){
       '<div class="case-tags">' + tagsHtml + '</div>' +
       '<div class="case-cover"><img src="' + img(CASE.cover) + '" alt=""></div>' +
       '<div class="overview">' + overviewHtml + '</div>' +
+      contribHtml +
     '</div></header>' +
     '<article class="case-body"><div class="wrap">' + CASE.body + '</div></article>' +
     '<div class="case-footer"><div class="wrap wrap-wide">' +
